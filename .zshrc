@@ -20,16 +20,13 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-export FZF_DEFAULT_OPTS='
---layout=reverse
---margin=2
---info=right
---color=border:#CBA6F7
---color=bg+:#585b70
---color=info:#cdd6f4
---border=rounded
---preview-window=rounded
-'
+# Catppuccin Mocha
+export FZF_DEFAULT_OPTS=" \
+    --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+    --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+    --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+    --color=selected-bg:#45475a \
+    --multi"
 
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions

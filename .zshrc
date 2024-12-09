@@ -66,6 +66,7 @@ zstyle ':completion:*' menu no
 alias reload="source ~/.zshrc"
 alias ..="cd .."
 alias vim="nvim"
+alias v="nvim"
 alias ls="ls --color"
 alias c="clear"
 alias z="cd"

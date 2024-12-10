@@ -13,7 +13,6 @@ return {
 					"lua_ls",
 					"pyright",
 					"clangd",
-					"powershell_es",
 				},
 			})
 		end,

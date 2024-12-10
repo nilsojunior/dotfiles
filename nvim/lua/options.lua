@@ -44,11 +44,6 @@ opt.cursorlineopt = "number"
 
 wo.wrap = false
 
-opt.shell = "pwsh -NoLogo"
-opt.shellcmdflag = "-c"
-opt.shellquote = ""
-opt.shellxquote = ""
-
 -- Obsidian stuff
 opt.conceallevel = 2
 

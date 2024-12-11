@@ -1,2 +1,2 @@
 --target=~/.config
---ignore='.stowrc|zsh'
+--ignore='.stowrc|easyeffects|zsh'

@@ -30,6 +30,9 @@ opt.updatetime = 50
 -- Incremental search
 opt.incsearch = true
 
+-- Disable search highlight
+opt.hlsearch = false
+
 -- Disable bottom right stuff
 opt.ruler = false
 
@@ -40,6 +43,7 @@ opt.showcmd = false
 opt.cursorline = true
 opt.cursorlineopt = "number"
 
+-- Disable line wrapping
 wo.wrap = false
 
 -- Obsidian stuff

@@ -8,8 +8,6 @@ local autocmd = vim.api.nvim_create_autocmd
 
 local cmd = vim.cmd
 
-vim.g.mapleader = " "
-
 -- Relative ines
 opt.relativenumber = true
 opt.nu = true

@@ -1,17 +1,19 @@
 local opts = { noremap = true, silent = true }
 
+local opts_silence = { silent = true }
+
 local opts_no_silent = { noremap = true }
 
 local keymap = vim.keymap.set
 
+-- Set leader key to Space
+vim.g.mapleader = " "
+
+-- Disable Space in normal and visual mode
+keymap({ "n", "v" }, "<Space>", "<Nop>", opts_silence)
+
 -- Control S to save
 keymap("n", "<C-s>", ":w<CR>", opts)
-
--- Move with Control in insert mode
--- keymap("i", "<C-h>", "<Left>", opts)
--- keymap("i", "<C-l>", "<Right>", opts)
--- keymap("i", "<C-k>", "<Up>", opts)
--- keymap("i", "<C-j>", "<Down>", opts)
 
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)

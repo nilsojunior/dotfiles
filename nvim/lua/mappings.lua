@@ -8,10 +8,10 @@ local keymap = vim.keymap.set
 keymap("n", "<C-s>", ":w<CR>", opts)
 
 -- Move with Control in insert mode
-keymap("i", "<C-h>", "<Left>", opts)
-keymap("i", "<C-l>", "<Right>", opts)
-keymap("i", "<C-k>", "<Up>", opts)
-keymap("i", "<C-j>", "<Down>", opts)
+-- keymap("i", "<C-h>", "<Left>", opts)
+-- keymap("i", "<C-l>", "<Right>", opts)
+-- keymap("i", "<C-k>", "<Up>", opts)
+-- keymap("i", "<C-j>", "<Down>", opts)
 
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)

@@ -73,7 +73,7 @@ alias z="cd"
 alias pac="sudo pacman -S"
 alias mkdir="mkdir -p"
 alias cat="bat"
-alias fvim='nvim $(fzf -m --preview="bat --color=always {}")'
+alias vfzf='nvim $(fzf -m --preview="bat --color=always {}")'
 alias  l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all

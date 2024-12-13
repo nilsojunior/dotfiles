@@ -13,6 +13,7 @@ return {
 					"lua_ls",
 					"pyright",
 					"clangd",
+					"stylelint_lsp",
 				},
 			})
 		end,

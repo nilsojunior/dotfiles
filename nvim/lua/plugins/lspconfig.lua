@@ -12,6 +12,20 @@ return {
 		lspconfig.clangd.setup({
 			capabilities = capabilities,
 		})
+		-- lspconfig.cssls.setup({
+		-- 	capabilities = capabilities,
+		-- 	settings = {
+		-- 		css = {
+		-- 			lint = {
+		-- 				unknownAtRules = "ignore",
+		-- 				invalidPropertyValue = "ignore",
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
+		lspconfig.stylelint_lsp.setup({
+			capabilities = capabilities,
+		})
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 		vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})

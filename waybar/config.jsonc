@@ -50,7 +50,7 @@
         "format-connected": " {num_connections}",
         "format-connected-battery": "{icon} {num_connections}",
         // "format-connected-battery": "{icon} {device_alias}-{device_battery_percentage}%",
-        "format-icons": ["󰥇", "󰤾", "󰤿", "󰥀", "󰥁", "󰥂", "󰥃", "󰥄", "󰥅", "󰥆", "󰥈"],
+        "format-icons": ["󰥇 ", "󰤾 ", "󰤿 ", "󰥀 ", "󰥁 ", "󰥂 ", "󰥃 ", "󰥄 ", "󰥅 ", "󰥆 ", "󰥈 "],
         // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device If this config option is not defined or none of the devices in the list are connected, it will fall back to showing the last connected device.
         "tooltip-format": "{controller_alias}\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
@@ -100,30 +100,30 @@
         }
     },
         "pulseaudio": {
-        "format": "{icon} {volume}",
+        "format": "{icon}{volume}",
         "rotate": 0,
-        "format-muted": "婢",
+        "format-muted": " ",
         "on-click": "pavucontrol -t 3",
-        "on-click-middle": "volumecontrol.sh -o m",
+        "on-click-middle": "pamixer -t",
         "on-scroll-up": "pamixer -i 5",
         "on-scroll-down": "pamixer -d 5",
         "tooltip-format": "{icon} {desc} // {volume}%",
         "scroll-step": 5,
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": ["", " ", " "]
         }
     },
         "pulseaudio#microphone": {
         "format": "{format_source}",
         "rotate": 0,
-        "format-source": "",
-        "format-source-muted": "",
+        "format-source": "",
+        "format-source-muted": " ",
         "on-click": "pavucontrol -t 4",
         "on-click-middle": "volumecontrol.sh -i m",
         "on-scroll-up": "volumecontrol.sh -i i",

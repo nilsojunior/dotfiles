@@ -1,9 +1,8 @@
 * {
     border: none;
     border-radius: 0px;
-    font-family: "JetBrainsMono Nerd Font";
-    font-weight: bold;
-    font-size: 17px;
+    font-family: "Inter ExtraBold";
+    font-size: 14px;
     min-height: 10px;
 }
 
@@ -94,6 +93,10 @@ tooltip {
     min-height: 10px;
 }
 
+/* My modules */
+#custom-nvidia,
+
+/* Modules */
 #backlight,
 #battery,
 #bluetooth,
@@ -132,6 +135,8 @@ tooltip {
     margin: 4px 0px 4px 0px;
     padding-left: 4px;
     padding-right: 4px;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
 #workspaces,

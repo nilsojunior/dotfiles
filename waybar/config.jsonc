@@ -7,9 +7,11 @@
         "clock",
         "custom/r_end",
         "custom/l_end",
+        "custom/nvidia",
         "custom/gpuinfo#nvidia",
         "custom/r_end",
         "custom/l_end",
+        "cpu",
         "custom/cpuinfo",
         "custom/r_end",
         "custom/padd",
@@ -25,6 +27,7 @@
         "custom/padd",
         "custom/l_end",
         "tray",
+        "backlight",
         "bluetooth",
         "battery",
         "network",
@@ -35,8 +38,8 @@
     ],
     // Modules configuration
         "custom/spotify": {
-        "exec": "/usr/bin/python3 ~/.config/waybar/mediaplayer.py --player spotify",
-        "format": "  {}",
+        "exec": "/usr/bin/python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
+        "format": "    {}",
         "rotate": 0,
         "return-type": "json",
         "on-click": "playerctl play-pause --player spotify",
@@ -54,6 +57,14 @@
             "warning": 30,
             "critical": 20
         },
+        "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up": "~/.config/waybar/brightnesscontrol.sh i 1",
+        "on-scroll-down": "~/.config/waybar/brightnesscontrol.sh d 1",
+        "min-length": 6
+    },
         "format": "{icon} {capacity}%",
         "rotate": 0,
         "format-charging": " {capacity}%",
@@ -67,7 +78,7 @@
         "format-connected": " {num_connections}",
         "format-connected-battery": "{icon} {num_connections}",
         // "format-connected-battery": "{icon} {device_alias}-{device_battery_percentage}%",
-        "format-icons": ["󰥇 ", "󰤾 ", "󰤿 ", "󰥀 ", "󰥁 ", "󰥂 ", "󰥃 ", "󰥄 ", "󰥅 ", "󰥆 ", "󰥈 "],
+        "format-icons": ["󰥇", "󰤾", "󰤿", "󰥀", "󰥁", "󰥂", "󰥃", "󰥄", "󰥅", "󰥆", "󰥈"],
         // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device If this config option is not defined or none of the devices in the list are connected, it will fall back to showing the last connected device.
         "tooltip-format": "{controller_alias}\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
@@ -78,12 +89,12 @@
         "tooltip": true,
         "format-wifi": " ",
         "rotate": 0,
-        "format-ethernet": "",
+        "format-ethernet": " ",
         "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
-        "format-linked": "󰈀 {ifname} (No IP)",
-        "format-disconnected": "󰖪 ",
+        "format-linked": "  {ifname} (No IP)",
+        "format-disconnected": "󰖪",
         "tooltip-format-disconnected": "Disconnected",
-        "format-alt": "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>",
+        "format-alt": "<span foreground='#99ffdd'>    {bandwidthDownBytes}</span> <span foreground='#ffcc66'>    {bandwidthUpBytes}</span>",
         "interval": 2,
     },
         "tray": {
@@ -93,7 +104,7 @@
     },
     
     "clock": {
-        "format": "  {:%I:%M %p}",
+        "format": "󰥔   {:%I:%M %p}",
         "rotate": 0,
         "format-alt": "{:%R 󰃭 %d·%m·%y}",
         "tooltip-format": "<span>{calendar}</span>",
@@ -117,7 +128,7 @@
         }
     },
         "pulseaudio": {
-        "format": "{icon} {volume}",
+        "format": "{icon}   {volume}",
         "rotate": 0,
         "format-muted": " ",
         "on-click": "pavucontrol -t 3",
@@ -127,20 +138,20 @@
         "tooltip-format": "{icon} {desc} // {volume}%",
         "scroll-step": 5,
         "format-icons": {
-            "headphone": " ",
-            "hands-free": " ",
-            "headset": " ",
-            "phone": " ",
-            "portable": " ",
-            "car": " ",
-            "default": ["", " ", " "]
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
         }
     },
         "pulseaudio#microphone": {
         "format": "{format_source}",
         "rotate": 0,
         "format-source": "",
-        "format-source-muted": " ",
+        "format-source-muted": "",
         "on-click": "pavucontrol -t 4",
         "on-click-middle": "volumecontrol.sh -i m",
         "on-scroll-up": "volumecontrol.sh -i i",
@@ -152,20 +163,25 @@
         "exec": "NO_EMOJI=1 ~/.config/waybar/scripts/gpuinfo.sh --use nvidia ",
         "return-type": "json",
         "format": "{}",
-        "interval": 5, // once every 5 seconds
+        "interval": 10,
         "tooltip": true,
         "max-length": 1000,
     },
+        "custom/nvidia": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "interval": 10,
+        "format": "GPU {}%",
+    },
         "cpu": {
         "interval": 10,
-        "format": "{}% ",
+        "format": "   {usage}%",
         "max-length": 10
-        },
+    },
         "custom/cpuinfo": {
         "exec": "NO_EMOJI=1 ~/.config/waybar/scripts/cpuinfo.sh",
         "return-type": "json",
         "format": "{}",
-        "restart-interval": 5, // once every 5 seconds
+        "restart-interval": 10,
         "tooltip": true,
         "max-length": 1000
     },

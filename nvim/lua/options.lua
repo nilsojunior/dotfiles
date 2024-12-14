@@ -33,6 +33,12 @@ opt.incsearch = true
 -- Disable search highlight
 opt.hlsearch = false
 
+-- Remove case-sensitive search
+opt.ignorecase = true
+
+-- Enable case-sensitive search when using uppercase letters
+opt.smartcase = true
+
 -- Disable bottom right stuff
 opt.ruler = false
 
@@ -45,6 +51,21 @@ opt.cursorlineopt = "number"
 
 -- Disable line wrapping
 wo.wrap = false
+
+-- Global statusline
+opt.laststatus = 3
+
+-- Hide mode display on bottom left
+opt.showmode = false
+
+-- Enable mouse for all modules
+opt.mouse = "a"
+
+-- Always open split on the right
+opt.splitright = true
+
+-- Always open split below
+opt.splitbelow = true
 
 -- Obsidian stuff
 opt.conceallevel = 2

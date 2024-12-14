@@ -26,9 +26,11 @@ return {
 		lspconfig.stylelint_lsp.setup({
 			capabilities = capabilities,
 		})
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-		vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-		vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+		local keymap = vim.keymap.set
+
+		keymap("n", "K", vim.lsp.buf.hover, {})
+		keymap("n", "gd", vim.lsp.buf.definition, {})
+		keymap("n", "<leader>gr", vim.lsp.buf.references, { desc = "References" }, {})
+		keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" }, {})
 	end,
 }

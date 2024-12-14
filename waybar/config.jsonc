@@ -1,25 +1,42 @@
 [{
     // "height": 31,
     "reload_style_on_change": true,
-    "spacing": 8,
     "modules-left": [
+        "custom/padd",
+        "custom/l_end",
         "clock",
+        "custom/r_end",
+        "custom/l_end",
+        "custom/gpuinfo#nvidia",
+        "custom/r_end",
+        "custom/l_end",
+        "custom/cpuinfo",
+        "custom/r_end",
+        "custom/padd",
     ],
     "modules-center": [
+        "custom/padd",
+        "custom/l_end",
         "custom/spotify",
+        "custom/r_end",
+        "custom/padd",
     ],
     "modules-right": [
+        "custom/padd",
+        "custom/l_end",
         "tray",
         "bluetooth",
         "battery",
         "network",
         "pulseaudio",
         "pulseaudio#microphone",
+        "custom/r_end",
+        "custom/padd",
     ],
     // Modules configuration
         "custom/spotify": {
         "exec": "/usr/bin/python3 ~/.config/waybar/mediaplayer.py --player spotify",
-        "format": " {}",
+        "format": "  {}",
         "rotate": 0,
         "return-type": "json",
         "on-click": "playerctl play-pause --player spotify",
@@ -76,7 +93,7 @@
     },
     
     "clock": {
-        "format": " {:%I:%M %p}",
+        "format": "  {:%I:%M %p}",
         "rotate": 0,
         "format-alt": "{:%R 󰃭 %d·%m·%y}",
         "tooltip-format": "<span>{calendar}</span>",
@@ -100,7 +117,7 @@
         }
     },
         "pulseaudio": {
-        "format": "{icon}{volume}",
+        "format": "{icon} {volume}",
         "rotate": 0,
         "format-muted": " ",
         "on-click": "pavucontrol -t 3",
@@ -131,4 +148,68 @@
         "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
         "scroll-step": 5
     },
+        "custom/gpuinfo#nvidia": {
+        "exec": "NO_EMOJI=1 ~/.config/waybar/scripts/gpuinfo.sh --use nvidia ",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 5, // once every 5 seconds
+        "tooltip": true,
+        "max-length": 1000,
+    },
+        "cpu": {
+        "interval": 10,
+        "format": "{}% ",
+        "max-length": 10
+        },
+        "custom/cpuinfo": {
+        "exec": "NO_EMOJI=1 ~/.config/waybar/scripts/cpuinfo.sh",
+        "return-type": "json",
+        "format": "{}",
+        "restart-interval": 5, // once every 5 seconds
+        "tooltip": true,
+        "max-length": 1000
+    },
+    // modules for padding //
+
+    "custom/l_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/r_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/sl_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/sr_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/rl_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/rr_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/padd": {
+        "format": "  ",
+        "interval" : "once",
+        "tooltip": false
+    }
 }]

@@ -24,8 +24,8 @@ keymap("v", "<S-J>", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "<S-K>", ":m '<-2<CR>gv=gv", opts)
 
 -- Yank to clipboard
-keymap("v", "<leader>y", '"+y', opts)
-keymap("n", "<leader>y", '"+y', opts)
+keymap("v", "<leader>y", '"+y', { desc = "Yank to system clipboard" }, opts)
+keymap("n", "<leader>y", '"+y', { desc = "Yank to system clipboard" }, opts)
 
 -- Pasting will not yank
 keymap("v", "p", '"_dp', opts)
@@ -34,10 +34,10 @@ keymap("v", "p", '"_dp', opts)
 keymap("n", "x", '"_x', opts)
 
 -- Delete without yank
-keymap({ "n", "v" }, "<leader>d", [["_d]])
+keymap({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yank" })
 
 -- Replace the word where cursor is
-keymap("n", "<leader>rn", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts_no_silent)
+keymap("n", "<leader>rn", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Rename" }, opts_no_silent)
 
 -- Keep cursor on center (from Prime)
 keymap("n", "J", "mzJ`z", opts)
@@ -47,7 +47,12 @@ keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 
 -- Change window
-keymap("n", "<leader><Tab>", "<C-w>w", opts)
+keymap("n", "<leader><Tab>", "<C-w>w", { desc = "Go to the next window" }, opts)
 
--- New Windows Terminal window in the same dir
-keymap("n", "<leader>pw", ":!wt -d .<CR><CR>", opts)
+-- Splits
+keymap("n", "<leader>sh", "<C-w>s", { desc = "Split horizontal" })
+keymap("n", "<leader>sv", "<C-w>v", { desc = "Split vertical" })
+
+-- Increment and decrement numbers
+keymap("n", "<leader>+", "<C-a>", { desc = "Increment number" })
+keymap("n", "<leader>-", "<C-x>", { desc = "Decrement number" })

@@ -16,6 +16,6 @@ return {
          endfunction
       ]])
 		vim.g.mkdp_browserfunc = "OpenMarkdownPreview"
-		vim.keymap.set("n", "<leader>mp", ":MarkdownPreviewToggle<CR>")
+		vim.keymap.set("n", "<leader>mp", ":MarkdownPreviewToggle<CR>", { desc = "Markdown preview" })
 	end,
 }

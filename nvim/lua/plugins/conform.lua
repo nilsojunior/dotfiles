@@ -6,8 +6,12 @@ return {
 				lua = { "stylua" },
 				python = { "black", "isort" },
 				c = { "clang-format" },
+				cpp = { "clang-format" },
 				markdown = { "prettier" },
 				css = { "prettier" },
+				html = { "prettier" },
+				json = { "prettier" },
+				jsonc = { "prettier" },
 			},
 			formatters = {
 				prettier = {

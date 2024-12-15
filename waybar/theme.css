@@ -1,3 +1,4 @@
+/* Catppuccin Mocha */
 @define-color rosewater #f5e0dc;
 @define-color flamingo #f2cdcd;
 @define-color pink #f5c2e7;
@@ -24,3 +25,7 @@
 @define-color base #1e1e2e;
 @define-color mantle #181825;
 @define-color crust #11111b;
+
+/* My colors */
+@define-color main-bg #11121C;
+@define-color widget-bg #25223B;

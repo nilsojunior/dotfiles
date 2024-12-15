@@ -1,5 +1,6 @@
 [{
-    // "height": 31,
+    "width": 1900,
+    "margin-top": 3,
     "reload_style_on_change": true,
     "modules-left": [
         "custom/padd",

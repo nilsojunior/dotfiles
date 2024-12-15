@@ -79,6 +79,7 @@ alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='eza --icons=auto --tree' # list folder as tree
+alias curlo="curl -O"
 
 # Fix zinit and zoxide conflict
 alias zi="__zoxide_zi"

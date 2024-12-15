@@ -50,7 +50,15 @@ tooltip {
 #pulseaudio.microphone {
     color: @pink;
 }
+#custom-notification {
+    color: @rosewater;
+}
+#custom-power {
+    color: @blue;
+}
 
+#custom-power,
+#custom-notification,
 #backlight,
 #battery,
 #bluetooth,

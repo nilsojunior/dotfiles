@@ -1,0 +1,56 @@
+* {
+    background-image: none;
+    box-shadow: none;
+    font-family: "Inter Extrabold";
+    font-size: 17px;
+}
+
+window {
+    background-color: transparent;
+}
+
+button {
+    border-radius: 7px;
+    border-color: transparent;
+    text-decoration-color: #cdd6f4;
+    color: #cdd6f4;
+    /* background-color: #181825; */
+    border-style: solid;
+    /* border-width: 2px; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15%;
+}
+
+button:focus,
+button:active,
+button:hover {
+    /* Mantle */
+    /* background-color: rgba(24, 24, 37, 0.75); */
+    background-size: 25%;
+    outline-style: none;
+}
+
+#lock {
+    background-image: url("icons/lock.svg");
+}
+
+#logout {
+    background-image: url("icons/logout.svg");
+}
+
+#suspend {
+    background-image: url("icons/suspend.svg");
+}
+
+#hibernate {
+    background-image: url("icons/hibernate.svg");
+}
+
+#shutdown {
+    background-image: url("icons/shutdown.svg");
+}
+
+#reboot {
+    background-image: url("icons/reboot.svg");
+}

@@ -2,7 +2,7 @@
     background-image: none;
     box-shadow: none;
     font-family: "Inter ExtraBold";
-    font-size: 17px;
+    font-size: 20px;
 }
 
 window {
@@ -10,16 +10,17 @@ window {
 }
 
 button {
-    border-radius: 7px;
+    border-radius: 0px;
     border-color: transparent;
     text-decoration-color: #cdd6f4;
     color: #cdd6f4;
-    /* background-color: #181825; */
+    background-color: rgba(24, 24, 37, 0.5);
     border-style: solid;
     /* border-width: 2px; */
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 15%;
+    background-size: 30%;
+    /* padding-bottom: 80px; */
 }
 
 button:focus,
@@ -27,24 +28,18 @@ button:active,
 button:hover {
     /* Mantle */
     /* background-color: rgba(24, 24, 37, 0.75); */
-    background-size: 25%;
+    background-size: 40%;
     outline-style: none;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 #lock {
     background-image: url("icons/lock.svg");
-}
-
-#logout {
-    background-image: url("icons/logout.svg");
+    border-radius: 70px 0px 0px 70px;
 }
 
 #suspend {
     background-image: url("icons/suspend.svg");
-}
-
-#hibernate {
-    background-image: url("icons/hibernate.svg");
 }
 
 #shutdown {
@@ -53,4 +48,9 @@ button:hover {
 
 #reboot {
     background-image: url("icons/reboot.svg");
+}
+
+#logout {
+    background-image: url("icons/logout.svg");
+    border-radius: 0px 70px 70px 0px;
 }

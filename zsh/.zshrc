@@ -1,3 +1,5 @@
+fastfetch
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -69,6 +71,7 @@ alias vim="nvim"
 alias v="nvim"
 # alias ls="ls --color"
 alias c="clear"
+alias cls="clear; fastfetch"
 alias z="cd"
 alias pac="sudo pacman -S"
 alias mkdir="mkdir -p"
@@ -82,8 +85,14 @@ alias lt='eza --icons=auto --tree' # list folder as tree
 alias curlo="curl -O"
 
 # Functions
-pasteimg() {
-   wl-paste --type=image/png > "$1".png
+pastepng() {
+   wl-paste > "$1".png
+}
+pastesvg() {
+   wl-paste > "$1".svg
+}
+pastejpg() {
+   wl-paste > "$1".jpg
 }
 
 # Fix zinit and zoxide conflict

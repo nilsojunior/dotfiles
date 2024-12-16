@@ -55,7 +55,7 @@
         // Modules configuration
         "custom/power": {
             "format": "⏻",
-            "on-click": "wlogout",
+            "on-click": "wlogout --buttons-per-row 5",
             "tooltip": false,
         },
         "custom/notification": {
@@ -86,7 +86,7 @@
             "on-click": "playerctl play-pause --player spotify",
             "on-click-right": "playerctl next --player spotify",
             "on-click-middle": "playerctl previous --player spotify",
-            "on-scroll-up": "~/.config/waybar/scripts/volumecontrol.sh -p spotify i",
+            "on-scroll-up": ".config/waybar/scripts/volumecontrol.sh -p spotify i",
             "on-scroll-down": "~/.config/waybar/scripts/volumecontrol.sh -p spotify d",
             "max-length": 100,
             "escape": true,
@@ -236,7 +236,7 @@
         "custom/nvidia": {
             "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
             "interval": 10,
-            "format": "GPU {}%",
+            "format": "󰍹   {}%",
         },
         "cpu": {
             "interval": 10,

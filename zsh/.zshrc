@@ -81,6 +81,11 @@ alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='eza --icons=auto --tree' # list folder as tree
 alias curlo="curl -O"
 
+# Functions
+pasteimg() {
+   wl-paste --type=image/png > "$1".png
+}
+
 # Fix zinit and zoxide conflict
 alias zi="__zoxide_zi"
 

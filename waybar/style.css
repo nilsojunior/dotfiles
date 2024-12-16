@@ -1,6 +1,7 @@
 * {
     font-family: "Inter ExtraBold";
     font-size: 14px;
+    color: @text;
 }
 
 @import "theme.css";

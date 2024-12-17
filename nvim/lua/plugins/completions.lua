@@ -11,18 +11,41 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"onsails/lspkind.nvim",
+		},
 		config = function()
 			local cmp = require("cmp")
+			local lspkind = require("lspkind")
+
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = "symbol_text",
+						maxwidth = {
+							menu = 50,
+							abbr = 50,
+						},
+						ellipsis_char = "...",
+						show_labelDetails = true,
+
+						before = function(entry, vim_item)
+							return vim_item
+						end,
+					}),
+				},
+
 				snippet = {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body)
 					end,
 				},
 				window = {
-					completion = cmp.config.window.bordered(),
+					completion = cmp.config.window.bordered({
+						scrollbar = false,
+					}),
 					documentation = cmp.config.window.bordered(),
 				},
 				mapping = cmp.mapping.preset.insert({

@@ -8,6 +8,7 @@
         "separator": " ",
     },
     "modules": [
+        "break",
         {
             "type": "os",
             "key": "   OS =>",

@@ -42,6 +42,7 @@ return {
 
 		keymap("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
 		keymap("n", "<leader>fw", builtin.live_grep, { desc = "Live grep" })
-		keymap("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Grep current buffer" })
+		keymap("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Find in current buffer" })
+		keymap("n", "<leader>fo", builtin.oldfiles, { desc = "Find oldfiles" })
 	end,
 }

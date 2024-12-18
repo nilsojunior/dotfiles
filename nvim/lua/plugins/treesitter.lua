@@ -11,7 +11,6 @@ return {
 				"c",
 				"cpp",
 				"markdown",
-				"powershell",
 				"json",
 				"yaml",
 				"toml",

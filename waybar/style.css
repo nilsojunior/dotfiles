@@ -2,6 +2,7 @@
     font-family: "Inter ExtraBold";
     font-size: 14px;
     color: @text;
+    margin: 1px 8px 1px 8px;
 }
 
 @import "theme.css";
@@ -24,38 +25,6 @@ tooltip {
 
 #tray menu separator {
     min-height: 10px;
-}
-
-#clock {
-    color: @pink;
-}
-#custom-gpuinfo,
-#custom-nvidia,
-#nvidia-gpu {
-    color: @maroon;
-}
-#cpu,
-#custom-cpuinfo,
-#custom-cpu {
-    color: @teal;
-}
-#custom-spotify {
-    color: @mauve;
-}
-#network {
-    color: @sky;
-}
-#pulseaudio {
-    color: @lavender;
-}
-#pulseaudio.microphone {
-    color: @pink;
-}
-#custom-notification {
-    color: @rosewater;
-}
-#custom-power {
-    color: @blue;
 }
 
 #custom-power,
@@ -95,49 +64,46 @@ tooltip {
 #custom-rr_end {
     background: @widget-bg;
     opacity: 1;
-    margin: 5px 0px 5px 0px;
-    padding-left: 4px;
-    padding-right: 4px;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    margin: 4px;
+    padding: 7px;
+    border-radius: 5px;
 }
 
-#custom-padd {
-    margin: 0px;
+#clock {
+    color: @pink;
+}
+#custom-gpuinfo,
+#custom-nvidia,
+#nvidia-gpu {
+    color: @maroon;
+}
+#cpu,
+#custom-cpuinfo,
+#custom-cpu {
+    color: @teal;
+}
+#custom-spotify {
+    color: @mauve;
+}
+#network {
+    color: @sky;
+}
+#pulseaudio {
+    color: @lavender;
+}
+#pulseaudio.microphone {
+    color: @pink;
+}
+#custom-notification {
+    color: @rosewater;
 }
 
-#custom-r_end {
-    border-radius: 0px 5px 5px 0px;
-    margin-right: 3px;
-    padding-right: 3px;
+#custom-power {
+    color: @blue;
 }
 
-#custom-l_end {
-    border-radius: 5px 0px 0px 5px;
-    margin-left: 3px;
-    padding-left: 3px;
-}
-
-#custom-sr_end {
-    border-radius: 0px;
-    margin-right: 9px;
-    padding-right: 3px;
-}
-
-#custom-sl_end {
-    border-radius: 0px;
-    margin-left: 9px;
-    padding-left: 3px;
-}
-
-#custom-rr_end {
-    border-radius: 0px 7px 7px 0px;
-    margin-right: 9px;
-    padding-right: 3px;
-}
-
-#custom-rl_end {
-    border-radius: 7px 0px 0px 7px;
-    margin-left: 9px;
-    padding-left: 3px;
+#custom-notification,
+#custom-power {
+    padding-right: 12px;
+    padding-left: 9px;
 }

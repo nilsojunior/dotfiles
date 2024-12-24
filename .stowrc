@@ -1,2 +1,7 @@
 --target=~/.config
---ignore='.stowrc|easyeffects|zsh'
+--ignore=.stowrc
+--ignore=easyeffects
+--ignore=zsh
+--ignore=pkglist.txt
+--ignore=install.sh
+--ignore=spotify

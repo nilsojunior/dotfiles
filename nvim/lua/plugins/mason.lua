@@ -12,7 +12,7 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"pyright",
-					"clangd",
+					-- "clangd",
 					"stylelint_lsp",
 				},
 			})

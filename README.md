@@ -4,20 +4,12 @@
 
 1. Clone the repo into the home directory.
 
-   ```console
-   git clone https://github.com/Nilsojunior/dotfiles ~
-   ```
+    ```console
+    git clone https://github.com/nilsojunior/dotfiles ~
+    ```
 
-2. Use GNU stow.
+2. Run the install script.
 
-   `~/.config`
-
-   ```console
-   stow .
-   ```
-
-   `.zshrc`
-
-   ```console
-   stow -v -t zsh/
-   ```
+    ```console
+    ./install.sh
+    ```

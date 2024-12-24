@@ -23,7 +23,6 @@ imagemagick
 wl-clipboard
 
 # CLI
-git
 bat
 fzf
 zsh

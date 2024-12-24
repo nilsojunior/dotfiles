@@ -1,0 +1,54 @@
+# Hyprland
+hyprland
+hyprlock
+hyprpaper
+hyprshot
+hyprpicker
+hyprshade
+
+# Fonts
+ttf-cascadia-code-nerd
+inter-font
+
+# System
+pamixer
+bluez
+bluez-utils
+brightnessctl
+unzip
+wget
+lsp-plugins
+openssh
+imagemagick
+wl-clipboard
+
+# CLI
+git
+bat
+fzf
+zsh
+zoxide
+eza
+stow
+fastfetch
+starship
+yazi
+
+# Dev
+npm
+lua
+
+# Applications
+swaync
+waybar
+wlogout
+neovim
+kitty
+easyeffects
+nwg-look
+spotify-launcher
+zen-browser-avx2-bin
+
+# Themes
+bibata-cursor-theme-bin
+catppuccin-gtk-theme-mocha

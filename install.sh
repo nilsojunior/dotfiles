@@ -1,7 +1,7 @@
 echo "Running install script..."
 
 echo "Installing packages..."
-yay -S --needed - < pkglist.txt
+yay -S --needed - < pkglist.lst
 
 echo "Symlinking the directories..."
 stow .

@@ -2,7 +2,7 @@
     font-family: "Inter ExtraBold";
     font-size: 14px;
     color: @text;
-    margin: 1px 8px 1px 8px;
+    margin: 2px 8px 2px 8px;
 }
 
 @import "theme.css";
@@ -64,7 +64,7 @@ tooltip {
 #custom-rr_end {
     background: @widget-bg;
     opacity: 1;
-    margin: 4px;
+    margin: 3px;
     padding: 7px;
     border-radius: 5px;
 }
@@ -103,6 +103,10 @@ tooltip {
 
 #custom-power {
     color: @blue;
+}
+
+#backlight {
+    color: @yellow;
 }
 
 #custom-notification,

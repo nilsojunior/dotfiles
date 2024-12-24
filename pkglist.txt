@@ -2,6 +2,8 @@ git
 hyprlock
 hyprpaper
 hyprshade
+hyprshot
+hyprpicker
 inter-font
 ttf-cascadia-code-nerd
 kitty
@@ -31,3 +33,4 @@ lsp-plugins
 unzip
 wget
 bibata-cursor-theme-bin
+openssh

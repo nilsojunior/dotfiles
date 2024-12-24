@@ -1,16 +1,14 @@
 #!/usr/bin/env sh
 
 map_floor() {
-
     IFS=', ' read -r -a pairs <<< "$1"
-
     if [[ ${pairs[-1]} != *":"* ]]; then
         def_val="${pairs[-1]}"
         unset 'pairs[${#pairs[@]}-1]'
     fi
     for pair in "${pairs[@]}"; do
         IFS=':' read -r key value <<< "$pair"
-       if [ ${2%%.*} -gt $key ]; then
+        if [ ${2%%.*} -gt $key ]; then
             echo "$value"
             return
         fi
@@ -24,7 +22,7 @@ if [[ $NO_EMOJI -eq 1 ]]; then
 else
     temp_lv="85:🌋, 65:🔥, 45:☁️, ❄️"
 fi
-util_lv="90:, 60:󰓅, 30:󰾅, 󰾆" 
+util_lv="90:, 60:󰓅, 30:󰾅, 󰾆"
 
 # Get static CPU information
 model=$(lscpu | awk -F': ' '/Model name/ {gsub(/^ *| *$| CPU.*/,"",$2); print $2}')
@@ -44,7 +42,7 @@ while true; do
     diffIdle=$((currIdle-prevIdle))
 
     # Get dynamic CPU information
-    utilization=$(awk -v stat="$diffStat" -v idle="$diffIdle" 'BEGIN {printf "%.1f", (stat/(stat+idle))*100}')
+    utilization=$(awk -v stat="$diffStat" -v idle="$diffIdle" 'BEGIN {printf "%.0f", (stat/(stat+idle))*100}')  # Changed %.1f to %.0f
     temperature=$(sensors | awk -F': ' '/Package id 0|Tctl/ { gsub(/^ *\+?|\..*/,"",$2); print $2; f=1; exit} END { if (!f) print "N/A"; }')
     frequency=$(cat /proc/cpuinfo | awk '/cpu MHz/{ sum+=$4; c+=1 } END { printf "%.0f", sum/c }')
 
@@ -55,7 +53,7 @@ while true; do
     emoji=$(echo ${icons:2})
 
     # Print the output
-    echo "{\"text\":\"$thermo $temperature°C\", \"tooltip\":\"$model\n$thermo Temperature: $temperature°C $emoji\n$speedo Utilization: $utilization%\n Clock Speed: $frequency/$maxfreq MHz\"}"
+    echo "{\"text\":\"   $utilization% $thermo $temperature°C\", \"tooltip\":\"$model\n$thermo Temperature: $temperature°C $emoji\n$speedo Utilization: $utilization%\n Clock Speed: $frequency/$maxfreq MHz\"}"
 
     # Store state and sleep
     prevStat=$currStat

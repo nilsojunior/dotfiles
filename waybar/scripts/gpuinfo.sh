@@ -145,10 +145,12 @@ generate_json() {
   thermo=$(echo ${icons:1:1})
   emoji=$(echo ${icons:2})
 
-  local json="{\"text\":\"${thermo} ${temperature}°C\", \"tooltip\":\"${primary_gpu}\n${thermo} Temperature: ${temperature}°C ${emoji}"
+  local json="{\"text\":\"󰍹   ${utilization}% ${thermo} ${temperature}°C\", \"tooltip\":\"${primary_gpu}\n${thermo} Temperature: ${temperature}°C ${emoji}"
 #? Soon Add Something incase needed.
   declare -A tooltip_parts
-  if [[ -n "${utilization}" ]]; then tooltip_parts["\n$speedo Utilization: "]="${utilization}%" ; fi
+  if [[ -n "${utilization}" ]]; then
+    utilization="${utilization%%.*}"  # Convert to an integer
+    tooltip_parts["\n$speedo Utilization: "]="${utilization}%" ; fi
   if [[ -n "${current_clock_speed}" ]] && [[ -n "${max_clock_speed}" ]]; then tooltip_parts["\n Clock Speed: "]="${current_clock_speed}/${max_clock_speed} MHz" ; fi
   if [[ -n "${gpu_load}" ]]; then tooltip_parts["\n$speedo Utilization: "]="${gpu_load}%" ; fi
   if [[ -n "${core_clock}" ]]; then tooltip_parts["\n Clock Speed: "]="${core_clock} MHz" ;fi
@@ -158,7 +160,7 @@ generate_json() {
                                     tooltip_parts["\n󱪉 Power Usage: "]="${power_usage} W"
                                   fi
   fi
-  if [[ -n "${power_discharge}" ]] && [[ "${power_discharge}" != "0" ]]; then tooltip_parts["\n Power Discharge: "]="${power_discharge} W" ;fi
+  if [[ -n "${power_discharge}" ]] && [[ "${power_discharge}" != "0" ]]; then tooltip_parts["\n  Power Discharge: "]="${power_discharge} W" ;fi
 
   for key in "${!tooltip_parts[@]}"; do
     local value="${tooltip_parts[${key}]}"
@@ -183,6 +185,7 @@ done
 done
 # power_limit=$()
 utilization=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1" "}')
+utilization="${utilization%%.*}"  # Convert to an integer
 current_clock_speed=$(awk '{sum += $1; n++} END {if (n > 0) print sum / n / 1000 ""}' /sys/devices/system/cpu/cpufreq/policy*/scaling_cur_freq)
 max_clock_speed=$(awk '{print $1/1000}' /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq)
 }
@@ -206,6 +209,7 @@ fi
   # Extract individual values
   temperature="${gpu_data[0]// /}"
   utilization="${gpu_data[1]// /}"
+  utilization="${utilization%%.*}"  # Convert to an integer
   current_clock_speed="${gpu_data[2]// /}"
   max_clock_speed="${gpu_data[3]// /}"
   power_usage="${gpu_data[4]// /}"
@@ -220,6 +224,7 @@ if [[ ! ${amd_output} == *"No AMD GPUs detected."* ]] && [[ ! ${amd_output} == *
   # Extract GPU Temperature, GPU Load, GPU Core Clock, and GPU Power Usage from amd_output
   temperature=$(echo "${amd_output}" | jq -r '.["GPU Temperature"]' | sed 's/°C//')
   gpu_load=$(echo "${amd_output}" | jq -r '.["GPU Load"]' | sed 's/%//')
+  gpu_load="${gpu_load%%.*}"  # Convert to an integer
   core_clock=$(echo "${amd_output}" | jq -r '.["GPU Core Clock"]' | sed 's/ GHz//;s/ MHz//')
   power_usage=$(echo "${amd_output}" | jq -r '.["GPU Power Usage"]' | sed 's/ Watts//')
 

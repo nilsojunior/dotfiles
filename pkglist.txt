@@ -34,3 +34,5 @@ unzip
 wget
 bibata-cursor-theme-bin
 openssh
+pamixer
+brightnessctl

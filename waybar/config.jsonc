@@ -97,8 +97,8 @@
             "min-length": 6,
         },
         "bluetooth": {
-            "format": "󰂯 On",
-            "format-disabled": "󰂲 Off",
+            "format": "󰂯  On",
+            "format-disabled": "󰂲  Off",
             "format-connected-battery": "󰂯  Connected ({num_connections})",
             "format-device-preference": ["device1", "device2"], // preference list deciding the displayed device If this config option is not defined or none of the devices in the list are connected, it will fall back to showing the last connected device.
             "tooltip-format": "{controller_alias}\n{num_connections} connected",

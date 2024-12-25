@@ -36,6 +36,7 @@ yazi
 # Dev
 npm
 lua
+valgrind
 
 # Applications
 swaync

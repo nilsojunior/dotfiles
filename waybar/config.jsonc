@@ -65,7 +65,7 @@
         },
         "battery": {
             "states": {
-                "good": 95,
+                "good": 100,
                 "warning": 30,
                 "critical": 20,
             },
@@ -99,8 +99,8 @@
         "bluetooth": {
             "format": "󰂯 On",
             "format-disabled": "󰂲 Off",
-            // "format-connected-battery": "{icon} {device_alias}-{device_battery_percentage}%",
-            // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device If this config option is not defined or none of the devices in the list are connected, it will fall back to showing the last connected device.
+            "format-connected-battery": "󰂯  Connected ({num_connections})",
+            "format-device-preference": ["device1", "device2"], // preference list deciding the displayed device If this config option is not defined or none of the devices in the list are connected, it will fall back to showing the last connected device.
             "tooltip-format": "{controller_alias}\n{num_connections} connected",
             "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
             "tooltip-format-enumerate-connected": "{device_alias}",

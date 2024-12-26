@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+bluetoothctl << EOF
+scan on
+connect 41:42:F5:48:94:0E
+EOF

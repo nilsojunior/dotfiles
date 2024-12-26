@@ -5,3 +5,4 @@
 --ignore=pkglist.txt
 --ignore=install.sh
 --ignore=spotify
+--ignore=bin

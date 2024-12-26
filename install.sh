@@ -60,6 +60,21 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+if ! [ -d "$HOME/bin" ]; then
+    echo "Creating bin directory"
+    mkdir ~/bin
+    if [ $? -ne 0 ]; then
+        echo "Failed to create bin directory"
+        exit 1
+    fi
+fi
+
+stow -v -t ~/bin bin/
+if [ $? -ne 0 ]; then
+    echo "Failed to stow bin directory"
+    exit 1
+fi
+
 echo "Rebuilding bat's cache..."
 bat cache --build
 if [ $? -ne 0 ]; then

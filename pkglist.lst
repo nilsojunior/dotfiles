@@ -21,6 +21,7 @@ lsp-plugins
 openssh
 imagemagick
 wl-clipboard
+keyd
 
 # CLI
 bat

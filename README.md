@@ -11,6 +11,5 @@
 2. Run the install script.
 
     ```console
-    chmod +x install.sh
     ./install.sh
     ```

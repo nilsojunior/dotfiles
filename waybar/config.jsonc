@@ -6,16 +6,15 @@
         "reload_style_on_change": true,
         "modules-left": [
             "clock",
-            "custom/nvidia",
-            // "custom/gpuinfo#nvidia",
-            "custom/gpuinfo#intel",
+            "custom/gpuinfo#nvidia",
+            // "custom/gpuinfo#intel",
             "custom/cpuinfo",
         ],
         "modules-center": ["custom/spotify"],
         "modules-right": [
-            // "tray",
+            "tray",
             "backlight",
-            "bluetooth",
+            // "bluetooth",
             "network",
             "pulseaudio",
             "pulseaudio#microphone",
@@ -196,11 +195,6 @@
             "interval": 10,
             "tooltip": true,
             "max-length": 1000,
-        },
-        "custom/nvidia": {
-            "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
-            "interval": 10,
-            "format": "󰍹   {}%",
         },
         "custom/cpuinfo": {
             "exec": "NO_EMOJI=1 ~/.config/waybar/scripts/cpuinfo.sh",

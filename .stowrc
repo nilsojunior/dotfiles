@@ -2,7 +2,7 @@
 --ignore=.stowrc
 --ignore=easyeffects
 --ignore=zsh
---ignore=pkglist.txt
+--ignore=pkglist.lst
 --ignore=install.sh
 --ignore=spotify
 --ignore=bin

@@ -43,6 +43,15 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+if [ ! -d "~/.tmux/plugins/tpm" ]; then
+    echo "Installing Tmux Plugin Manager..."
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    if [ $? -ne 0 ]; then
+        echo "Failed to clone Tmux Plugin Manager repository"
+        exit 1
+    fi
+fi
+
 echo "Symlinking the directories..."
 stow .
 if [ $? -ne 0 ]; then

@@ -3,6 +3,7 @@
     "logo": {
         "source": "~/.config/fastfetch/images/hyprland.png",
         "height": 18,
+        "type": "kitty",
     },
     "display": {
         "separator": " ",

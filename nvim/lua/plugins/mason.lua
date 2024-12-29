@@ -19,13 +19,9 @@ return {
 		end,
 	},
 	{
-		"jay-babu/mason-null-ls.nvim",
-		dependencies = {
-			"nvimtools/none-ls.nvim",
-		},
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		config = function()
-			require("mason").setup()
-			require("mason-null-ls").setup({
+			require("mason-tool-installer").setup({
 				ensure_installed = {
 					"stylua",
 					"black",

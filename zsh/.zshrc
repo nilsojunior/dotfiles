@@ -102,3 +102,5 @@ eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 export PATH="$HOME/bin:$PATH"
+
+fastfetch

@@ -1,0 +1,44 @@
+font-family = CaskaydiaCove Nerd Font
+font-style = bold
+font-size = 20
+
+theme = catppuccin-mocha
+
+mouse-hide-while-typing = true
+
+window-decoration = false
+window-padding-x = 25
+window-padding-y = 20
+window-theme = ghostty
+window-inherit-working-directory = true
+gtk-tabs-location = hidden
+
+copy-on-select = clipboard
+
+# Keybinds
+keybind = ctrl+space>t=toggle_tab_overview
+keybind = ctrl+space>c=new_tab
+keybind = ctrl+space>w=close_surface
+keybind = ctrl+space>n=next_tab
+keybind = ctrl+space>shift+n=previous_tab
+
+# Splits
+keybind = ctrl+space>v=new_split:right
+keybind = ctrl+space>h=new_split:down
+
+# Switch splits
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+l=goto_split:right
+
+# Switch tabs
+keybind = ctrl+space>1=goto_tab:1
+keybind = ctrl+space>2=goto_tab:2
+keybind = ctrl+space>3=goto_tab:3
+keybind = ctrl+space>4=goto_tab:4
+keybind = ctrl+space>5=goto_tab:5
+keybind = ctrl+space>6=goto_tab:6
+keybind = ctrl+space>7=goto_tab:7
+keybind = ctrl+space>8=goto_tab:8
+keybind = ctrl+space>9=goto_tab:9

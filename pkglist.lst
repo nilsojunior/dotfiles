@@ -41,6 +41,7 @@ lua
 valgrind
 
 # Applications
+mpv
 swaync
 waybar
 wlogout

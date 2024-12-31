@@ -1,3 +1,9 @@
+# NVIDIA
+nvidia
+nvidia-utils
+lib32-nvidia-utils
+egl-wayland
+
 # Hyprland
 hyprland
 hyprlock

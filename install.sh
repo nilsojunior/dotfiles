@@ -87,6 +87,7 @@ fi
 stow -v -t ~ bash/
 if [ $? -ne 0 ]; then
     echo "Failed to stow bash directory"
+    exit 1
 fi
 
 stow -v -t ~ git/

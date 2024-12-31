@@ -43,7 +43,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-if [ ! -d "~/.tmux/plugins/tpm" ]; then
+if [ ! -d ~/.tmux/plugins/tpm ]; then
     echo "Installing Tmux Plugin Manager..."
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     if [ $? -ne 0 ]; then
@@ -81,6 +81,17 @@ fi
 stow -v -t ~/bin bin/
 if [ $? -ne 0 ]; then
     echo "Failed to stow bin directory"
+    exit 1
+fi
+
+stow -v -t ~ bash/
+if [ $? -ne 0 ]; then
+    echo "Failed to stow bash directory"
+fi
+
+stow -v -t ~ git/
+if [ $? -ne 0 ]; then
+    echo "Failed to stow git directory"
     exit 1
 fi
 

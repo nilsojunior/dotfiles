@@ -6,3 +6,4 @@
 --ignore=install.sh
 --ignore=spotify
 --ignore=bin
+--ignore=bash

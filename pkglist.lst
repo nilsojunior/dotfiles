@@ -46,7 +46,8 @@ swaync
 waybar
 wlogout
 neovim
-kitty
+# kitty
+ghostty
 easyeffects
 nwg-look
 spotify-launcher

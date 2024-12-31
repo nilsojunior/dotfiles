@@ -2,6 +2,8 @@ font-family = CaskaydiaCove Nerd Font
 font-style = bold
 font-size = 20
 
+cursor-style = bar
+
 theme = catppuccin-mocha
 
 mouse-hide-while-typing = true

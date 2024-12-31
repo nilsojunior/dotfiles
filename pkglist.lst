@@ -32,6 +32,7 @@ keyd
 # CLI
 bat
 fzf
+ripgrep
 zsh
 zoxide
 eza

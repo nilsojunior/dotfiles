@@ -38,6 +38,7 @@ yazi
 # Dev
 npm
 lua
+python-gobject
 valgrind
 
 # Applications

@@ -103,4 +103,18 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo "Enabling keyd..."
+sudo systemctl enable keyd
+if [ $? -ne 0 ]; then
+    echo "Failed to enable keyd"
+    exit 1
+fi
+
+echo "Creating keyd directory..."
+sudo cp -r keyd/ /etc/
+if [ $? -ne 0 ]; then
+    echo "Failed to create keyd directory"
+    exit 1
+fi
+
 echo "Done!"

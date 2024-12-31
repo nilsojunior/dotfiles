@@ -7,3 +7,4 @@
 --ignore=spotify
 --ignore=bin
 --ignore=bash
+--ignore=keyd

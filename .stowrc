@@ -8,3 +8,4 @@
 --ignore=bin
 --ignore=bash
 --ignore=keyd
+--ignore=git

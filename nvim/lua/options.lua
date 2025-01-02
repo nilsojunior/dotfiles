@@ -67,6 +67,8 @@ opt.splitright = true
 -- Always open split below
 opt.splitbelow = true
 
+opt.guicursor = ""
+
 -- Obsidian stuff
 opt.conceallevel = 2
 

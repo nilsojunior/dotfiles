@@ -2,7 +2,8 @@ font-family = CaskaydiaCove Nerd Font
 font-style = bold
 font-size = 20
 
-cursor-style = bar
+cursor-style = block
+cursor-style-blink = false
 
 theme = catppuccin-mocha
 
@@ -13,13 +14,15 @@ window-padding-x = 25
 window-padding-y = 20
 window-theme = ghostty
 window-inherit-working-directory = true
+
+adw-toolbar-style = flat
 gtk-tabs-location = hidden
 
 copy-on-select = clipboard
 
 # Keybinds
-keybind = ctrl+space>t=toggle_tab_overview
-keybind = ctrl+space>c=new_tab
+keybind = ctrl+space>c=toggle_tab_overview
+keybind = ctrl+space>t=new_tab
 keybind = ctrl+space>w=close_surface
 keybind = ctrl+space>n=next_tab
 keybind = ctrl+space>shift+n=previous_tab

@@ -13,12 +13,12 @@ window-decoration = false
 window-padding-x = 25
 window-padding-y = 20
 window-theme = ghostty
-window-inherit-working-directory = true
 
 adw-toolbar-style = flat
 gtk-tabs-location = hidden
 
 copy-on-select = clipboard
+
 
 # Keybinds
 keybind = ctrl+space>c=toggle_tab_overview

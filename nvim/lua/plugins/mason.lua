@@ -16,6 +16,7 @@ return {
 					"stylelint_lsp",
 					"rust_analyzer",
 					"bashls",
+					"jsonls",
 				},
 			})
 		end,
@@ -30,6 +31,7 @@ return {
 					"isort",
 					"prettier",
 					"clang-format",
+					"rustfmt",
 				},
 			})
 		end,

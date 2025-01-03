@@ -26,7 +26,13 @@ return {
 		lspconfig.stylelint_lsp.setup({
 			capabilities = capabilities,
 		})
+		lspconfig.rust_analyzer.setup({
+			capabilities = capabilities,
+		})
 		lspconfig.bashls.setup({
+			capabilities = capabilities,
+		})
+		lspconfig.jsonls.setup({
 			capabilities = capabilities,
 		})
 		local keymap = vim.keymap.set

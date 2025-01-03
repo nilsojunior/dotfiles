@@ -12,6 +12,7 @@ return {
 				html = { "prettier" },
 				json = { "prettier" },
 				jsonc = { "prettier" },
+				rust = { "rustfmt" },
 			},
 			formatters = {
 				prettier = {

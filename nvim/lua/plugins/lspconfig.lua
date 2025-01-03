@@ -26,6 +26,9 @@ return {
 		lspconfig.stylelint_lsp.setup({
 			capabilities = capabilities,
 		})
+		lspconfig.bashls.setup({
+			capabilities = capabilities,
+		})
 		local keymap = vim.keymap.set
 
 		keymap("n", "K", vim.lsp.buf.hover, {})

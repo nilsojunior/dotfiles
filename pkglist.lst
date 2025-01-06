@@ -1,8 +1,8 @@
 # NVIDIA
-nvidia
-nvidia-utils
-lib32-nvidia-utils
-egl-wayland
+# nvidia
+# nvidia-utils
+# lib32-nvidia-utils
+# egl-wayland
 
 # Hyprland
 hyprland
@@ -28,6 +28,7 @@ openssh
 imagemagick
 wl-clipboard
 keyd
+flatpak
 
 # CLI
 bat
@@ -45,6 +46,7 @@ yazi
 # Dev
 npm
 lua
+rust
 python-gobject
 valgrind
 

@@ -15,6 +15,7 @@ hyprshade
 # Fonts
 ttf-cascadia-code-nerd
 inter-font
+noto-fonts-cjk
 
 # System
 pamixer

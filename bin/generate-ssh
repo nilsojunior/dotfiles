@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+ssh-keygen -t ed25519 -C "162613094+Nilsojunior@users.noreply.github.com"
+if [ $? -ne 0 ]; then
+    echo "Failed to generate ssh key"
+    exit 1
+fi
+
+eval "$(ssh-agent -s)"
+if [ $? -ne 0 ]; then
+    echo "Failed to start the ssh agent"
+    exit 1
+fi
+
+ssh-add ~/.ssh/id_ed25519
+if [ $? -ne 0 ]; then
+    echo "Failed to add the ssh key"
+    exit 1
+fi
+
+cat ~/.ssh/id_ed25519.pub
+if [ $? -ne 0 ]; then
+    echo "Failed to cat public ssh key"
+    exit 1
+fi

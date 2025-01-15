@@ -37,7 +37,7 @@ if [ $? -ne 0 ]; then
     echo "Failed to enter dotfiles directory"
     exit 1
 fi
-yay -S --needed - < pkglist.lst
+yay -S --needed --noconfirm - < pkglist.lst
 if [ $? -ne 0 ]; then
     echo "Failed to install packages"
     exit 1
@@ -81,6 +81,12 @@ fi
 stow -v -t ~/bin bin/
 if [ $? -ne 0 ]; then
     echo "Failed to stow bin directory"
+    exit 1
+fi
+
+rm .bashrc
+if [ $? -ne 0 ]; then
+    echo "Failed to remove .bashrc file"
     exit 1
 fi
 

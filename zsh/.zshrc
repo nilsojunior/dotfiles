@@ -1,3 +1,8 @@
+# Auto start Hyprland
+if [[ -z $DISPLAY ]] && [[ $(tty) == /dev/tty1 ]] && [[ -z $NO_HYPR ]]; then
+    exec Hyprland
+fi
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -80,7 +85,7 @@ alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='eza --icons=auto --tree' # list folder as tree
-alias curlo="curl -O"
+alias zi="__zoxide_zi" # Fix zinit and zoxide conflict
 
 # Functions
 pastepng() {
@@ -93,8 +98,9 @@ pastejpg() {
    wl-paste > "$1".jpg
 }
 
-# Fix zinit and zoxide conflict
-alias zi="__zoxide_zi"
+# Bindings
+bindkey -s '^F' 'nvim $(fzf -m --preview="bat --color=always {}")\n'
+bindkey -s '^E' 'y\n'
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"

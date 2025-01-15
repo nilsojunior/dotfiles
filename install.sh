@@ -84,7 +84,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-rm .bashrc
+rm ~/.bashrc
 if [ $? -ne 0 ]; then
     echo "Failed to remove .bashrc file"
     exit 1

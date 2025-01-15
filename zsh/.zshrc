@@ -77,6 +77,8 @@ alias c="clear"
 alias cls="clear; fastfetch"
 alias z="cd"
 alias pac="sudo pacman -S"
+alias in="yay -Slq | fzf | xargs -ro yay -S"
+alias un="yay -Qq | fzf | xargs -ro yay -Rns"
 alias mkdir="mkdir -p"
 alias cat="bat"
 alias vfzf='nvim $(fzf -m --preview="bat --color=always {}")'

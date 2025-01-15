@@ -52,6 +52,7 @@ python-gobject
 valgrind
 
 # Applications
+rofi
 mpv
 swaync
 waybar

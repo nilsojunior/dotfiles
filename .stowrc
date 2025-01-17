@@ -9,3 +9,4 @@
 --ignore=bash
 --ignore=keyd
 --ignore=git
+--ignore=zen

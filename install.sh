@@ -69,21 +69,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-if ! [ -d "$HOME/bin" ]; then
-    echo "Creating bin directory"
-    mkdir ~/bin
-    if [ $? -ne 0 ]; then
-        echo "Failed to create bin directory"
-        exit 1
-    fi
-fi
-
-stow -v -t ~/bin bin/
-if [ $? -ne 0 ]; then
-    echo "Failed to stow bin directory"
-    exit 1
-fi
-
 rm ~/.bashrc
 if [ $? -ne 0 ]; then
     echo "Failed to remove .bashrc file"
@@ -99,6 +84,18 @@ fi
 stow -v -t ~ git/
 if [ $? -ne 0 ]; then
     echo "Failed to stow git directory"
+    exit 1
+fi
+
+ln -s $HOME/dotfiles/bin ~
+if [ $? -ne 0 ]; then
+    echo "Failed to symlink bin directory"
+    exit 1
+fi
+
+ln -s $HOME/dotfiles/pics ~
+if [ $? -ne 0 ]; then
+    echo "Failed to symlink pics directory"
     exit 1
 fi
 

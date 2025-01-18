@@ -1,11 +1,11 @@
 {
     "label": "lock",
-    "action": "lockscreen",
+    "action": "$HOME/bin/lockscreen",
     "text": "Lock"
 }
 {
     "label": "suspend",
-    "action": "$HOME/bin/lock.sh && systemctl suspend",
+    "action": "$HOME/bin/lockscreen && systemctl suspend",
     "text": "Suspend"
 }
 {

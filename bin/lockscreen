@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+# Sleep before screenshot for wlogout to disappear
+sleep 0.1
+
+grim -o DP-2 /tmp/lockscreen.png
+
+hyprlock

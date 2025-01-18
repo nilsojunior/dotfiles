@@ -1,11 +1,11 @@
 {
     "label": "lock",
-    "action": "hyprlock",
+    "action": "lockscreen",
     "text": "Lock"
 }
 {
     "label": "suspend",
-    "action": "systemctl suspend",
+    "action": "$HOME/bin/lock.sh && systemctl suspend",
     "text": "Suspend"
 }
 {

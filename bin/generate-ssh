@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 ssh-keygen -t ed25519 -C "162613094+Nilsojunior@users.noreply.github.com"
 if [ $? -ne 0 ]; then

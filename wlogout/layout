@@ -5,7 +5,7 @@
 }
 {
     "label": "suspend",
-    "action": "$HOME/bin/lockscreen && systemctl suspend",
+    "action": "systemctl suspend && $HOME/bin/lockscreen",
     "text": "Suspend"
 }
 {

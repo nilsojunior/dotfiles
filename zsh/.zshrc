@@ -25,14 +25,6 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-# Catppuccin Mocha
-export FZF_DEFAULT_OPTS=" \
-    --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-    --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-    --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
-    --color=selected-bg:#45475a \
-    --multi"
-
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -81,7 +73,7 @@ alias in="yay -Slq | fzf | xargs -ro yay -S"
 alias un="yay -Qq | fzf | xargs -ro yay -Rns"
 alias mkdir="mkdir -p"
 alias cat="bat"
-alias vfzf='nvim $(fzf -m --preview="bat --color=always {}")'
+alias vfzf='fzf -m --preview="bat --color=always {}" | xargs -ro nvim'
 alias  l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
@@ -101,14 +93,11 @@ pastejpg() {
 }
 
 # Bindings
-bindkey -s '^F' 'nvim $(fzf -m --preview="bat --color=always {}")\n'
+bindkey -s '^F' 'vfzf\n'
 bindkey -s '^E' 'y\n'
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
-export PATH="$HOME/bin:$PATH"
 
 fastfetch

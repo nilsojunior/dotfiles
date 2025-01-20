@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 echo "Running install script..."
 
@@ -69,18 +69,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-rm ~/.bashrc
-if [ $? -ne 0 ]; then
-    echo "Failed to remove .bashrc file"
-    exit 1
-fi
-
-stow -v -t ~ bash/
-if [ $? -ne 0 ]; then
-    echo "Failed to stow bash directory"
-    exit 1
-fi
-
 stow -v -t ~ git/
 if [ $? -ne 0 ]; then
     echo "Failed to stow git directory"
@@ -117,6 +105,12 @@ echo "Creating keyd directory..."
 sudo cp -r keyd/ /etc/
 if [ $? -ne 0 ]; then
     echo "Failed to create keyd directory"
+    exit 1
+fi
+
+chsh -s $(which zsh)
+if [ $? -ne 0 ]; then
+    echo "Failed to set zsh as login shell"
     exit 1
 fi
 

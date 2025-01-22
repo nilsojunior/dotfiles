@@ -1,6 +1,5 @@
 --target=~/.config
 --ignore=.stowrc
---ignore=easyeffects
 --ignore=zsh
 --ignore=pkglist.lst
 --ignore=install.sh

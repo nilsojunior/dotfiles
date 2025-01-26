@@ -9,7 +9,7 @@ if ! command -v yay &> /dev/null; then
         echo "Failed to change directory to home"
         exit 1
     fi
-    sudo pacman -S --needed git base-devel
+    sudo pacman -S --needed git base-devel --noconfirm
     if [ $? -ne 0 ]; then
         echo "Failed to install yay dependencies"
         exit 1

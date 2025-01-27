@@ -10,3 +10,4 @@
 --ignore=git
 --ignore=zen
 --ignore=pics
+--ignore=stylus

@@ -2,29 +2,32 @@
 
 echo "Running install script..."
 
+USER_HOME="/home/$SUDO_USER"
+SUDO_CMD="sudo -u $SUDO_USER"
+
 if ! command -v yay &> /dev/null; then
     echo "Installing yay..."
-    cd ~
+    cd "$USER_HOME"
     if [ $? -ne 0 ]; then
         echo "Failed to change directory to home"
         exit 1
     fi
-    sudo pacman -S --needed git base-devel --noconfirm
+    pacman -S --needed git base-devel --noconfirm
     if [ $? -ne 0 ]; then
         echo "Failed to install yay dependencies"
         exit 1
     fi
-    git clone https://aur.archlinux.org/yay-bin.git
+    $SUDO_CMD git clone https://aur.archlinux.org/yay-bin.git "$USER_HOME"
     if [ $? -ne 0 ]; then
         echo "Failed to clone yay repository"
         exit 1
     fi
-    cd yay-bin
+    cd "$USER_HOME/yay-bin"
     if [ $? -ne 0 ]; then
         echo "Failed to enter yay directory"
         exit 1
     fi
-    makepkg -si --noconfirm
+    $SUDO_CMD makepkg -si --noconfirm
     if [ $? -ne 0 ]; then
         echo "Failed to build yay"
         exit 1
@@ -32,20 +35,20 @@ if ! command -v yay &> /dev/null; then
 fi
 
 echo "Installing packages..."
-cd ~/dotfiles/
+cd "$USER_HOME/dotfiles"
 if [ $? -ne 0 ]; then
     echo "Failed to enter dotfiles directory"
     exit 1
 fi
-yay -S --needed --noconfirm - < pkglist.lst
+$SUDO_CMD yay -S --needed --noconfirm - < pkglist.lst
 if [ $? -ne 0 ]; then
     echo "Failed to install packages"
     exit 1
 fi
 
-if [ ! -d ~/.tmux/plugins/tpm ]; then
+if [ ! -d "$USER_HOME/.tmux/plugins/tpm" ]; then
     echo "Installing Tmux Plugin Manager..."
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    $SUDO_CMD git clone https://github.com/tmux-plugins/tpm "$USER_HOME/.tmux/plugins/tpm"
     if [ $? -ne 0 ]; then
         echo "Failed to clone Tmux Plugin Manager repository"
         exit 1
@@ -53,58 +56,65 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
 fi
 
 echo "Symlinking the directories..."
-stow .
+$SUDO_CMD stow .
 if [ $? -ne 0 ]; then
     echo "Failed to stow directories"
     exit 1
 fi
-stow -v -t ~ zsh/
+$SUDO_CMD stow -v -t "$USER_HOME" zsh/
 if [ $? -ne 0 ]; then
     echo "Failed to stow zsh directory"
     exit 1
 fi
-stow -v -t ~/.config spotify/
+$SUDO_CMD stow -v -t "$USER_HOME/.config" spotify/
 if [ $? -ne 0 ]; then
     echo "Failed to stow spotify directory"
     exit 1
 fi
 
-stow -v -t ~ git/
+$SUDO_CMD stow -v -t "$USER_HOME" git/
 if [ $? -ne 0 ]; then
     echo "Failed to stow git directory"
     exit 1
 fi
 
-ln -s $HOME/dotfiles/bin ~
+$SUDO_CMD ln -s "$USER_HOME/dotfiles/bin" "$USER_HOME"
 if [ $? -ne 0 ]; then
     echo "Failed to symlink bin directory"
     exit 1
 fi
 
-ln -s $HOME/dotfiles/pics ~
+$SUDO_CMD ln -s "$USER_HOME/dotfiles/pics" "$USER_HOME"
 if [ $? -ne 0 ]; then
     echo "Failed to symlink pics directory"
     exit 1
 fi
 
 echo "Rebuilding bat's cache..."
-bat cache --build
+$SUDO_CMD bat cache --build
 if [ $? -ne 0 ]; then
     echo "Failed to rebuild bat's cache"
     exit 1
 fi
 
 echo "Enabling keyd..."
-sudo systemctl enable keyd
+systemctl enable keyd
 if [ $? -ne 0 ]; then
     echo "Failed to enable keyd"
     exit 1
 fi
 
 echo "Creating keyd directory..."
-sudo cp -r keyd/ /etc/
+cp -r keyd/ /etc/
 if [ $? -ne 0 ]; then
     echo "Failed to create keyd directory"
+    exit 1
+fi
+
+echo "Adding pacman config..."
+cp pacman/pacman.conf /etc/pacman.conf
+if [ $? -ne 0 ]; then
+    echo "Failed to add pacman config"
     exit 1
 fi
 

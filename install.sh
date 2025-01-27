@@ -24,7 +24,7 @@ if ! command -v yay &> /dev/null; then
         echo "Failed to enter yay directory"
         exit 1
     fi
-    makepkg -si
+    makepkg -si --noconfirm
     if [ $? -ne 0 ]; then
         echo "Failed to build yay"
         exit 1

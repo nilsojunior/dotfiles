@@ -74,6 +74,7 @@ alias un="yay -Qq | fzf | xargs -ro yay -Rns"
 alias mkdir="mkdir -p"
 alias cat="bat"
 alias vfzf='fzf -m --preview="bat --color=always {}" | xargs -ro nvim'
+alias cdfzf='cd $(find . -type d | fzf)'
 alias  l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
@@ -95,6 +96,11 @@ pastejpg() {
 # Bindings
 bindkey -s '^F' 'vfzf\n'
 bindkey -s '^E' 'y\n'
+bindkey -s '^Y' 'cdfzf\n'
+
+# Edit command in vim
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^G' edit-command-line
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"

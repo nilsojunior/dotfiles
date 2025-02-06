@@ -1,25 +1,36 @@
 {
     "label": "lock",
     "action": "$HOME/bin/lockscreen",
-    "text": "Lock"
+    "text": "Lock",
+    "keybind": "1"
 }
 {
     "label": "suspend",
     "action": "systemctl suspend && $HOME/bin/lockscreen",
     "text": "Suspend"
+    "keybind": "2"
 }
 {
     "label": "shutdown",
     "action": "systemctl poweroff",
     "text": "Shutdown"
+    "keybind": "3"
 }
 {
     "label": "reboot",
     "action": "systemctl reboot",
     "text": "Reboot"
+    "keybind": "4"
 }
 {
     "label": "logout",
     "action": "hyprctl dispatch exit 0",
     "text": "Logout"
+    "keybind": "5"
+}
+{
+    "label": "bios",
+    "action": "systemctl reboot --firmware-setup",
+    "text": "BIOS"
+    "keybind": "6"
 }

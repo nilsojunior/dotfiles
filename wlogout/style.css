@@ -2,7 +2,7 @@
     background-image: none;
     box-shadow: none;
     font-family: "Inter ExtraBold";
-    font-size: 20px;
+    font-size: 15pt;
 }
 
 window {
@@ -52,5 +52,9 @@ button:hover {
 
 #logout {
     background-image: url("icons/logout.svg");
+}
+
+#bios {
+    background-image: url("icons/hibernate.svg");
     border-radius: 0px 70px 70px 0px;
 }

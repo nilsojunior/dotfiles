@@ -1,6 +1,23 @@
 #!/usr/bin/env sh
 
-bluetoothctl << EOF
-scan on
-connect 41:42:F5:48:94:0E
-EOF
+MAC_ADDRESS="41:42:F5:48:94:0E"
+
+# Check if bluetooth daemon is running
+if ! systemctl is-active --quiet bluetooth; then
+    sudo systemctl start bluetooth
+    sleep 2
+fi
+
+# Check if bluetooth is on
+if ! bluetoothctl show | grep -q 'Powered: yes'; then
+    bluetoothctl power on
+    sleep 2
+fi
+
+# Check if device is paired
+if ! bluetoothctl paired-devices | awk '{print $2}' | grep -q "^$MAC_ADDRESS$"; then
+    bluetoothctl pair "MAC_ADDRESS"
+    sleep 2
+fi
+
+bluetoothctl connect "$MAC_ADDRESS"

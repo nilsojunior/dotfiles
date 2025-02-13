@@ -1,5 +1,12 @@
-[plugin]
-deps = [{ use = "yazi-rs/plugins:no-status", rev = "ec97f88" }, { use = "yazi-rs/plugins:max-preview", rev = "ec97f88" }]
+[[plugin.deps]]
+use = "yazi-rs/plugins:no-status"
+rev = "ec97f88"
+hash = "f4d72c29cb0ddd9605e78f234216fd4e"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:max-preview"
+rev = "ec97f88"
+hash = ""
 
 [flavor]
 deps = []

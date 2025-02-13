@@ -25,7 +25,7 @@
         // Modules configuration
         "custom/power": {
             "format": "⏻",
-            "on-click": "wlogout --buttons-per-row 5",
+            "on-click": "wlogout --buttons-per-row 6",
             "tooltip": false,
         },
         "custom/notification": {

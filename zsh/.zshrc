@@ -94,13 +94,13 @@ pastejpg() {
 }
 
 # Bindings
-bindkey -s '^F' 'vfzf\n'
-bindkey -s '^E' 'y\n'
-bindkey -s '^Y' 'cdfzf\n'
+bindkey -s '^F' '. finder\n'
+bindkey -s '^P' 'y\n'
+bindkey -s '^Y' 'vfzf\n'
 
 # Edit command in vim
 autoload edit-command-line; zle -N edit-command-line
-bindkey '^G' edit-command-line
+bindkey '^E' edit-command-line
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"

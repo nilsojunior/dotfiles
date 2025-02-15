@@ -45,6 +45,8 @@ starship
 spicetify-cli
 tmux
 yazi
+fd
+tealdeer
 
 # Dev
 npm

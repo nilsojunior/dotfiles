@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+commit_msg="Backup: $(date +"%m-%d, %I:%M %p, %Y")"
+
+git add .
+git commit -m "$commit_msg"
+git push

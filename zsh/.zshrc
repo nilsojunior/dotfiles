@@ -76,6 +76,7 @@ alias cat="bat"
 alias vfzf='fzf -m --preview="bat --color=always {}" | xargs -ro nvim'
 alias cdfzf='cd $(find . -type d | fzf)'
 alias tldrf='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
+alias start-ssh='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519'
 alias l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all

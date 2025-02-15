@@ -1,0 +1,30 @@
+configuration {
+    modi: "drun";
+    show-icons: true;
+    drun-display-format: "{name}";
+    terminal: "kitty";
+}
+
+@theme "catppuccin-mocha"
+
+window {
+    width: 90%;
+    height: 800px;
+}
+listview {
+    columns: 3;
+    flow: horizontal;
+}
+inputbar {
+    enabled: false;
+}
+element {
+    orientation:                 vertical;
+}
+element-icon {
+    size:                        18%;
+}
+element-text {
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+}

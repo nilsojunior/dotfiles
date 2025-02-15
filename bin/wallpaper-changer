@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
+WALLPAPER_DIR="$HOME/pics/backgrounds"
+
+WALLPAPER=$(for a in $WALLPAPER_DIR/*.png; do echo -en "${a##*/}\0icon\x1f$a\n"; done | rofi -dmenu -config ~/.config/rofi/wallpaper.rasi)
+
+if [[ -n "$WALLPAPER" ]]; then
+    WALLPAPER_PATH="$WALLPAPER_DIR/$WALLPAPER"
+    WALLPAPER_PATH_DYNAMIC="~/pics/backgrounds/$WALLPAPER"
+
+    echo "preload = $WALLPAPER_PATH_DYNAMIC" > "$CONFIG_FILE"
+    echo "wallpaper = , $WALLPAPER_PATH_DYNAMIC" >> "$CONFIG_FILE"
+
+    killall hyprpaper
+    hyprpaper
+fi

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+PREVIEW=$(fzf --preview '
+        if file --mime-type {} | grep -q "image/"; then
+            kitty icat --clear --transfer-mode=memory --stdin=no --place="${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0" {}
+        else
+            bat --color=always --style=numbers,changes {}
+            kitty icat --clear
+        fi')
+
+if [ -n "$PREVIEW" ]; then
+    if file --mime-type "$PREVIEW" | grep -q "image/"; then
+        feh "$PREVIEW"
+    else 
+        nvim "$PREVIEW"
+    fi
+fi

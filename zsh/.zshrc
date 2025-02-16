@@ -73,7 +73,6 @@ alias in="yay -Slq | fzf | xargs -ro yay -S"
 alias un="yay -Qq | fzf | xargs -ro yay -Rns"
 alias mkdir="mkdir -p"
 alias cat="bat"
-alias vfzf='fzf -m --preview="bat --color=always {}" | xargs -ro nvim'
 alias cdfzf='cd $(find . -type d | fzf)'
 alias tldrf='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
 alias start-ssh='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519'
@@ -96,9 +95,9 @@ pastejpg() {
 }
 
 # Bindings
-bindkey -s '^F' '. finder\n'
+bindkey -s '^F' '. find-projects\n'
+bindkey -s '^Y' '. find-files\n'
 bindkey -s '^P' 'y\n'
-bindkey -s '^Y' 'vfzf\n'
 
 # Edit command in vim
 autoload edit-command-line; zle -N edit-command-line

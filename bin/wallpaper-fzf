@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
+WALLPAPER_DIR="$HOME/pics/backgrounds"
+
+WALLPAPER=$(fzf --preview 'kitty icat --clear --transfer-mode=memory --stdin=no --place="${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0" {} '
+)
+
+if [[ -n "$WALLPAPER" ]]; then
+    WALLPAPER_PATH="$WALLPAPER_DIR/$WALLPAPER"
+    WALLPAPER_PATH_DYNAMIC="~/pics/backgrounds/$WALLPAPER"
+
+    echo "preload = $WALLPAPER_PATH_DYNAMIC" > "$CONFIG_FILE"
+    echo "wallpaper = , $WALLPAPER_PATH_DYNAMIC" >> "$CONFIG_FILE"
+
+    killall hyprpaper
+    hyprpaper &>/dev/null &
+fi

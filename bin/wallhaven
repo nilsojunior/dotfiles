@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [[ -z "$1" ]]; then
+    echo "Provide a search argument"
+    exit 1
+fi
+
+API="https://wallhaven.cc/api/v1/search?q=$1&sorting=random"
+
+URLS=$(curl -s "$API" | jq -r '.data[].path')
+
+SELECTED=$(echo "$URLS" | fzf --preview 'kitty +kitten icat --clear --transfer-mode=memory --stdin=no --place="${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0" {}')
+
+if [[ -n "$SELECTED" ]]; then
+    curl -S -O "$SELECTED" "$HOME/Downloads"
+fi

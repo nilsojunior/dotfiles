@@ -22,5 +22,5 @@ fi
 SELECTED=$(echo "$URLS" | fzf --preview 'kitty +kitten icat --clear --transfer-mode=memory --stdin=no --place="${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0" {}')
 
 if [[ -n "$SELECTED" ]]; then
-    echo "Selected: $SELECTED"
+    curl -sS -o "$HOME/Downloads/$(basename "$SELECTED")" "$SELECTED"
 fi

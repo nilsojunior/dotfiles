@@ -3,7 +3,7 @@
 CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
 WALLPAPER_DIR="$HOME/pics/backgrounds"
 
-WALLPAPER=$(for a in $WALLPAPER_DIR/*.png; do echo -en "${a##*/}\0icon\x1f$a\n"; done | rofi -dmenu -config ~/.config/rofi/wallpaper.rasi)
+WALLPAPER=$(for a in $WALLPAPER_DIR/*; do echo -en "${a##*/}\0icon\x1f$a\n"; done | rofi -dmenu -config ~/.config/rofi/wallpaper.rasi)
 
 if [[ -n "$WALLPAPER" ]]; then
     WALLPAPER_PATH="$WALLPAPER_DIR/$WALLPAPER"

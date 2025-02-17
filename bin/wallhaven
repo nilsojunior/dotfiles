@@ -1,19 +1,28 @@
 #!/usr/bin/env bash
 
+SORTING_METHODS=("relevance" "random" "date_added" "views" "favorites" "toplist" "hot")
+
 if [[ -z "$1" ]]; then
     echo "Usage: $(basename "$0") <search_query> [sorting_method]"
-    echo "Sorting methods: relevance, random, date_added, views, favorites, toplist, hot"
+    echo "Sorting methods: "
+    for method in "${SORTING_METHODS[@]}"; do
+        echo "  $method"
+    done
     echo "random is set by default if no sorting method is provided"
     exit 1
 fi
 
 SORTING="${2:-random}"
 
+if [[ ! " ${SORTING_METHODS[@]} " =~ " ${SORTING} " ]]; then
+    echo "Invalid sorting method '$SORTING'. Valid methods are: ${SORTING_METHODS[*]}."
+    exit 1
+fi
+
 API="https://wallhaven.cc/api/v1/search?q=$1&sorting=$SORTING"
 
 URLS=$(curl -s "$API" | jq -r '.data[].path')
 
-# Ensure we got some results
 if [[ -z "$URLS" ]]; then
     echo "No wallpapers found for '$1' with sorting '$SORTING'."
     exit 1

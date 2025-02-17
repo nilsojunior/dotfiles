@@ -1,16 +1,26 @@
 #!/usr/bin/env bash
 
 if [[ -z "$1" ]]; then
-    echo "Provide a search argument"
+    echo "Usage: $(basename "$0") <search_query> [sorting_method]"
+    echo "Sorting methods: relevance, random, date_added, views, favorites, toplist, hot"
+    echo "random is set by default if no sorting method is provided"
     exit 1
 fi
 
-API="https://wallhaven.cc/api/v1/search?q=$1&sorting=random"
+SORTING="${2:-random}"
+
+API="https://wallhaven.cc/api/v1/search?q=$1&sorting=$SORTING"
 
 URLS=$(curl -s "$API" | jq -r '.data[].path')
+
+# Ensure we got some results
+if [[ -z "$URLS" ]]; then
+    echo "No wallpapers found for '$1' with sorting '$SORTING'."
+    exit 1
+fi
 
 SELECTED=$(echo "$URLS" | fzf --preview 'kitty +kitten icat --clear --transfer-mode=memory --stdin=no --place="${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0" {}')
 
 if [[ -n "$SELECTED" ]]; then
-    curl -S -O "$SELECTED" "$HOME/Downloads"
+    echo "Selected: $SELECTED"
 fi

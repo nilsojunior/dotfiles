@@ -1,3 +1,14 @@
+# Get hostname
+HOSTNAME=$(uname -n)
+
+if [[ "$HOSTNAME" == "archbtw" ]]; then
+    export DESKTOP="archbtw"
+elif [[ "$HOSTNAME" == "arch" ]]; then
+    export LAPTOP="arch"
+else
+    echo "Hostname not found."
+fi
+
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="kitty"

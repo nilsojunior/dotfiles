@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+KITTY_CONF="$HOME/.config/kitty/kitty.conf"
+
+# Kitty font
+if [[ "$HOSTNAME" == "$DESKTOP" ]]; then
+    # Uncomment if not already uncommented
+    if grep -q "^# font_size 19\.0" "$KITTY_CONF"; then
+        sed -i "/# font_size 19\.0/s/^# //" "$KITTY_CONF"
+    fi
+    # Comment if not already commented
+    if ! grep -q "^# font_size 12\.0" "$KITTY_CONF"; then
+        sed -i "/font_size 12\.0/s/^/# /" "$KITTY_CONF"
+    fi
+elif [[ "$HOSTNAME" == "$LAPTOP" ]]; then
+    # Uncomment if not already uncommented
+    if grep -q "^# font_size 12\.0" "$KITTY_CONF"; then
+        sed -i "/# font_size 12\.0/s/^# //" "$KITTY_CONF"
+    fi
+    # Comment if not already commented
+    if ! grep -q "^# font_size 19\.0" "$KITTY_CONF"; then
+        sed -i "/font_size 19\.0/s/^/# /" "$KITTY_CONF"
+    fi
+else
+    echo "Hostname not found."
+fi

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ "$HOSTNAME" == "$DESKTOP" ]]; then
+    exec waybar
+elif [[ "$HOSTNAME" == "$LAPTOP" ]]; then
+    exec waybar --config "$HOME/.config/waybar/laptop.jsonc"
+else
+    echo "Hostname not found."
+fi

@@ -3,6 +3,12 @@
 # Sleep before screenshot for wlogout to disappear
 sleep 0.1
 
-grim -o DP-2 /tmp/lockscreen.png
+if [[ "$HOSTNAME" == "$DESKTOP" ]]; then
+    grim -o DP-2 /tmp/lockscreen.png
+elif [[ "$HOSTNAME" == "$LAPTOP" ]]; then
+    grim -o eDP-1 /tmp/lockscreen.png
+else
+    echo "Hostname not found."
+fi
 
 hyprlock

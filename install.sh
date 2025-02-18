@@ -109,7 +109,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Adding pacman config..."
-cp pacman/pacman.conf /etc/pacman.conf
+sudo cp pacman/pacman.conf /etc/pacman.conf
 if [ $? -ne 0 ]; then
     echo "Failed to add pacman config"
     exit 1

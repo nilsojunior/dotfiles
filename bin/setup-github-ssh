@@ -18,8 +18,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-cat ~/.ssh/id_ed25519.pub
+gh auth login
 if [ $? -ne 0 ]; then
-    echo "Failed to cat public ssh key"
+    echo "Failed to login in github-cli"
     exit 1
 fi

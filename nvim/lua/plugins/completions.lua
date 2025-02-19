@@ -50,6 +50,7 @@ return {
 				"css",
 				"templ",
 				"php",
+				"console",
 			}
 
 			local snippets = {}

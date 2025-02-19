@@ -9,7 +9,7 @@ configuration {
 
 window {
     width: 90%;
-    height: 800px;
+    height: 90%;
 }
 listview {
     columns: 3;

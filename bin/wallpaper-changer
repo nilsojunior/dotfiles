@@ -3,7 +3,15 @@
 CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
 WALLPAPER_DIR="$HOME/pics/backgrounds"
 
-WALLPAPER=$(for a in $WALLPAPER_DIR/*; do echo -en "${a##*/}\0icon\x1f$a\n"; done | rofi -dmenu -config ~/.config/rofi/wallpaper.rasi)
+if [[ "$HOSTNAME" == "$DESKTOP" ]]; then
+    ROFI_CONFIG="$HOME/.config/rofi/wallpaper.rasi"
+elif [[ "$HOSTNAME" == "$LAPTOP" ]]; then
+    ROFI_CONFIG="$HOME/.config/rofi/wallpaper-laptop.rasi"
+else
+    echo "Hostname not found."
+fi
+
+WALLPAPER=$(for a in $WALLPAPER_DIR/*; do echo -en "${a##*/}\0icon\x1f$a\n"; done | rofi -dmenu -config $ROFI_CONFIG)
 
 if [[ -n "$WALLPAPER" ]]; then
     WALLPAPER_PATH="$WALLPAPER_DIR/$WALLPAPER"

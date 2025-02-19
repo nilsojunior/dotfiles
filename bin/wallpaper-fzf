@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Running this from the wallpaper DIR will not work
+
 CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
 WALLPAPER_DIR="$HOME/pics/backgrounds"
 

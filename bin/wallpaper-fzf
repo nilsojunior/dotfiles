@@ -5,13 +5,14 @@
 CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
 WALLPAPER_DIR="$HOME/pics/backgrounds"
 
-WALLPAPER=$(find "$WALLPAPER_DIR" -mindepth 1 | fzf --preview 'kitty icat --clear --transfer-mode=memory --stdin=no --place="${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0" {} '
+WALLPAPERS=$(find "$WALLPAPER_DIR" -mindepth 1 | fzf --preview 'kitty icat --clear --transfer-mode=memory --stdin=no --place="${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0" {} '
 )
 
-if [[ -n "$WALLPAPER" ]]; then
+if [[ -n "$WALLPAPERS" ]]; then
+    FILENAME="${WALLPAPERS##*/}"
 
-    echo "preload = $WALLPAPER" > "$CONFIG_FILE"
-    echo "wallpaper = , $WALLPAPER" >> "$CONFIG_FILE"
+    echo "preload = ~/pics/backgrounds/$FILENAME" > "$CONFIG_FILE"
+    echo "wallpaper = , ~/pics/backgrounds/$FILENAME" >> "$CONFIG_FILE"
 
     killall hyprpaper
     hyprpaper &>/dev/null &

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+repos=("notes" "personal")
+
+for repo in "${repos[@]}"; do
+    git clone --recurse-submodules git@github.com:nilsojunior/"$repo".git "$HOME/$repo"
+done

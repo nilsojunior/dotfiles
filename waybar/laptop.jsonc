@@ -10,9 +10,9 @@
             // "custom/gpuinfo#intel",
             "custom/cpuinfo",
         ],
-        "modules-center": ["custom/spotify"],
+        // "modules-center": ["custom/spotify"],
         "modules-right": [
-            "tray",
+            // "tray",
             "backlight",
             "bluetooth",
             "network",

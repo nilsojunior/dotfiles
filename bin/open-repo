@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+BASE_URL="https://github.com"
+BROWSER="zen-browser"
+USERNAME="nilsojunior"
+
+if [ $# -eq 1 ]; then
+    $BROWSER "$BASE_URL/$USERNAME/$1"
+else
+    URL=$(gh repo list | fzf | awk '{print $1}')
+
+    if [ -n "$URL" ]; then
+        $BROWSER "$BASE_URL/$URL"
+    fi
+fi

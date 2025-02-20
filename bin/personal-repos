@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
-repos=("notes" "personal")
+repos=("notes")
+personal=("wally" "colours.nvim" "hitko-ui")
+
+eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519
 
 for repo in "${repos[@]}"; do
-    git clone --recurse-submodules git@github.com:nilsojunior/"$repo".git "$HOME/$repo"
+    git clone git@github.com:nilsojunior/"$repo".git "$HOME/$repo"
+done
+
+for repo in "${personal[@]}"; do
+    git clone git@github.com:nilsojunior/"$repo".git "$HOME/personal/$repo"
 done

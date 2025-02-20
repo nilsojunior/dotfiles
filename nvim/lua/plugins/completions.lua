@@ -51,6 +51,7 @@ return {
 				"templ",
 				"php",
 				"console",
+				"rust",
 			}
 
 			local snippets = {}

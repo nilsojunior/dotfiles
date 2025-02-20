@@ -33,6 +33,7 @@ imagemagick
 wl-clipboard
 keyd
 flatpak
+xdg-desktop-portal-hyprland
 
 # CLI
 bat

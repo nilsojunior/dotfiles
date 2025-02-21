@@ -12,3 +12,7 @@ else
 fi
 
 hyprlock
+
+# Restart spotify
+killall spotify
+spotify-launcher

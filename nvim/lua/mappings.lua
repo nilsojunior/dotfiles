@@ -56,3 +56,5 @@ keymap("n", "<leader>sv", "<C-w>v", { desc = "Split vertical" })
 -- Increment and decrement numbers
 keymap("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 keymap("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
+
+keymap("n", "<C-f>", ":cd ~/", { desc = "Change directory" })

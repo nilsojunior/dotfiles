@@ -1,0 +1,122 @@
+* {
+    font-family: "Inter ExtraBold";
+    font-size: 10px;
+    color: @text;
+}
+
+@import "theme.css";
+
+window#waybar {
+    background-color: rgba(30, 30, 46, 0.75);
+}
+
+tooltip {
+    background: @base;
+    border-radius: 7px;
+    border-width: 0px;
+}
+
+#tray menu * {
+    min-height: 16px;
+}
+
+#tray menu separator {
+    min-height: 10px;
+}
+
+#custom-power,
+#custom-notification,
+#backlight,
+#battery,
+#bluetooth,
+#custom-cliphist,
+#clock,
+#custom-cpuinfo,
+#cpu,
+#custom-nvidia,
+#custom-gpuinfo,
+#idle_inhibitor,
+#custom-keybindhint,
+#language,
+#memory,
+#mpris,
+#network,
+#custom-notifications,
+#custom-power,
+#pulseaudio,
+#custom-spotify,
+#taskbar,
+#custom-theme,
+#tray,
+#custom-updates,
+#custom-wallchange,
+#custom-wbar,
+#window,
+#workspaces,
+#custom-l_end,
+#custom-r_end,
+#custom-sl_end,
+#custom-sr_end,
+#custom-rl_end,
+#custom-rr_end {
+    opacity: 1;
+    padding: 7px;
+}
+/**/
+/* #clock { */
+/*     color: @pink; */
+/* } */
+/* #custom-gpuinfo, */
+/* #custom-nvidia, */
+/* #nvidia-gpu { */
+/*     color: @maroon; */
+/* } */
+/* #cpu, */
+/* #custom-cpuinfo, */
+/* #custom-cpu { */
+/*     color: @teal; */
+/* } */
+/* #custom-spotify { */
+/*     color: @mauve; */
+/* } */
+/* #bluetooth { */
+/*     color: @sapphire; */
+/* } */
+/* #network { */
+/*     color: @mauve; */
+/* } */
+/* #pulseaudio { */
+/*     color: @lavender; */
+/* } */
+/* #pulseaudio.microphone { */
+/*     color: @pink; */
+/* } */
+/* #custom-notification { */
+/*     color: @rosewater; */
+/* } */
+/**/
+/* #custom-power { */
+/*     color: @blue; */
+/* } */
+/**/
+/* #backlight { */
+/*     color: @yellow; */
+/* } */
+/**/
+/* #custom-notification, */
+/* #custom-power { */
+/*     padding-right: 12px; */
+/*     padding-left: 9px; */
+/* } */
+/**/
+/* #battery.critical { */
+/*     color: @red; */
+/* } */
+/**/
+/* #battery.warning { */
+/*     color: @yellow; */
+/* } */
+/**/
+/* #battery.good { */
+/*     color: @green; */
+/* } */

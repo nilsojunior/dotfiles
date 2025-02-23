@@ -40,6 +40,7 @@ return {
 		keymap("n", "K", vim.lsp.buf.hover, {})
 		keymap("n", "gd", vim.lsp.buf.definition, {})
 		keymap("n", "<leader>gr", vim.lsp.buf.references, { desc = "References" }, {})
+		keymap("n", "<leader>rm", vim.lsp.buf.rename, { desc = "Rename" }, {})
 		keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" }, {})
 	end,
 }

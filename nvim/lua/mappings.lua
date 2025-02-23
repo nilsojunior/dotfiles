@@ -58,3 +58,6 @@ keymap("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 keymap("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 keymap("n", "<C-f>", ":cd ~/", { desc = "Change directory" })
+
+-- Yank entire function
+keymap("n", "YY", "va{Vy}", opts, { desc = "Yank entire function" })

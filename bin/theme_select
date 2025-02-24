@@ -1,0 +1,77 @@
+#!/usr/bin/env python3
+
+import subprocess
+from pathlib import Path
+
+
+def replace_line(file_path: Path, target_string: str, new_string: str) -> None:
+    with open(file_path, "r") as file:
+        lines: list[str] = file.readlines()
+
+    with open(file_path, "w") as file:
+        for line in lines:
+            if target_string in line:
+                file.write(new_string + "\n")
+            else:
+                file.write(line)
+
+
+def load_waybar_config(jsonc_file: str, css_file: str) -> None:
+    waybar_dir: str = "~/.config/waybar"
+    waybar_cmd: str = (
+        f"exec waybar --config {waybar_dir}/configs/{jsonc_file} --style {waybar_dir}/styles/{css_file}"
+    )
+    script_path: Path = Path.home() / "bin" / "launch-waybar"
+    replace_line(script_path, "exec waybar", waybar_cmd)
+    subprocess.run(["killall", "waybar"])
+    subprocess.run(["bash", script_path])
+
+
+def set_kitty_font(font_size: str) -> None:
+    kitty_conf_path: Path = Path.home() / ".config" / "kitty" / "kitty.conf"
+    font_size_string = f"font_size {font_size}"
+    replace_line(kitty_conf_path, "font_size", font_size_string)
+
+
+def choose_theme() -> str:
+    options: list[str] = [
+        "   Hyprland Simple",
+        "   Hyprland Animated",
+        "   Waybar Simple",
+        "   Waybar Desktop",
+        "   Waybar Laptop",
+        "󰄛   Kitty Font 19",
+        "󰄛   Kitty Font 12",
+    ]
+
+    rofi_output: str = subprocess.run(
+        ["rofi", "-dmenu", "-i"],
+        input="\n".join(options),
+        text=True,
+        capture_output=True,
+    ).stdout.strip()
+
+    return rofi_output
+
+
+if __name__ == "__main__":
+    hypr_dir: Path = Path.home() / ".config" / "hypr" / "hyprland.conf"
+    waybar_dir: Path = Path.home() / ".config" / "waybar" / "waybar"
+    hypr_themes: str = "source = ~/.config/hypr/themes/"
+    selected_theme = choose_theme()
+
+    match selected_theme:
+        case "   Hyprland Simple":
+            replace_line(hypr_dir, hypr_themes, hypr_themes + "simple.conf")
+        case "   Hyprland Animated":
+            replace_line(hypr_dir, hypr_themes, hypr_themes + "animated.conf")
+        case "   Waybar Simple":
+            load_waybar_config("simple.jsonc", "simple.css")
+        case "   Waybar Desktop":
+            load_waybar_config("config.jsonc", "style.css")
+        case "   Waybar Laptop":
+            load_waybar_config("laptop.jsonc", "style.css")
+        case "󰄛   Kitty Font 19":
+            set_kitty_font("19.0")
+        case "󰄛   Kitty Font 12":
+            set_kitty_font("12.0")

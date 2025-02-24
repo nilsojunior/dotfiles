@@ -1,12 +1,3 @@
 #!/usr/bin/env bash
 
-CONFIGS_DIR="$HOME/.config/waybar/configs"
-STYLES_DIR="$HOME/.config/waybar/styles"
-
-if [[ "$HOSTNAME" == "$DESKTOP" ]]; then
-    exec waybar --config "$CONFIGS_DIR/simple.jsonc" --style "$STYLES_DIR/simple.css"
-elif [[ "$HOSTNAME" == "$LAPTOP" ]]; then
-    exec waybar --config "$CONFIGS_DIR/simple.jsonc" --style "$STYLES_DIR/simple.css"
-else
-    echo "Hostname not found."
-fi
+exec waybar --config ~/.config/waybar/configs/simple.jsonc --style ~/.config/waybar/styles/simple.css

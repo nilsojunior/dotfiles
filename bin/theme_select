@@ -29,7 +29,7 @@ def load_waybar_config(jsonc_file: str, css_file: str) -> None:
 
 def set_kitty_font(font_size: str) -> None:
     kitty_conf_path: Path = Path.home() / ".config" / "kitty" / "kitty.conf"
-    font_size_string = f"font_size {font_size}"
+    font_size_string: str = f"font_size {font_size}"
     replace_line(kitty_conf_path, "font_size", font_size_string)
 
 
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     hypr_dir: Path = Path.home() / ".config" / "hypr" / "hyprland.conf"
     waybar_dir: Path = Path.home() / ".config" / "waybar" / "waybar"
     hypr_themes: str = "source = ~/.config/hypr/themes/"
-    selected_theme = choose_theme()
+    selected_theme: str = choose_theme()
 
     match selected_theme:
         case "   Hyprland Simple":

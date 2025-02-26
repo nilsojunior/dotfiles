@@ -58,32 +58,22 @@ if [ $? -ne 0 ]; then
     echo "Failed to stow directories"
     exit 1
 fi
-stow -v -t ~ zsh/
+
+stow -t ~/.config/ .config/
 if [ $? -ne 0 ]; then
     echo "Failed to stow zsh directory"
     exit 1
 fi
-stow -v -t ~/.config spotify/
+
+stow -t ~ zsh/
 if [ $? -ne 0 ]; then
-    echo "Failed to stow spotify directory"
+    echo "Failed to stow zsh directory"
     exit 1
 fi
 
-stow -v -t ~ git/
+stow -t ~ git/
 if [ $? -ne 0 ]; then
     echo "Failed to stow git directory"
-    exit 1
-fi
-
-ln -s $HOME/dotfiles/bin ~
-if [ $? -ne 0 ]; then
-    echo "Failed to symlink bin directory"
-    exit 1
-fi
-
-ln -s $HOME/dotfiles/pics ~
-if [ $? -ne 0 ]; then
-    echo "Failed to symlink pics directory"
     exit 1
 fi
 

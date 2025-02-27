@@ -15,4 +15,4 @@ hyprlock
 
 # Restart spotify
 killall spotify
-spotify-launcher
+spotify

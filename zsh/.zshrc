@@ -53,8 +53,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # Completion styling
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always --icons=auto $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always --icons=auto $realpath' 
+zstyle ':fzf-tab*' use-fzf-default-opts yes
 
 # Remove zshell completion menu
 zstyle ':completion:*' menu no

@@ -61,7 +61,7 @@ fi
 
 stow -t ~/.config/ .config/
 if [ $? -ne 0 ]; then
-    echo "Failed to stow zsh directory"
+    echo "Failed to stow .config directories"
     exit 1
 fi
 
@@ -71,9 +71,17 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-stow -t ~ git/
+# NOT WORKING FOR SOME REASON
+# stow -t ~ git/
+# if [ $? -ne 0 ]; then
+#     echo "Failed to stow git directory"
+#     exit 1
+# fi
+
+echo "Symlinking git config"
+ln -s git/.* $HOME
 if [ $? -ne 0 ]; then
-    echo "Failed to stow git directory"
+    echo "Failed to symlink git config"
     exit 1
 fi
 
@@ -105,6 +113,24 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo "Adding cursor config..."
+sudo cp -r default/ /usr/share/icons/
+if [ $? -ne 0 ]; then
+    echo "Failed to add pacman config"
+    exit 1
+fi
+
+echo "Spicetify setup"
+sudo chmod a+wr /opt/spotify
+if [ $? -ne 0 ]; then
+    echo "Failed to give permissions"
+    exit 1
+fi
+sudo chmod a+wr /opt/spotify/Apps -R
+if [ $? -ne 0 ]; then
+    echo "Failed to give permissions"
+    exit 1
+fi
 
 chsh -s $(which zsh)
 if [ $? -ne 0 ]; then

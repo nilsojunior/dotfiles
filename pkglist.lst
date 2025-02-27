@@ -51,6 +51,7 @@ yazi
 tealdeer
 github-cli
 feh
+7zip
 
 # Dev
 npm
@@ -72,9 +73,10 @@ easyeffects
 nwg-look
 discord
 vesktop-bin
-spotify-launcher
+# spotify-launcher
+spotify
 zen-browser-bin
 
 # Themes
 bibata-cursor-theme-bin
-catppuccin-gtk-theme-mocha
+# catppuccin-gtk-theme-mocha

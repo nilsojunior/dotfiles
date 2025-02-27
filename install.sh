@@ -32,7 +32,7 @@ if ! command -v yay &> /dev/null; then
 fi
 
 echo "Installing packages..."
-cd ~/dotfiles/
+cd $HOME/dotfiles/
 if [ $? -ne 0 ]; then
     echo "Failed to enter dotfiles directory"
     exit 1

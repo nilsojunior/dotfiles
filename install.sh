@@ -132,6 +132,13 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo "Installing catppuccin gtk theme..."
+./install.py mocha pink
+if [ $? -ne 0 ]; then
+    echo "Failed to install catppuccin gtk theme"
+    exit 1
+fi
+
 chsh -s $(which zsh)
 if [ $? -ne 0 ]; then
     echo "Failed to set zsh as login shell"

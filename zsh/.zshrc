@@ -84,17 +84,6 @@ alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='eza --icons=auto --tree' # list folder as tree
 alias zi="__zoxide_zi" # Fix zinit and zoxide conflict
 
-# Functions
-pastepng() {
-   wl-paste > "$1".png
-}
-pastesvg() {
-   wl-paste > "$1".svg
-}
-pastejpg() {
-   wl-paste > "$1".jpg
-}
-
 # Bindings
 bindkey -s '^F' '. find-projects\n'
 bindkey -s '^Y' '. find-files\n'

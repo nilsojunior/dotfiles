@@ -7,6 +7,7 @@
 --ignore=zen
 --ignore=zsh
 --ignore=.stowrc
+--ignore=install.py
 --ignore=install.sh
 --ignore=pkglist.lst
 --ignore=update.sh

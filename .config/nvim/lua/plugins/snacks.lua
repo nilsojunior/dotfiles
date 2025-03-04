@@ -44,7 +44,7 @@ return {
 			function()
 				require("snacks").picker.recent()
 			end,
-			desc = "Find config files",
+			desc = "Find recent files",
 		},
 	},
 }

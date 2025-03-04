@@ -1,7 +1,5 @@
 local opt = vim.opt
 
-local keymap = vim.keymap
-
 local wo = vim.wo
 
 local autocmd = vim.api.nvim_create_autocmd
@@ -81,19 +79,6 @@ autocmd("TermOpen", {
 	end,
 })
 
--- Run current python file
-autocmd("FileType", {
-	pattern = "python",
-	callback = function()
-		keymap.set(
-			"n",
-			"<leader>rf",
-			":w<CR>:below split | term py %<CR>i",
-			{ noremap = true, silent = true, buffer = true }
-		)
-	end,
-})
-
 -- Disable statusline for toggleterm
 cmd([[
     augroup ToggleTermStatusline
@@ -101,3 +86,22 @@ cmd([[
         autocmd TermOpen * setlocal statusline=Terminal
     augroup END
 ]])
+
+local function open_path(path)
+	local uv = vim.loop
+
+	local stat = uv.fs_stat(path)
+
+	if stat.type == "directory" then
+		cmd("cd " .. vim.fn.fnameescape(path))
+		require("snacks").picker.files()
+	elseif stat.type == "file" then
+		local dir = vim.fn.fnamemodify(path, ":h")
+		cmd("cd " .. vim.fn.fnameescape(dir))
+		cmd("edit " .. vim.fn.fnameescape(path))
+	end
+end
+
+vim.api.nvim_create_user_command("OpenWorkspace", function(opts)
+	open_path(opts.args)
+end, { nargs = 1, complete = "file" })

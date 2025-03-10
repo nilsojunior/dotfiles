@@ -16,6 +16,7 @@ export BROWSER="zen-browser"
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export HYPRSHOT_DIR="$HOME/Pictures/screenshots"
+export SCREENSHOOTER_DIR="$HOME/Pictures/screenshooter"
 
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 

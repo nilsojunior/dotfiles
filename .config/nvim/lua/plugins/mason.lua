@@ -31,7 +31,6 @@ return {
 					"isort",
 					"prettier",
 					"clang-format",
-					"rustfmt",
 				},
 			})
 		end,

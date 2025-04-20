@@ -139,6 +139,13 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo "Adding vesktop themes..."
+cp -r vesktop/themes/mocha.css $HOME/.var/app/dev.vencord.Vesktop/config/vesktop/themes/mocha.css
+if [ $? -ne 0 ]; then
+    echo "Failed to copy vesktop theme files"
+    exit 1
+fi
+
 chsh -s $(which zsh)
 if [ $? -ne 0 ]; then
     echo "Failed to set zsh as login shell"

@@ -139,6 +139,19 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo "Installing flatpak packages..."
+flatpak_pkgs=(
+    dev.vencord.Vesktop
+    com.stremio.Stremio
+)
+for pkg in "${flatpak_pkgs[@]}"; do
+    flatpak install -y "$pkg"
+    if [ $? -ne 0 ]; then
+        echo "Failed to install $pkg"
+        exit 1
+    fi
+done
+
 echo "Adding vesktop themes..."
 cp -r vesktop/themes/mocha.css $HOME/.var/app/dev.vencord.Vesktop/config/vesktop/themes/mocha.css
 if [ $? -ne 0 ]; then

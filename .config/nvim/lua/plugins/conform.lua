@@ -12,6 +12,8 @@ return {
 				html = { "prettier" },
 				json = { "prettier" },
 				jsonc = { "prettier" },
+				javascript = { "prettier" },
+				javascriptreact = { "prettier" },
 			},
 			formatters = {
 				prettier = {

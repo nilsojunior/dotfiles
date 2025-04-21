@@ -35,6 +35,16 @@ return {
 		lspconfig.jsonls.setup({
 			capabilities = capabilities,
 		})
+		lspconfig.html.setup({
+			capabilities = capabilities,
+			filetypes = {
+				"html",
+				"css",
+				"javascript",
+				"javascriptreact",
+				"jsx",
+			},
+		})
 		local keymap = vim.keymap.set
 
 		keymap("n", "K", vim.lsp.buf.hover, {})

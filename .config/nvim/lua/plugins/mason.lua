@@ -17,6 +17,8 @@ return {
 					"rust_analyzer",
 					"bashls",
 					"jsonls",
+					"html",
+					"tailwindcss",
 				},
 			})
 		end,

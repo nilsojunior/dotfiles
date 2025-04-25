@@ -20,6 +20,9 @@ export HYPRCAP_DIR="$HOME/Pictures/hyprcap"
 
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 
+# Jcup
+export CLASSPATH="$HOME/Downloads/Jcup/java-cup-11b.jar:$HOME/Downloads/Jcup/java-cup-11b-runtime.jar:."
+
 export PATH="$HOME/bin:$PATH"
 
 # Catppuccin Mocha

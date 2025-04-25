@@ -45,6 +45,9 @@ return {
 				"jsx",
 			},
 		})
+		lspconfig.tailwindcss.setup({
+			capabilities = capabilities,
+		})
 		local keymap = vim.keymap.set
 
 		keymap("n", "K", vim.lsp.buf.hover, {})

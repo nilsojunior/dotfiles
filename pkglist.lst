@@ -25,7 +25,9 @@ networkmanager
 bluez
 bluez-utils
 brightnessctl
+sof-firmware
 unzip
+zip
 wget
 lsp-plugins
 openssh
@@ -51,7 +53,6 @@ yazi
 tealdeer
 github-cli
 feh
-7zip
 
 # Dev
 npm

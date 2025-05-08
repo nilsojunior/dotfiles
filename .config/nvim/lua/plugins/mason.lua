@@ -19,6 +19,7 @@ return {
 					"jsonls",
 					"html",
 					"tailwindcss",
+					"ts_ls",
 				},
 			})
 		end,

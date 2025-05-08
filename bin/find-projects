@@ -2,6 +2,7 @@
 
 dirs=(
   "$HOME/dotfiles"
+  "$HOME/dotfiles/.config"
   "$HOME/notes"
   "$HOME/personal"
   "$HOME/faculdade"

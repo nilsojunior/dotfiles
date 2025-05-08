@@ -105,3 +105,13 @@ end
 vim.api.nvim_create_user_command("OpenWorkspace", function(opts)
 	open_path(opts.args)
 end, { nargs = 1, complete = "file" })
+
+-- Highlight on yank
+autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = "IncSearch",
+			timeout = 40,
+		})
+	end,
+})

@@ -85,8 +85,9 @@ alias lt='eza --icons=auto --tree' # list folder as tree
 alias zi="__zoxide_zi" # Fix zinit and zoxide conflict
 
 # Bindings
+bindkey '^Y' autosuggest-accept
 bindkey -s '^F' '. find-projects\n'
-bindkey -s '^Y' '. find-files\n'
+bindkey -s '^O' '. find-files\n'
 bindkey -s '^P' 'y\n'
 
 # Edit command in vim

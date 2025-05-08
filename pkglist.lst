@@ -28,6 +28,7 @@ brightnessctl
 sof-firmware
 unzip
 zip
+dysk
 wget
 lsp-plugins
 openssh

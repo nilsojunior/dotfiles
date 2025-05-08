@@ -1,6 +1,7 @@
 [
     {
         "position": "bottom",
+        "layer": "top",
         "reload_style_on_change": true,
         "modules-left": [
             "clock",

@@ -17,6 +17,7 @@ return {
 				"rust",
 				"bash",
 				"css",
+				"java",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },

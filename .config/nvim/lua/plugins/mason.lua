@@ -20,6 +20,7 @@ return {
 					"html",
 					"tailwindcss",
 					"ts_ls",
+					"jdtls",
 				},
 			})
 		end,

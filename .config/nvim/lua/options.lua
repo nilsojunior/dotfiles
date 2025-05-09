@@ -115,3 +115,17 @@ autocmd("TextYankPost", {
 		})
 	end,
 })
+
+-- Syntax highlight for jflex
+autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.flex", "*.jflex" },
+	callback = function()
+		vim.bo.filetype = "jflex"
+	end,
+})
+autocmd("FileType", {
+	pattern = "jflex",
+	callback = function()
+		cmd("so ~/.config/nvim/syntax/jflex.vim")
+	end,
+})

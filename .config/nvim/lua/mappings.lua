@@ -6,6 +6,8 @@ local opts_no_silent = { noremap = true }
 
 local keymap = vim.keymap.set
 
+local cmd = vim.cmd
+
 -- Set leader key to Space
 vim.g.mapleader = " "
 
@@ -61,3 +63,20 @@ keymap("n", "<C-f>", ":OpenWorkspace ~/", { desc = "Change directory" })
 
 -- Yank entire function
 keymap("n", "YY", "va{Vy}", opts, { desc = "Yank entire function" })
+
+local function add_to_portuguese_dict()
+	cmd("set spelllang=pt")
+	cmd("normal zg")
+	cmd("silent mkspell! ~/.config/nvim/spell/pt.utf-8.add")
+	cmd("set spelllang=en_us,pt")
+end
+
+local function remove_from_portuguese_dict()
+	cmd("set spelllang=pt")
+	cmd("normal zw")
+	cmd("silent mkspell! ~/.config/nvim/spell/pt.utf-8.add")
+	cmd("set spelllang=en_us,pt")
+end
+
+keymap("n", "<leader>zg", add_to_portuguese_dict, { desc = "Add word to Portuguese dictionary" })
+keymap("n", "<leader>zw", remove_from_portuguese_dict, { desc = "Remove word from Portuguese dictionary" })

@@ -4,9 +4,11 @@ local wo = vim.wo
 
 local autocmd = vim.api.nvim_create_autocmd
 
+local usercmd = vim.api.nvim_create_user_command
+
 local cmd = vim.cmd
 
--- Relative ines
+-- Relative lines
 opt.relativenumber = true
 opt.nu = true
 
@@ -70,6 +72,10 @@ opt.guicursor = ""
 -- Obsidian stuff
 opt.conceallevel = 2
 
+-- Spell check
+opt.spell = true
+opt.spelllang = "en_us,pt"
+
 -- Terminal Settings
 autocmd("TermOpen", {
 	callback = function()
@@ -102,7 +108,7 @@ local function open_path(path)
 	end
 end
 
-vim.api.nvim_create_user_command("OpenWorkspace", function(opts)
+usercmd("OpenWorkspace", function(opts)
 	open_path(opts.args)
 end, { nargs = 1, complete = "file" })
 
@@ -129,3 +135,9 @@ autocmd("FileType", {
 		cmd("so ~/.config/nvim/syntax/jflex.vim")
 	end,
 })
+
+-- Compile dictionaries
+usercmd("Compiledicts", function()
+	cmd("silent mkspell! ~/.config/nvim/spell/en.utf-8.add")
+	cmd("silent mkspell! ~/.config/nvim/spell/pt.utf-8.add")
+end, {})

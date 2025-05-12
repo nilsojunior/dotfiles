@@ -46,5 +46,12 @@ return {
 			end,
 			desc = "Find recent files",
 		},
+		{
+			"<leader>fe",
+			function()
+				require("snacks").picker.icons()
+			end,
+			desc = "Find icons",
+		},
 	},
 }

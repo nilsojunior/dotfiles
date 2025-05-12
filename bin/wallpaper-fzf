@@ -5,8 +5,7 @@
 CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
 WALLPAPER_DIR="$HOME/pics/backgrounds"
 
-WALLPAPERS=$(find "$WALLPAPER_DIR" -mindepth 1 | fzf --preview 'kitty icat --clear --transfer-mode=memory --stdin=no --place="${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0" {} '
-)
+WALLPAPERS=$(fd --type f . "$WALLPAPER_DIR" | fzf --preview 'kitty icat --clear --transfer-mode=memory --stdin=no --place="${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0" {}')
 
 if [[ -n "$WALLPAPERS" ]]; then
     FILENAME="${WALLPAPERS##*/}"

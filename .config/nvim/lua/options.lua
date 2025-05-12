@@ -72,10 +72,6 @@ opt.guicursor = ""
 -- Obsidian stuff
 opt.conceallevel = 2
 
--- Spell check
-opt.spell = true
-opt.spelllang = "en_us,pt"
-
 -- Terminal Settings
 autocmd("TermOpen", {
 	callback = function()
@@ -141,3 +137,11 @@ usercmd("Compiledicts", function()
 	cmd("silent mkspell! ~/.config/nvim/spell/en.utf-8.add")
 	cmd("silent mkspell! ~/.config/nvim/spell/pt.utf-8.add")
 end, {})
+
+autocmd("Filetype", {
+	pattern = { "markdown", "text", "gitcommit" },
+	callback = function()
+		opt.spell = true
+		opt.spelllang = "en_us,pt"
+	end,
+})

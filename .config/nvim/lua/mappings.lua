@@ -59,7 +59,7 @@ keymap("n", "<leader>sv", "<C-w>v", { desc = "Split vertical" })
 keymap("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 keymap("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
-keymap("n", "<C-f>", ":OpenWorkspace ~/", { desc = "Change directory" })
+-- keymap("n", "<C-f>", ":OpenWorkspace ~/", { desc = "Change directory" })
 
 -- Yank entire function
 keymap("n", "YY", "va{Vy}", opts, { desc = "Yank entire function" })

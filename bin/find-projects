@@ -8,14 +8,14 @@ dirs=(
   "$HOME/faculdade"
 )
 
-dirs+=($(fd --type d --max-depth 1 --exclude '.git*' . "${dirs[@]}" --absolute-path))
+dirs+=$(find "${dirs[@]}" -mindepth 1 -maxdepth 1 -type d -not -path '*/.git*')
 
-dirs=$(printf "%s\n" "${dirs[@]}")
+dirs=$(echo "$dirs" | tr ' ' '\n')
 
 selected=$(echo "$dirs" | fzf \
     --preview 'eza -1 --color=always --icons=auto {1}' \
     --preview-window=right:35%)
 
-if [[ "$TERM" == "xterm-kitty" ]]; then
-    kitten @ launch --type overlay "$selected"
+if [ -n "$selected" ]; then
+  cd "$selected"
 fi

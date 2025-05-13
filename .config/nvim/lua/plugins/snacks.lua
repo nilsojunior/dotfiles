@@ -3,7 +3,9 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
-		picker = {},
+		picker = {
+			exclude = { "node_modules" },
+		},
 		dashboard = {
 			preset = {
 				header = [[

@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
+commit_msg="Backup: $(date +"%m-%d, %I:%M %p, %Y")"
+
 repos=("notes" "personal" "faculdade")
 
 eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519
 
 for repo in "${repos[@]}"; do
-    git clone --recurse-submodules git@github.com:nilsojunior/"$repo".git "$HOME/$repo"
+    pushd "$HOME/$repo"
+    git pull --recurse-submodules
+    popd
 done

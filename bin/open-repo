@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 BASE_URL="https://github.com"
-BROWSER="zen-browser"
+BROWSER="xdg-open"
 USERNAME="nilsojunior"
 
 if [ $# -eq 1 ]; then

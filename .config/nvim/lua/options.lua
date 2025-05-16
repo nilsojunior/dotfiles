@@ -153,12 +153,14 @@ autocmd("Filetype", {
 usercmd("TOpdf", function()
 	local file_name = vim.fn.expand("%:r")
 	local file_name_ext = vim.fn.expand("%")
-	vim.fn.system("pandoc " .. file_name_ext .. " -o " .. file_name .. ".pdf")
+	local full_path = "~/Documents/PDFs/" .. file_name .. ".pdf"
+	vim.fn.system("pandoc " .. file_name_ext .. " -o " .. full_path)
 end, {})
 
 usercmd("Viewpdf", function()
 	local file_name = vim.fn.expand("%:r")
-	vim.fn.system("zathura " .. file_name .. ".pdf")
+	local full_path = "~/Documents/PDFs/" .. file_name .. ".pdf"
+	vim.fn.system("zathura " .. full_path)
 end, {})
 
 usercmd("TOexec", function()

@@ -2,13 +2,13 @@
 
 dirs=(
   "$HOME/dotfiles"
-  "$HOME/dotfiles/.config"
   "$HOME/notes"
   "$HOME/personal"
   "$HOME/faculdade"
+  "$HOME/dotfiles/.config"
 )
 
-dirs+=$(find "${dirs[@]}" -mindepth 1 -maxdepth 1 -type d -not -path '*/.git*')
+dirs+=($(fd --type d --max-depth 1 --exclude '.git*' . "${dirs[@]}"))
 
 dirs=$(echo "$dirs" | tr ' ' '\n')
 

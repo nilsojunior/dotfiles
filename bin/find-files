@@ -10,7 +10,7 @@ PREVIEW=$(fzf --preview '
 
 if [ -n "$PREVIEW" ]; then
     if file --mime-type "$PREVIEW" | grep -q "image/"; then
-        feh -F "$PREVIEW"
+        imv "$PREVIEW"
     else 
         nvim "$PREVIEW"
     fi

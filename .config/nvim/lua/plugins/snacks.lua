@@ -4,7 +4,7 @@ return {
 	lazy = false,
 	opts = {
 		picker = {
-			exclude = { "node_modules" },
+			exclude = { "node_modules", "target" },
 			sources = {
 				files = { ignored = true, hidden = true },
 			},

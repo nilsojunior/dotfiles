@@ -1,7 +1,8 @@
 local M = {}
-local ns = vim.api.nvim_create_namespace("csscolor")
 
-local named_colors = {
+local hex_pattern = "#%x%x%x%x%x%x"
+
+local css_colours = {
 	red = "#ff0000",
 	blue = "#0000ff",
 	green = "#008000",
@@ -17,46 +18,39 @@ local named_colors = {
 	magenta = "#ff00ff",
 }
 
--- Create highlight group for color if it doesn't exist
-local function define_color_highlight(color, hex)
-	local hl = "CssColor_" .. color
-	if vim.fn.hlexists(hl) == 0 then
-		vim.api.nvim_set_hl(0, hl, { fg = hex })
-	end
-	return hl
-end
+local function find_hex_colors()
+	local hex_colors = {}
+	local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
 
--- Check if word appears as a value (e.g., after `:` and before `;`)
-local function find_color_values(line)
-	local matches = {}
-	for prop, val in line:gmatch("([%w%-]+)%s*:%s*([%w%-]+)") do
-		if named_colors[val] then
-			local start_col, end_col = line:find(val)
-			if start_col and end_col then
-				table.insert(matches, { color = val, s = start_col - 1, e = end_col })
-			end
+	for linenr, line in ipairs(lines) do
+		for hex in line:gmatch("#%x%x%x%x%x%x") do
+			table.insert(hex_colors, { line = linenr, color = hex })
 		end
 	end
-	return matches
+
+	return hex_colors
 end
 
-function M.highlight_colors(bufnr)
-	vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+local function add_icon_to_colors(hex_colors)
+	local icon = ""
+	local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
 
-	for linenr = 0, vim.api.nvim_buf_line_count(bufnr) - 1 do
-		local line = vim.api.nvim_buf_get_lines(bufnr, linenr, linenr + 1, false)[1]
-		for _, match in ipairs(find_color_values(line)) do
-			local hl = define_color_highlight(match.color, named_colors[match.color])
-			vim.api.nvim_buf_add_highlight(bufnr, ns, hl, linenr, match.s, match.e)
+	for _, entry in ipairs(hex_colors) do
+		local line = lines[entry.line]
+
+		if not line:match(icon) then
+			lines[entry.line] = line:gsub(entry.color, icon .. " " .. entry.color)
 		end
 	end
+
+	vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
 end
 
 function M.setup()
 	vim.api.nvim_create_autocmd({ "BufEnter", "TextChanged", "TextChangedI" }, {
-		pattern = "*.css",
 		callback = function(args)
-			M.highlight_colors(args.buf)
+			local hex_colors = find_hex_colors()
+			add_icon_to_colors(hex_colors)
 		end,
 	})
 end

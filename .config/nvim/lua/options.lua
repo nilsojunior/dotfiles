@@ -69,6 +69,10 @@ opt.splitbelow = true
 
 opt.guicursor = ""
 
+opt.swapfile = false
+opt.backup = false
+opt.undofile = true
+
 -- Obsidian stuff
 opt.conceallevel = 2
 
@@ -145,3 +149,28 @@ autocmd("Filetype", {
 		opt.spelllang = "en_us,pt"
 	end,
 })
+
+usercmd("TOpdf", function()
+	local file_name = vim.fn.expand("%:r")
+	local file_name_ext = vim.fn.expand("%")
+	vim.fn.system("pandoc " .. file_name_ext .. " -o " .. file_name .. ".pdf")
+end, {})
+
+usercmd("Viewpdf", function()
+	local file_name = vim.fn.expand("%:r")
+	vim.fn.system("zathura " .. file_name .. ".pdf")
+end, {})
+
+usercmd("TOexec", function()
+	cmd("w")
+	local file_name = vim.fn.expand("%")
+	vim.fn.system("chmod +x" .. file_name)
+end, {})
+
+usercmd("TObash", function()
+	cmd("setfiletype sh")
+	cmd("w")
+	cmd("TOexec")
+	local file_name = vim.fn.expand("%")
+	vim.fn.system("chmod +x " .. file_name)
+end, {})

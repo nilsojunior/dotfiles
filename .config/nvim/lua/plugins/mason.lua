@@ -21,6 +21,7 @@ return {
 					"tailwindcss",
 					"ts_ls",
 					"jdtls",
+					"gopls",
 				},
 			})
 		end,
@@ -35,6 +36,9 @@ return {
 					"isort",
 					"prettier",
 					"clang-format",
+					"gofumpt",
+					"golines",
+					"goimports-reviser",
 				},
 			})
 		end,

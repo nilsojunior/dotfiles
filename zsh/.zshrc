@@ -90,6 +90,11 @@ bindkey -s '^F' '. find-projects\n'
 bindkey -s '^O' '. find-files\n'
 bindkey -s '^P' 'y\n'
 
+# Navigation
+bindkey '^[[1;5D' backward-word  # ctrl+left
+bindkey '^[[1;5C' forward-word   # ctrl+right
+bindkey '^H' backward-kill-word  # ctrol+backspace
+
 # Edit command in vim
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^E' edit-command-line

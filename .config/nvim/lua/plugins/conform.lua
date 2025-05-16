@@ -14,6 +14,7 @@ return {
 				jsonc = { "prettier" },
 				javascript = { "prettier" },
 				javascriptreact = { "prettier" },
+				go = { "gofumpt", "golines", "goimports-reviser" },
 			},
 			formatters = {
 				prettier = {

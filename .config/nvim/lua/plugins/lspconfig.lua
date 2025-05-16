@@ -51,11 +51,18 @@ return {
 		lspconfig.ts_ls.setup({
 			capabilities = capabilities,
 		})
+		lspconfig.gopls.setup({
+			capabilities = capabilities,
+		})
+
 		local keymap = vim.keymap.set
 
 		keymap("n", "K", vim.lsp.buf.hover, {})
 		keymap("n", "gd", vim.lsp.buf.definition, {})
 		keymap("n", "<leader>gr", vim.lsp.buf.references, { desc = "References" }, {})
+		keymap("n", "<leader>vd", vim.diagnostic.open_float, { desc = "Diagnostic" }, {})
+		keymap("n", "<leader>[d", vim.diagnostic.goto_next, { desc = "Next diagnostic" }, {})
+		keymap("n", "<leader>]d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" }, {})
 		keymap("n", "<leader>rm", vim.lsp.buf.rename, { desc = "Rename" }, {})
 		keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" }, {})
 	end,

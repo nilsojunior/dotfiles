@@ -5,6 +5,9 @@ return {
 	opts = {
 		picker = {
 			exclude = { "node_modules" },
+			sources = {
+				files = { ignored = true, hidden = true },
+			},
 		},
 		dashboard = {
 			preset = {

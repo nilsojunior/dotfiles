@@ -79,6 +79,8 @@ vesktop-bin
 spotify
 thunar
 zen-browser-bin
+zathura
+zathura-pdf-poppler
 
 # Themes
 bibata-cursor-theme-bin

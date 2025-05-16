@@ -28,6 +28,7 @@ brightnessctl
 sof-firmware
 unzip
 zip
+pandoc
 dysk
 wget
 lsp-plugins

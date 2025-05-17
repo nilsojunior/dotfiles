@@ -150,15 +150,22 @@ autocmd("Filetype", {
 	end,
 })
 
-usercmd("TOpdf", function()
-	local file_name = vim.fn.expand("%:r")
-	local file_name_ext = vim.fn.expand("%")
-	local full_path = "~/Documents/PDFs/" .. file_name .. ".pdf"
-	vim.fn.system("pandoc " .. file_name_ext .. " -o " .. full_path)
+usercmd("Compiletypst", function()
+	local file_path = vim.fn.expand("%")
+	local file_name = vim.fn.expand("%:t:r")
+	local pdf_path = "~/Documents/PDFs/" .. file_name .. ".pdf"
+	vim.fn.system("typst compile " .. file_path .. " " .. pdf_path)
+end, {})
+
+usercmd("Topdf", function()
+	local file_path = vim.fn.expand("%")
+	local file_name = vim.fn.expand("%:t:r")
+	local pdf_path = "~/Documents/PDFs/" .. file_name .. ".pdf"
+	vim.fn.system("pandoc " .. file_path .. " -o " .. pdf_path)
 end, {})
 
 usercmd("Viewpdf", function()
-	local file_name = vim.fn.expand("%:r")
+	local file_name = vim.fn.expand("%:t:r")
 	local full_path = "~/Documents/PDFs/" .. file_name .. ".pdf"
 	vim.fn.system("zathura " .. full_path)
 end, {})

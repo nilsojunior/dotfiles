@@ -29,6 +29,7 @@
   "snacks.nvim": { "branch": "main", "commit": "0391125924fc2a4d2f520a759dd2d861882e600e" },
   "toggleterm.nvim": { "branch": "main", "commit": "022ff5594acccc8d90d2e46dc43994f7722ebdf7" },
   "treesj": { "branch": "main", "commit": "03415ac60791d48e120a80d37e080744faf3ac15" },
+  "typst-preview.nvim": { "branch": "master", "commit": "dea4525d5420b7c32eebda7de15a6beb9d6574fa" },
   "undotree": { "branch": "master", "commit": "b951b87b46c34356d44aa71886aecf9dd7f5788a" },
   "which-key.nvim": { "branch": "main", "commit": "4ab3bbe976e63b5390d3fca74a52a092a041cd30" }
 }

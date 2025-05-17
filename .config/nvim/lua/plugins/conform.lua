@@ -15,6 +15,7 @@ return {
 				javascript = { "prettier" },
 				javascriptreact = { "prettier" },
 				go = { "gofumpt", "golines", "goimports-reviser" },
+				typst = { "typstyle" },
 			},
 			formatters = {
 				prettier = {

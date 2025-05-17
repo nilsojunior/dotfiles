@@ -22,6 +22,7 @@ return {
 					"ts_ls",
 					"jdtls",
 					"gopls",
+					"tinymist",
 				},
 			})
 		end,
@@ -39,6 +40,7 @@ return {
 					"gofumpt",
 					"golines",
 					"goimports-reviser",
+					"typstyle",
 				},
 			})
 		end,

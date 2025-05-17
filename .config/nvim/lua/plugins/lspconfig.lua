@@ -54,6 +54,9 @@ return {
 		lspconfig.gopls.setup({
 			capabilities = capabilities,
 		})
+		lspconfig.tinymist.setup({
+			capabilities = capabilities,
+		})
 
 		local keymap = vim.keymap.set
 

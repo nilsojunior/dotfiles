@@ -14,3 +14,5 @@ map d scroll half-down
 map D toggle_page_mode
 
 include catppuccin-mocha
+
+set recolor false

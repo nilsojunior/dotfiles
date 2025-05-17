@@ -18,6 +18,8 @@ return {
 				"bash",
 				"css",
 				"java",
+				"go",
+				"typst",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },

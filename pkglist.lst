@@ -61,6 +61,7 @@ npm
 lua
 rust
 python-gobject
+typst
 valgrind
 
 # Applications

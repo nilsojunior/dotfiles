@@ -129,6 +129,14 @@ autocmd({ "BufRead", "BufNewFile" }, {
 		vim.bo.filetype = "jflex"
 	end,
 })
+
+autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.lang" },
+	callback = function()
+		vim.bo.filetype = "lang"
+	end,
+})
+
 autocmd("FileType", {
 	pattern = "jflex",
 	callback = function()

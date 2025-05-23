@@ -7,7 +7,7 @@ dirs=(
   "$HOME/faculdade"
 )
 
-dirs+=($(fd --type d --exclude '.git*' . "${dirs[@]}"))
+dirs+=($(fd --type d --exclude '.git*' -H . "${dirs[@]}"))
 
 dirs=$(echo "$dirs" | tr ' ' '\n')
 

@@ -5,3 +5,7 @@ x-scheme-handler/https=zen.desktop
 x-scheme-handler/ftp=zen.desktop
 text/html=zen.desktop
 x-scheme-handler/discord=vesktop.desktop
+image/png=imv.desktop
+image/jpeg=imv.desktop
+image/gif=imv.desktop
+image/webp=imv.desktop

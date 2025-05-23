@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+dirs=(
+  "$HOME/dotfiles"
+  "$HOME/notes"
+  "$HOME/personal"
+  "$HOME/faculdade"
+)
+
+dirs+=($(fd --type d --exclude '.git*' . "${dirs[@]}"))
+
+dirs=$(echo "$dirs" | tr ' ' '\n')
+
+selected=$(echo "$dirs" | fzf \
+    --preview 'eza -1 --color=always --icons=auto {1}' \
+    --preview-window=right:35%)
+
+if [ -n "$selected" ]; then
+  cd "$selected"
+fi

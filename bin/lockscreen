@@ -14,5 +14,5 @@ fi
 hyprlock
 
 # Restart spotify
-killall spotify
-spotify
+# killall spotify
+# spotify

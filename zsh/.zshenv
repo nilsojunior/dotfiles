@@ -20,8 +20,8 @@ export HYPRCAP_DIR="$HOME/Pictures/hyprcap"
 
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 
-# bat for man pages
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# Neovim as man page
+export MANPAGER='nvim +Man!'
 
 # Jcup
 export CLASSPATH="$HOME/Downloads/Jcup/java-cup-11b.jar:$HOME/Downloads/Jcup/java-cup-11b-runtime.jar:."

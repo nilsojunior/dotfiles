@@ -11,10 +11,10 @@ dirs+=($(fd --type d --exclude '.git*' -H . "${dirs[@]}"))
 
 dirs=$(echo "$dirs" | tr ' ' '\n')
 
-selected=$(echo "$dirs" | fzf \
-    --preview 'eza -1 --color=always --icons=auto {1}' \
+selected=$(echo "$dirs" | sed "s|^$HOME/||" | fzf \
+    --preview "eza -1 --color=always --icons=auto $HOME/{1}" \
     --preview-window=right:35%)
 
 if [ -n "$selected" ]; then
-  cd "$selected"
+  cd "$HOME/$selected"
 fi

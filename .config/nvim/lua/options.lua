@@ -130,6 +130,14 @@ autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
+-- Syntax highlight for jcup
+autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.cup" },
+	callback = function()
+		vim.bo.filetype = "cup"
+	end,
+})
+
 autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.lang" },
 	callback = function()

@@ -139,9 +139,9 @@ autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.lang" },
+	pattern = { "*.apol" },
 	callback = function()
-		vim.bo.filetype = "lang"
+		vim.bo.filetype = "apol"
 	end,
 })
 

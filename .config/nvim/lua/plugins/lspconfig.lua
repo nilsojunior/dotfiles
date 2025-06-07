@@ -57,6 +57,9 @@ return {
 		lspconfig.tinymist.setup({
 			capabilities = capabilities,
 		})
+		lspconfig.jdtls.setup({
+			capabilities = capabilities,
+		})
 
 		local keymap = vim.keymap.set
 

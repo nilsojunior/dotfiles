@@ -41,6 +41,7 @@ return {
 					"golines",
 					"goimports-reviser",
 					"typstyle",
+					"google-java-format",
 				},
 			})
 		end,

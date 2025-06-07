@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BOOKMARKS="$HOME/.config/rofi/bookmarks"
+BOOKMARKS="$HOME/Documents/Bookmarks/bookmarks"
 
 selected=$(awk -F'|' '{print $1}' "$BOOKMARKS" | rofi -dmenu)
 

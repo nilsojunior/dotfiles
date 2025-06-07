@@ -165,4 +165,10 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+chsh -s $(which zsh)
+if [ $? -ne 0 ]; then
+    echo "Failed to set zsh as login shell"
+    exit 1
+fi
+
 echo "Done!"

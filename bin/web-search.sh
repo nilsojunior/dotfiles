@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+# -----------------------------------------------------------------------------
+# Info:
+#   author:    Miroslav Vidovic
+#   file:      web-search.sh
+#   created:   24.02.2017.-08:59:54
+#   revision:  ---
+#   version:   1.0
+# -----------------------------------------------------------------------------
+# Requirements:
+#   rofi
+# Description:
+#   Use rofi to search the web.
+# Usage:
+#   web-search.sh
+# -----------------------------------------------------------------------------
+# Script:
+
+USER="nilsojunior"
+BOOKMARKS="$HOME/Documents/Bookmarks/bookmarks"
+
+declare -A URLS
+
+URLS=(
+  ["Google"]="https://www.google.com/search?q="
+  # ["Bing"]="https://www.bing.com/search?q="
+  # ["Yahoo"]="https://search.yahoo.com/search?p="
+  # ["Duckduckgo"]="https://www.duckduckgo.com/?q="
+  ["Yandex"]="https://yandex.ru/yandsearch?text="
+  ["Repos"]="https://github.com/$USER/"
+  # ["Goodreads"]="https://www.goodreads.com/search?q="
+  # ["Stackoverflow"]="http://stackoverflow.com/search?q="
+  # ["Symbolhound"]="http://symbolhound.com/?q="
+  # ["Searchcode"]="https://searchcode.com/?q="
+  # ["Openhub"]="https://www.openhub.net/p?ref=homepage&query="
+  # ["Superuser"]="http://superuser.com/search?q="
+  # ["Askubuntu"]="http://askubuntu.com/search?q="
+  ["Imdb"]="http://www.imdb.com/find?ref_=nv_sr_fn&q="
+  # ["Rottentomatoes"]="https://www.rottentomatoes.com/search/?search="
+  # ["Piratebay"]="https://thepiratebay.org/search/"
+  ["Youtube"]="https://www.youtube.com/results?search_query="
+  # ["Vimawesome"]="http://vimawesome.com/?q="
+  ["Bookmarks"]=""
+)
+
+# List for rofi
+gen_list() {
+    for i in "${!URLS[@]}"
+    do
+      echo "$i"
+    done
+}
+
+main() {
+  # Pass the list to rofi
+  platform=$( (gen_list) | rofi -dmenu -i -matching fuzzy -no-custom -location 0 -p "Search > " )
+
+  if [[ -n "$platform" ]]; then
+      if [[ "$platform" == "Bookmarks" ]]; then
+          selected=$(awk -F'|' '{print $1}' "$BOOKMARKS" | rofi -dmenu -i -matching fuzzy -no-custom -location 0 -p "Bookmarks > ")
+          if [[ -n "$selected" ]]; then
+          url=$(grep "^$selected|" "$BOOKMARKS" | awk -F'|' '{print $2}')
+          if [[ -n "$url" ]]; then
+            xdg-open "$url"
+          fi
+          fi
+      else
+          query=$( (echo ) | rofi  -dmenu -i -matching fuzzy -location 0 -p "Query > " )
+      fi
+
+    if [[ -n "$query" ]]; then
+      url=${URLS[$platform]}$query
+      xdg-open "$url"
+    else
+      exit
+    fi
+
+  else
+    exit
+  fi
+}
+
+main
+
+exit 0

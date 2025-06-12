@@ -26,6 +26,10 @@ export MANPAGER='nvim +Man!'
 # Jcup
 export CLASSPATH="$HOME/Downloads/Jcup/java-cup-11b.jar:$HOME/Downloads/Jcup/java-cup-11b-runtime.jar:."
 
+# Cedilla
+export GTK_IM_MODULE=cedilla
+export QT_IM_MODULE=cedilla
+
 export PATH="$HOME/bin:$PATH"
 
 # Catppuccin Mocha

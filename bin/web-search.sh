@@ -28,6 +28,7 @@ URLS=(
   # ["Yahoo"]="https://search.yahoo.com/search?p="
   # ["Duckduckgo"]="https://www.duckduckgo.com/?q="
   ["Yandex"]="https://yandex.ru/yandsearch?text="
+  ["Github"]="https://github.com/search?q="
   ["Repos"]="https://github.com/$USER/"
   # ["Goodreads"]="https://www.goodreads.com/search?q="
   # ["Stackoverflow"]="http://stackoverflow.com/search?q="

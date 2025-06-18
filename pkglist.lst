@@ -38,6 +38,7 @@ wl-clipboard
 keyd
 flatpak
 xdg-desktop-portal-hyprland
+wf-recorder
 
 # CLI
 bat

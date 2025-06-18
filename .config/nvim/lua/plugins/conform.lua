@@ -17,6 +17,7 @@ return {
 				go = { "gofumpt", "golines", "goimports-reviser" },
 				typst = { "typstyle" },
 				java = { "google-java-format" },
+				bash = { "shfmt" },
 			},
 			formatters = {
 				prettier = {

@@ -42,6 +42,7 @@ return {
 					"goimports-reviser",
 					"typstyle",
 					"google-java-format",
+					"shfmt",
 				},
 			})
 		end,

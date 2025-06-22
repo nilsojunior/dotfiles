@@ -145,13 +145,6 @@ autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
-autocmd("FileType", {
-	pattern = "jflex",
-	callback = function()
-		cmd("so ~/.config/nvim/syntax/jflex.vim")
-	end,
-})
-
 -- Compile dictionaries
 usercmd("Compiledicts", function()
 	cmd("silent mkspell! ~/.config/nvim/spell/en.utf-8.add")

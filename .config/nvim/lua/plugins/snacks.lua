@@ -58,5 +58,12 @@ return {
 			end,
 			desc = "Find icons",
 		},
+		{
+			"<C-p>",
+			function()
+				require("snacks").picker.git_files()
+			end,
+			desc = "Find Git files",
+		},
 	},
 }

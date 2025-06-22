@@ -39,6 +39,7 @@ keyd
 flatpak
 xdg-desktop-portal-hyprland
 wf-recorder
+dash
 
 # CLI
 bat

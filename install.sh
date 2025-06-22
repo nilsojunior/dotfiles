@@ -1,75 +1,26 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 echo "Running install script..."
 
-if ! command -v yay &> /dev/null; then
-    echo "Installing yay..."
-    cd ~
-    if [ $? -ne 0 ]; then
-        echo "Failed to change directory to home"
-        exit 1
-    fi
-    sudo pacman -S --needed git base-devel --noconfirm
-    if [ $? -ne 0 ]; then
-        echo "Failed to install yay dependencies"
-        exit 1
-    fi
-    git clone https://aur.archlinux.org/yay-bin.git
-    if [ $? -ne 0 ]; then
-        echo "Failed to clone yay repository"
-        exit 1
-    fi
-    cd yay-bin
-    if [ $? -ne 0 ]; then
-        echo "Failed to enter yay directory"
-        exit 1
-    fi
-    makepkg -si --noconfirm
-    if [ $? -ne 0 ]; then
-        echo "Failed to build yay"
-        exit 1
-    fi
-fi
+echo "Installing paru..."
+sudo pacman -S --needed --noconfirm git base-devel
+git clone https://aur.archlinux.org/paru.git "$HOME/paru"
+cd "$HOME/paru" || exit
+makepkg -si --noconfirm
 
 echo "Installing packages..."
-cd $HOME/dotfiles/
-if [ $? -ne 0 ]; then
-    echo "Failed to enter dotfiles directory"
-    exit 1
-fi
-yay -S --needed --noconfirm - < pkglist.lst
-if [ $? -ne 0 ]; then
-    echo "Failed to install packages"
-    exit 1
-fi
+cd "$HOME/dotfiles" || exit
+paru -S --needed --noconfirm - <pkglist.lst
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     echo "Installing Tmux Plugin Manager..."
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    if [ $? -ne 0 ]; then
-        echo "Failed to clone Tmux Plugin Manager repository"
-        exit 1
-    fi
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 
 echo "Symlinking the directories..."
 stow .
-if [ $? -ne 0 ]; then
-    echo "Failed to stow directories"
-    exit 1
-fi
-
-stow -t ~/.config/ .config/
-if [ $? -ne 0 ]; then
-    echo "Failed to stow .config directories"
-    exit 1
-fi
-
-stow -t ~ zsh/
-if [ $? -ne 0 ]; then
-    echo "Failed to stow zsh directory"
-    exit 1
-fi
+stow -t "$HOME/.config" .config
+stow -t "$HOME" zsh
 
 # NOT WORKING FOR SOME REASON
 # stow -t ~ git/
@@ -78,97 +29,45 @@ fi
 #     exit 1
 # fi
 
-echo "Symlinking git config"
-ln -s git/.* $HOME
-if [ $? -ne 0 ]; then
-    echo "Failed to symlink git config"
-    exit 1
-fi
+# echo "Symlinking git config"
+# ln -s git/.* "$HOME"
 
 echo "Rebuilding bat's cache..."
 bat cache --build
-if [ $? -ne 0 ]; then
-    echo "Failed to rebuild bat's cache"
-    exit 1
-fi
 
 echo "Enabling keyd..."
 sudo systemctl enable keyd
-if [ $? -ne 0 ]; then
-    echo "Failed to enable keyd"
-    exit 1
-fi
 
 echo "Creating keyd directory..."
-sudo cp -r keyd/ /etc/
-if [ $? -ne 0 ]; then
-    echo "Failed to create keyd directory"
-    exit 1
-fi
+sudo cp -r keyd /etc
 
 echo "Adding pacman config..."
-sudo cp -r pacman/pacman.conf /etc/
-if [ $? -ne 0 ]; then
-    echo "Failed to add pacman config"
-    exit 1
-fi
+sudo cp -r pacman/pacman.conf /etc
 
 echo "Adding cursor config..."
-sudo cp -r default/ /usr/share/icons/
-if [ $? -ne 0 ]; then
-    echo "Failed to add pacman config"
-    exit 1
-fi
+sudo cp -r default /usr/share/icons
 
 echo "Spicetify setup"
 sudo chmod a+wr /opt/spotify
-if [ $? -ne 0 ]; then
-    echo "Failed to give permissions"
-    exit 1
-fi
 sudo chmod a+wr /opt/spotify/Apps -R
-if [ $? -ne 0 ]; then
-    echo "Failed to give permissions"
-    exit 1
-fi
 
 echo "Installing catppuccin gtk theme..."
 ./install.py mocha pink
-if [ $? -ne 0 ]; then
-    echo "Failed to install catppuccin gtk theme"
-    exit 1
-fi
 
 echo "Installing flatpak packages..."
-flatpak_pkgs=(
-    dev.vencord.Vesktop
-    com.stremio.Stremio
-)
-for pkg in "${flatpak_pkgs[@]}"; do
-    flatpak install -y "$pkg"
-    if [ $? -ne 0 ]; then
-        echo "Failed to install $pkg"
-        exit 1
-    fi
-done
+flatpak install -y dev.vencord.Vesktop
+flatpak install -y com.stremio.Stremio
 
 echo "Adding vesktop themes..."
-cp -r vesktop/themes/mocha.css $HOME/.var/app/dev.vencord.Vesktop/config/vesktop/themes/mocha.css
-if [ $? -ne 0 ]; then
-    echo "Failed to copy vesktop theme files"
-    exit 1
-fi
+cp -r vesktop/themes/mocha.css "$HOME/.var/app/dev.vencord.Vesktop/config/vesktop/themes/mocha.css"
 
-chsh -s $(which zsh)
-if [ $? -ne 0 ]; then
-    echo "Failed to set zsh as login shell"
-    exit 1
-fi
+echo "Changing default shell..."
+chsh -s "$(which zsh)"
 
-chsh -s $(which zsh)
-if [ $? -ne 0 ]; then
-    echo "Failed to set zsh as login shell"
-    exit 1
-fi
+echo "Adding dash as system shell..."
+sudo ln -sfT dash /usr/bin/sh
+
+echo "Adding pacman hooks..."
+sudo cp -r hooks/ /usr/share/libalpm/
 
 echo "Done!"

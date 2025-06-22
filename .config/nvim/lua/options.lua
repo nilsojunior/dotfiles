@@ -173,7 +173,7 @@ usercmd("Compiletypst", function()
 	vim.fn.system("typst compile " .. file_path .. " " .. pdf_path)
 end, {})
 
-usercmd("Topdf", function()
+usercmd("TOpdf", function()
 	local file_path = vim.fn.expand("%")
 	local file_name = vim.fn.expand("%:t:r")
 	local pdf_path = "~/Documents/PDFs/" .. file_name .. ".pdf"

@@ -43,6 +43,7 @@ return {
 					"typstyle",
 					"google-java-format",
 					"shfmt",
+					"shellcheck",
 				},
 			})
 		end,

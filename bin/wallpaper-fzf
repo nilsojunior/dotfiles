@@ -7,7 +7,6 @@ WALLPAPER_DIR="$HOME/pics/backgrounds"
 WALLPAPER=$(fd --type f . "$WALLPAPER_DIR" | fzf --preview "kitty icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 {}")
 
 if [[ -n "$WALLPAPER" ]]; then
-    hyprctl hyprpaper preload "$WALLPAPER"
-    hyprctl hyprpaper wallpaper , "$WALLPAPER"
+    hyprctl hyprpaper reload , "$WALLPAPER"
     hyprctl hyprpaper unload unused
 fi

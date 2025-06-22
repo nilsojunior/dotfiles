@@ -14,7 +14,6 @@ WALLPAPER=$(for a in "$WALLPAPER_DIR"/*; do echo -en "${a##*/}\0icon\x1f$a\n"; d
 
 if [[ -n "$WALLPAPER" ]]; then
     echo "$WALLPAPER_DIR/$WALLPAPER"
-    hyprctl hyprpaper preload "$WALLPAPER_DIR/$WALLPAPER"
-    hyprctl hyprpaper wallpaper , "$WALLPAPER_DIR/$WALLPAPER"
+    hyprctl hyprpaper reload , "$WALLPAPER_DIR/$WALLPAPER"
     hyprctl hyprpaper unload unused
 fi

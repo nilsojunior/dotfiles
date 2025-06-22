@@ -11,6 +11,9 @@ local cmd = vim.cmd
 -- Set leader key to Space
 vim.g.mapleader = " "
 
+-- Make CTRL+C behave like ESC, useful in vertical editing
+keymap("i", "<C-c>", "<ESC>")
+
 -- Disable Space in normal and visual mode
 keymap({ "n", "v" }, "<Space>", "<Nop>", opts_silence)
 

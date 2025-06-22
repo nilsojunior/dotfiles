@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
 WALLPAPER_DIR="$HOME/pics/backgrounds"
 
 if [[ "$HOSTNAME" == "$DESKTOP" ]]; then
@@ -11,15 +10,11 @@ else
     echo "Hostname not found."
 fi
 
-WALLPAPER=$(for a in $WALLPAPER_DIR/*; do echo -en "${a##*/}\0icon\x1f$a\n"; done | rofi -dmenu -config $ROFI_CONFIG)
+WALLPAPER=$(for a in "$WALLPAPER_DIR"/*; do echo -en "${a##*/}\0icon\x1f$a\n"; done | rofi -dmenu -i -config "$ROFI_CONFIG")
 
 if [[ -n "$WALLPAPER" ]]; then
-    WALLPAPER_PATH="$WALLPAPER_DIR/$WALLPAPER"
-    WALLPAPER_PATH_DYNAMIC="~/pics/backgrounds/$WALLPAPER"
-
-    echo "preload = $WALLPAPER_PATH_DYNAMIC" > "$CONFIG_FILE"
-    echo "wallpaper = , $WALLPAPER_PATH_DYNAMIC" >> "$CONFIG_FILE"
-
-    killall hyprpaper
-    hyprpaper
+    echo "$WALLPAPER_DIR/$WALLPAPER"
+    hyprctl hyprpaper preload "$WALLPAPER_DIR/$WALLPAPER"
+    hyprctl hyprpaper wallpaper , "$WALLPAPER_DIR/$WALLPAPER"
+    hyprctl hyprpaper unload unused
 fi

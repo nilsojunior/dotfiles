@@ -14,11 +14,6 @@ fi
 
 SORTING="${2:-random}"
 
-if [[ ! " ${SORTING_METHODS[@]} " =~ " ${SORTING} " ]]; then
-    echo "Invalid sorting method '$SORTING'. Valid methods are: ${SORTING_METHODS[*]}."
-    exit 1
-fi
-
 API="https://wallhaven.cc/api/v1/search?q=$1&sorting=$SORTING"
 
 URLS=$(curl -s "$API" | jq -r '.data[].path')
@@ -28,7 +23,7 @@ if [[ -z "$URLS" ]]; then
     exit 1
 fi
 
-SELECTED=$(echo "$URLS" | fzf --preview 'kitty +kitten icat --clear --transfer-mode=memory --stdin=no --place="${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0" {}')
+SELECTED=$(echo "$URLS" | fzf --preview "kitty icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 {}")
 
 if [[ -n "$SELECTED" ]]; then
     curl -sS -o "$HOME/Downloads/$(basename "$SELECTED")" "$SELECTED"

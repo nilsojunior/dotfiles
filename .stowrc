@@ -3,6 +3,7 @@
 --ignore=git
 --ignore=keyd
 --ignore=pacman
+--ignore=hooks
 --ignore=stylus
 --ignore=scripts
 --ignore=zen

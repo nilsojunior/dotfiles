@@ -3,3 +3,12 @@
 	email = 162613094+Nilsojunior@users.noreply.github.com
 [init]
 	defaultBranch = main
+
+[push]
+    autoSetupRemote = true
+
+[url "git@github.com:nilsojunior"]
+    insteadOf = "nj:"
+
+[url "git@github.com:"]
+    insteadOf = "gh:"

@@ -21,13 +21,10 @@ echo "Symlinking the directories..."
 stow .
 stow -t "$HOME/.config" .config
 stow -t "$HOME" zsh
+ln -s "$HOME/dotfiles/scripts" "$HOME/.local/scripts"
 
 # NOT WORKING FOR SOME REASON
 # stow -t ~ git/
-# if [ $? -ne 0 ]; then
-#     echo "Failed to stow git directory"
-#     exit 1
-# fi
 
 # echo "Symlinking git config"
 # ln -s git/.* "$HOME"

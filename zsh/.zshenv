@@ -31,6 +31,7 @@ export GTK_IM_MODULE=cedilla
 export QT_IM_MODULE=cedilla
 
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Catppuccin Mocha

@@ -4,6 +4,7 @@
 --ignore=keyd
 --ignore=pacman
 --ignore=stylus
+--ignore=scripts
 --ignore=zen
 --ignore=zsh
 --ignore=.stowrc

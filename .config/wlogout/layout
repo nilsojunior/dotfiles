@@ -1,12 +1,12 @@
 {
     "label": "lock",
-    "action": "$HOME/bin/lockscreen.sh",
+    "action": "lockscreen.sh",
     "text": "Lock",
     "keybind": "1"
 }
 {
     "label": "suspend",
-    "action": "systemctl suspend && $HOME/bin/lockscreen.sh",
+    "action": "systemctl suspend && lockscreen.sh",
     "text": "Suspend"
     "keybind": "2"
 }

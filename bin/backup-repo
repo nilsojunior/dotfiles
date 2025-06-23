@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 commit_msg="Backup: $(date +"%m-%d, %I:%M %p, %Y")"
 

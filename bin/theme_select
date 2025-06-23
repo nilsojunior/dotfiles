@@ -21,7 +21,7 @@ def load_waybar_config(jsonc_file: str, css_file: str) -> None:
     waybar_cmd: str = (
         f"exec waybar --config {waybar_dir}/configs/{jsonc_file} --style {waybar_dir}/styles/{css_file}"
     )
-    script_path: Path = Path.home() / "bin" / "launch-waybar"
+    script_path: Path = Path.home() / "bin" / "launch-waybar.sh"
     replace_line(script_path, "exec waybar", waybar_cmd)
     subprocess.run(["killall", "waybar"])
     subprocess.run(["bash", script_path])

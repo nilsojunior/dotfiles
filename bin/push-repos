@@ -7,9 +7,9 @@ repos=("notes" "personal" "faculdade")
 eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519
 
 for repo in "${repos[@]}"; do
-    pushd "$HOME/$repo"
+    pushd "$HOME/$repo" || exit
     git add .
     git commit -m "$commit_msg"
     git push
-    popd
+    popd || exit
 done

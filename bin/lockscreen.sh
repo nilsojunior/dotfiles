@@ -1,18 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Sleep before screenshot for wlogout to disappear
 sleep 0.1
 
-if [[ "$HOSTNAME" == "$DESKTOP" ]]; then
+HOST=$(uname -n)
+if [ "$HOST" = "$DESKTOP" ]; then
     grim -o DP-2 /tmp/lockscreen.png
-elif [[ "$HOSTNAME" == "$LAPTOP" ]]; then
+elif [ "$HOST" = "$LAPTOP" ]; then
     grim -o eDP-1 /tmp/lockscreen.png
 else
     echo "Hostname not found."
 fi
 
 hyprlock
-
-# Restart spotify
-# killall spotify
-# spotify

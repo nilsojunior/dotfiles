@@ -1,12 +1,19 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Running this from the wallpaper DIR will not work
 
-WALLPAPER_DIR="$HOME/pics/backgrounds"
+CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
+WALLPAPER_DIR="$HOME/Pictures/wallpapers/backgrounds"
 
-WALLPAPER=$(fd --type f . "$WALLPAPER_DIR" | fzf --preview "kitty icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 {}")
+WALLPAPER=$(fd --type f . "$WALLPAPER_DIR" | sed "s|$WALLPAPER_DIR/||" |
+    fzf --preview "kitty icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 $WALLPAPER_DIR/{}")
 
-if [[ -n "$WALLPAPER" ]]; then
-    hyprctl hyprpaper reload , "$WALLPAPER"
-    hyprctl hyprpaper unload unused
+if [ -n "$WALLPAPER" ]; then
+    WALLPAPER_PATH_DYNAMIC="~/Pictures/wallpapers/backgrounds/$WALLPAPER"
+
+    echo "preload = $WALLPAPER_PATH_DYNAMIC" >"$CONFIG_FILE"
+    echo "wallpaper = , $WALLPAPER_PATH_DYNAMIC" >>"$CONFIG_FILE"
+
+    killall hyprpaper
+    hyprpaper &
 fi

@@ -18,7 +18,7 @@
 # Script:
 
 USER="nilsojunior"
-BOOKMARKS="$HOME/Documents/Bookmarks/bookmarks"
+BOOKMARKS="$HOME/Documents/bookmarks/bookmarks"
 PDFS="$HOME/Documents/PDFs"
 
 declare -A URLS

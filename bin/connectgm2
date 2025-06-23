@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 MAC_ADDRESS="41:42:F5:48:94:0E"
 
 # Check if bluetooth daemon is running
-if ! systemctl is-active --quiet bluetooth; then
+if ! systemctl is-active bluetooth; then
     sudo systemctl start bluetooth
     sleep 2
 fi

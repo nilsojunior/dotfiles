@@ -11,7 +11,7 @@ PREVIEW=$(fzf --preview '
 if [ -n "$PREVIEW" ]; then
     if file --mime-type "$PREVIEW" | grep -q "image/"; then
         imv "$PREVIEW"
-    else 
+    else
         nvim "$PREVIEW"
     fi
 fi

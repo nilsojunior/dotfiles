@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 STATE_FILE="/tmp/hyprland_cursor"
 

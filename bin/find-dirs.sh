@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 dirs=(
-  "$HOME/dotfiles"
-  "$HOME/notes"
-  "$HOME/personal"
-  "$HOME/faculdade"
+    "$HOME/dotfiles"
+    "$HOME/notes"
+    "$HOME/personal"
+    "$HOME/faculdade"
 )
 
 extra_dirs=(
@@ -23,5 +23,5 @@ selected=$(echo "${all_dirs}" | sed "s|^$HOME/||" | fzf \
     --preview-window=right:35%)
 
 if [ -n "$selected" ]; then
-  cd "$HOME/$selected"
+    cd "$HOME/$selected"
 fi

@@ -83,9 +83,10 @@ alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long li
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='eza --icons=auto --tree' # list folder as tree
 alias zi="__zoxide_zi" # Fix zinit and zoxide conflict
+alias gs="git status"
 
 find_dirs() {
-    . find-dirs
+    . find-dirs.sh
     zle -I
 }
 zle -N find_dirs

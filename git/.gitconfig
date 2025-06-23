@@ -7,7 +7,7 @@
 [push]
     autoSetupRemote = true
 
-[url "git@github.com:nilsojunior"]
+[url "git@github.com:nilsojunior/"]
     insteadOf = "nj:"
 
 [url "git@github.com:"]

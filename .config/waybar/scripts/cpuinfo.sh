@@ -1,13 +1,13 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 map_floor() {
-    IFS=', ' read -r -a pairs <<< "$1"
+    IFS=', ' read -r -a pairs <<<"$1"
     if [[ ${pairs[-1]} != *":"* ]]; then
         def_val="${pairs[-1]}"
         unset 'pairs[${#pairs[@]}-1]'
     fi
     for pair in "${pairs[@]}"; do
-        IFS=':' read -r key value <<< "$pair"
+        IFS=':' read -r key value <<<"$pair"
         if [ ${2%%.*} -gt $key ]; then
             echo "$value"
             return
@@ -30,19 +30,19 @@ maxfreq=$(lscpu | awk '/CPU max MHz/ { sub(/\..*/,"",$4); print $4}')
 
 # Get CPU stat
 statFile=$(cat /proc/stat | head -1)
-prevStat=$(awk '{print $2+$3+$4+$6+$7+$8 }' <<< $statFile)
-prevIdle=$(awk '{print $5 }' <<< $statFile)
+prevStat=$(awk '{print $2+$3+$4+$6+$7+$8 }' <<<$statFile)
+prevIdle=$(awk '{print $5 }' <<<$statFile)
 
 while true; do
     # Get CPU stat
     statFile=$(cat /proc/stat | head -1)
-    currStat=$(awk '{print $2+$3+$4+$6+$7+$8 }' <<< $statFile)
-    currIdle=$(awk '{print $5 }' <<< $statFile)
-    diffStat=$((currStat-prevStat))
-    diffIdle=$((currIdle-prevIdle))
+    currStat=$(awk '{print $2+$3+$4+$6+$7+$8 }' <<<$statFile)
+    currIdle=$(awk '{print $5 }' <<<$statFile)
+    diffStat=$((currStat - prevStat))
+    diffIdle=$((currIdle - prevIdle))
 
     # Get dynamic CPU information
-    utilization=$(awk -v stat="$diffStat" -v idle="$diffIdle" 'BEGIN {printf "%.0f", (stat/(stat+idle))*100}')  # Changed %.1f to %.0f
+    utilization=$(awk -v stat="$diffStat" -v idle="$diffIdle" 'BEGIN {printf "%.0f", (stat/(stat+idle))*100}') # Changed %.1f to %.0f
     temperature=$(sensors | awk -F': ' '/Package id 0|Tctl/ { gsub(/^ *\+?|\..*/,"",$2); print $2; f=1; exit} END { if (!f) print "N/A"; }')
     frequency=$(cat /proc/cpuinfo | awk '/cpu MHz/{ sum+=$4; c+=1 } END { printf "%.0f", sum/c }')
 

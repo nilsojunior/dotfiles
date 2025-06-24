@@ -1,5 +1,4 @@
-#!/usr/bin/env sh
-
+#!/usr/bin/env bash
 
 #// hyde envs
 
@@ -10,8 +9,7 @@ export thmbDir="${cacheDir}/thumbs"
 export dcolDir="${cacheDir}/dcols"
 export hashMech="sha1sum"
 
-get_hashmap()
-{
+get_hashmap() {
     unset wallHash
     unset wallList
     unset skipStrays
@@ -23,19 +21,19 @@ get_hashmap()
         [ "${wallSource}" == "--verbose" ] && verboseMap=1 && continue
 
         hashMap=$(find "${wallSource}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec "${hashMech}" {} + | sort -k2)
-        if [ -z "${hashMap}" ] ; then
+        if [ -z "${hashMap}" ]; then
             echo "WARNING: No image found in \"${wallSource}\""
             continue
         fi
 
-        while read -r hash image ; do
+        while read -r hash image; do
             wallHash+=("${hash}")
             wallList+=("${image}")
-        done <<< "${hashMap}"
+        done <<<"${hashMap}"
     done
 
-    if [ -z "${#wallList[@]}" ] || [[ "${#wallList[@]}" -eq 0 ]] ; then
-        if [[ "${skipStrays}" -eq 1 ]] ; then
+    if [ -z "${#wallList[@]}" ] || [[ "${#wallList[@]}" -eq 0 ]]; then
+        if [[ "${skipStrays}" -eq 1 ]]; then
             return 1
         else
             echo "ERROR: No image found in any source"
@@ -43,9 +41,9 @@ get_hashmap()
         fi
     fi
 
-    if [[ "${verboseMap}" -eq 1 ]] ; then
+    if [[ "${verboseMap}" -eq 1 ]]; then
         echo "// Hash Map //"
-        for indx in "${!wallHash[@]}" ; do
+        for indx in "${!wallHash[@]}"; do
             echo ":: \${wallHash[${indx}]}=\"${wallHash[indx]}\" :: \${wallList[${indx}]}=\"${wallList[indx]}\""
         done
     fi
@@ -54,8 +52,8 @@ get_hashmap()
 [ -f "${hydeConfDir}/hyde.conf" ] && source "${hydeConfDir}/hyde.conf"
 
 case "${enableWallDcol}" in
-    0|1|2|3) ;;
-    *) enableWallDcol=0 ;;
+0 | 1 | 2 | 3) ;;
+*) enableWallDcol=0 ;;
 esac
 
 export hydeTheme
@@ -63,58 +61,49 @@ export hydeThemeDir="${hydeConfDir}/themes/${hydeTheme}"
 export wallbashDir="${hydeConfDir}/wallbash"
 export enableWallDcol
 
-
 #// hypr vars
 
-if printenv HYPRLAND_INSTANCE_SIGNATURE &> /dev/null; then
+if printenv HYPRLAND_INSTANCE_SIGNATURE &>/dev/null; then
     export hypr_border="$(hyprctl -j getoption decoration:rounding | jq '.int')"
     export hypr_width="$(hyprctl -j getoption general:border_size | jq '.int')"
 fi
 
-
 #// extra fns
 
-pkg_installed()
-{
+pkg_installed() {
     local pkgIn=$1
-    if pacman -Qi "${pkgIn}" &> /dev/null ; then
+    if pacman -Qi "${pkgIn}" &>/dev/null; then
         return 0
-    elif pacman -Qi "flatpak" &> /dev/null && flatpak info "${pkgIn}" &> /dev/null ; then
+    elif pacman -Qi "flatpak" &>/dev/null && flatpak info "${pkgIn}" &>/dev/null; then
         return 0
-    elif command -v "${pkgIn}" &> /dev/null ; then
+    elif command -v "${pkgIn}" &>/dev/null; then
         return 0
     else
         return 1
     fi
 }
 
-get_aurhlpr()
-{
-    if pkg_installed yay
-    then
+get_aurhlpr() {
+    if pkg_installed yay; then
         aurhlpr="yay"
-    elif pkg_installed paru
-    then
+    elif pkg_installed paru; then
         aurhlpr="paru"
     fi
 }
 
-set_conf()
-{
+set_conf() {
     local varName="${1}"
     local varData="${2}"
     touch "${hydeConfDir}/hyde.conf"
 
-    if [ $(grep -c "^${varName}=" "${hydeConfDir}/hyde.conf") -eq 1 ] ; then
+    if [ $(grep -c "^${varName}=" "${hydeConfDir}/hyde.conf") -eq 1 ]; then
         sed -i "/^${varName}=/c${varName}=\"${varData}\"" "${hydeConfDir}/hyde.conf"
     else
-        echo "${varName}=\"${varData}\"" >> "${hydeConfDir}/hyde.conf"
+        echo "${varName}=\"${varData}\"" >>"${hydeConfDir}/hyde.conf"
     fi
 }
 
-set_hash()
-{
+set_hash() {
     local hashImage="${1}"
     "${hashMech}" "${hashImage}" | awk '{print $1}'
 }
-

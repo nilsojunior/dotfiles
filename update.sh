@@ -1,7 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 git pull --recurse-submodules
-curl -sL -o $HOME/dotfiles/stylus/import.json https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json
+git submodule update --remote
+curl -sL -o "$HOME/dotfiles/stylus/import.json" https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json
 tldr --update
 killall hyprpaper
-hyprpaper &>/dev/null &
+hyprpaper

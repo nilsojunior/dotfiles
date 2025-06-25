@@ -13,6 +13,11 @@ return {
 					return name == ".." or name == ".git"
 				end,
 			},
+			-- Disable keybinds that i use for other stuff
+			keymaps = {
+				["<C-s>"] = "",
+				["<C-p>"] = "",
+			},
 		})
 
 		local keymap = vim.keymap.set

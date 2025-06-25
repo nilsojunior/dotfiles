@@ -23,6 +23,7 @@
         --newtab-background-color: #1e1e2e !important;
         --zen-themed-toolbar-bg: #181825 !important;
         --zen-main-browser-background: #181825 !important;
+        --toolbox-bgcolor-inactive: #181825 !important;
     }
 
     #permissions-granted-icon {
@@ -56,6 +57,14 @@
 
     #zenEditBookmarkPanelFaviconContainer {
         background: #11111b !important;
+    }
+
+    #zen-media-controls-toolbar {
+        & #zen-media-progress-bar {
+            &::-moz-range-track {
+                background: #313244 !important;
+            }
+        }
     }
 
     toolbar .toolbarbutton-1 {
@@ -109,5 +118,13 @@
     .identity-color-purple {
         --identity-tab-color: #cba6f7 !important;
         --identity-icon-color: #cba6f7 !important;
+    }
+
+    hbox#titlebar {
+        background-color: #181825 !important;
+    }
+
+    #zen-appcontent-navbar-container {
+        background-color: #181825 !important;
     }
 }

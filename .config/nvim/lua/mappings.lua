@@ -83,3 +83,7 @@ end
 
 keymap("n", "<leader>zg", add_to_portuguese_dict, { desc = "Add word to Portuguese dictionary" })
 keymap("n", "<leader>zw", remove_from_portuguese_dict, { desc = "Remove word from Portuguese dictionary" })
+
+keymap("n", "<leader>pd", function()
+	vim.fn.jobstart({ "previewpdf", vim.fn.expand("%") })
+end, { desc = "Preview PDF" })

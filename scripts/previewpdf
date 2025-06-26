@@ -1,0 +1,24 @@
+#!/bin/sh
+
+file="$1"
+# ext="$file##*."
+base=$(basename "${1%.*}")
+echo "$base"
+pdf_engine="weasyprint"
+tmp="/tmp/$base.pdf"
+
+cleanup() {
+    rm "$tmp"
+    kill "$entr_pid"
+}
+
+trap cleanup EXIT
+
+echo "$file" | entr -n pandoc --pdf-engine "$pdf_engine" -s -o "$tmp" "$file" &
+entr_pid=$!
+
+while [ ! -f "$tmp" ]; do
+    sleep 0.1
+done
+
+xdg-open "$tmp"

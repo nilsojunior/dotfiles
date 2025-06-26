@@ -71,6 +71,7 @@ opt.guicursor = ""
 
 opt.swapfile = false
 opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
 
 -- Obsidian stuff
@@ -162,33 +163,32 @@ autocmd("Filetype", {
 usercmd("Compiletypst", function()
 	local file_path = vim.fn.expand("%")
 	local file_name = vim.fn.expand("%:t:r")
-	local pdf_path = "~/Documents/PDFs/" .. file_name .. ".pdf"
+	local pdf_path = os.getenv("HOME") .. "/Documents/PDFs/" .. file_name .. ".pdf"
 	vim.fn.system("typst compile " .. file_path .. " " .. pdf_path)
 end, {})
 
 usercmd("TOpdf", function()
 	local file_path = vim.fn.expand("%")
 	local file_name = vim.fn.expand("%:t:r")
-	local pdf_path = "~/Documents/PDFs/" .. file_name .. ".pdf"
-	vim.fn.system("pandoc " .. file_path .. " -o " .. pdf_path)
+	local pdf_path = os.getenv("HOME") .. "/Documents/PDFs/" .. file_name .. ".pdf"
+	vim.fn.system("pandoc --pdf-engine weasyprint -s -o" .. pdf_path .. " " .. file_path)
 end, {})
 
 usercmd("Viewpdf", function()
 	local file_name = vim.fn.expand("%:t:r")
-	local full_path = "~/Documents/PDFs/" .. file_name .. ".pdf"
-	vim.fn.system("zathura " .. full_path)
+	local full_path = os.getenv("HOME") .. "/Documents/PDFs/" .. file_name .. ".pdf"
+	print(full_path)
+	vim.fn.system("xdg-open " .. full_path)
 end, {})
 
 usercmd("TOexec", function()
 	cmd("w")
 	local file_name = vim.fn.expand("%")
-	vim.fn.system("chmod +x" .. file_name)
+	vim.fn.system("chmod +x " .. file_name)
 end, {})
 
 usercmd("TObash", function()
 	cmd("setfiletype sh")
 	cmd("w")
 	cmd("TOexec")
-	local file_name = vim.fn.expand("%")
-	vim.fn.system("chmod +x " .. file_name)
 end, {})

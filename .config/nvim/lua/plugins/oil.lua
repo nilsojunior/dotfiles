@@ -15,8 +15,8 @@ return {
 			},
 			-- Disable keybinds that i use for other stuff
 			keymaps = {
-				["<C-s>"] = "",
-				["<C-p>"] = "",
+				["<C-s>"] = false,
+				["<C-p>"] = false,
 			},
 		})
 

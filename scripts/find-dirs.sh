@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+open_in_nvim="/tmp/open_in_nvim"
+
 dirs=(
     "$HOME/dotfiles"
     "$HOME/notes"
@@ -22,9 +24,14 @@ selected=$(
     echo "${all_dirs}" | sed "s|^$HOME/||" | fzf \
         --preview "eza -1 --color=always --icons=auto $HOME/{}" \
         --preview-window right:35% \
-        --bind "ctrl-e:execute(nvim $HOME/{})+accept"
+        --bind "ctrl-e:execute(touch $open_in_nvim)+accept"
 )
 
 if [ -n "$selected" ]; then
     cd "$HOME/$selected" || exit
+
+    if [ -f "$open_in_nvim" ]; then
+        nvim "$HOME/$selected"
+        rm "$open_in_nvim"
+    fi
 fi

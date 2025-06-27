@@ -78,6 +78,8 @@ return {
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
+				-- https://www.reddit.com/r/neovim/comments/16gd5zp/suppress_missing_fields_lsp_warnings_lualsp_and/
+				---@diagnostic disable-next-line: missing-fields
 				formatting = {
 					format = lspkind.cmp_format({
 						mode = "symbol_text",
@@ -129,6 +131,10 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
+					{
+						name = "lazydev",
+						group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+					},
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 				}, {

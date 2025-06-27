@@ -31,7 +31,7 @@ if [ -n "$selected" ]; then
     cd "$HOME/$selected" || exit
 
     if [ -f "$open_in_nvim" ]; then
-        nvim "$HOME/$selected"
         rm "$open_in_nvim"
+        nvim "$HOME/$selected"
     fi
 fi

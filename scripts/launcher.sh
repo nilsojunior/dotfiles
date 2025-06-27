@@ -65,9 +65,9 @@ open_bookmark() {
 }
 
 open_pdf() {
-    selected=$(ls "$PDFS" | rofi -dmenu -i)
+    selected=$(fd . "$PDFS" | sed "s|$PDFS/||g" | rofi -dmenu -i)
     if [[ -n "$selected" ]]; then
-        xdg-open "$selected"
+        xdg-open "$PDFS/$selected"
     fi
 }
 

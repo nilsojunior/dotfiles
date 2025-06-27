@@ -2,8 +2,6 @@ local opts = { noremap = true, silent = true }
 
 local opts_silence = { silent = true }
 
-local opts_no_silent = { noremap = true }
-
 local keymap = vim.keymap.set
 
 local cmd = vim.cmd
@@ -29,8 +27,8 @@ keymap("v", "<S-J>", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "<S-K>", ":m '<-2<CR>gv=gv", opts)
 
 -- Yank to clipboard
-keymap("v", "<leader>y", '"+y', { desc = "Yank to system clipboard" }, opts)
-keymap("n", "<leader>y", '"+y', { desc = "Yank to system clipboard" }, opts)
+keymap("v", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
+keymap("n", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 
 -- Pasting will not yank
 keymap("v", "p", '"_dp', opts)
@@ -42,7 +40,7 @@ keymap("n", "x", '"_x', opts)
 keymap({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yank" })
 
 -- Replace the word where cursor is
-keymap("n", "<leader>rn", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Rename" }, opts_no_silent)
+keymap("n", "<leader>rn", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Rename word under cursor" })
 
 -- Keep cursor on center (from Prime)
 keymap("n", "J", "mzJ`z", opts)
@@ -52,7 +50,7 @@ keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 
 -- Change window
-keymap("n", "<leader><Tab>", "<C-w>w", { desc = "Go to the next window" }, opts)
+keymap("n", "<leader><Tab>", "<C-w>w", { desc = "Go to the next window" })
 
 -- Splits
 keymap("n", "<leader>sh", "<C-w>s", { desc = "Split horizontal" })
@@ -65,7 +63,7 @@ keymap("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 keymap("n", "<C-f>", ":OpenWorkspace ~/", { desc = "Change directory" })
 
 -- Yank entire function
-keymap("n", "YY", "va{Vy}", opts, { desc = "Yank entire function" })
+keymap("n", "YY", "va{Vy}", { desc = "Yank entire function" })
 
 local function add_to_portuguese_dict()
 	cmd("set spelllang=pt")
@@ -87,3 +85,6 @@ keymap("n", "<leader>zw", remove_from_portuguese_dict, { desc = "Remove word fro
 keymap("n", "<leader>pd", function()
 	vim.fn.jobstart({ "previewpdf", vim.fn.expand("%") })
 end, { desc = "Preview PDF" })
+
+-- Go to previous buffer
+keymap("n", "<C-a>", "<C-^>")

@@ -74,13 +74,12 @@ return {
 			})
 
 			local keymap = vim.keymap.set
-
 			keymap("n", "K", vim.lsp.buf.hover, {})
 			keymap("n", "gd", vim.lsp.buf.definition, {})
 			keymap("n", "<leader>gr", vim.lsp.buf.references, { desc = "References" })
 			keymap("n", "<leader>vd", vim.diagnostic.open_float, { desc = "Diagnostic" })
-			keymap("n", "<leader>[d", vim.diagnostic.get_prev, { desc = "Next diagnostic" })
-			keymap("n", "<leader>]d", vim.diagnostic.get_next, { desc = "Prev diagnostic" })
+			keymap("n", "[d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+			keymap("n", "]d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
 			keymap("n", "<leader>rm", vim.lsp.buf.rename, { desc = "Rename" })
 			keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
 		end,

@@ -60,7 +60,7 @@ return {
 				table.insert(snippets, create_code_block_snippet(lang))
 			end
 
-			ls.add_snippets("all", snippets)
+			ls.add_snippets("markdown", snippets)
 		end,
 	},
 	{

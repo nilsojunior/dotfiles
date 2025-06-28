@@ -16,7 +16,7 @@ keymap("i", "<C-c>", "<ESC>")
 keymap({ "n", "v" }, "<Space>", "<Nop>", opts_silence)
 
 -- Control S to save
-keymap("n", "<C-s>", ":w<CR>", opts)
+keymap({ "n", "i" }, "<C-s>", "<CMD>w<CR>", opts)
 
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -60,8 +60,6 @@ keymap("n", "<leader>sv", "<C-w>v", { desc = "Split vertical" })
 keymap("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 keymap("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
-keymap("n", "<C-f>", ":OpenWorkspace ~/", { desc = "Change directory" })
-
 -- Yank entire function
 keymap("n", "YY", "va{Vy}", { desc = "Yank entire function" })
 
@@ -88,3 +86,9 @@ end, { desc = "Preview PDF" })
 
 -- Go to previous buffer
 keymap("n", "<C-a>", "<C-^>")
+
+-- nvim wrapper for find-projects script
+keymap("n", "<C-f>", function()
+	os.execute("touch /tmp/find-projects")
+	cmd("q!")
+end, { desc = "Find projects" })

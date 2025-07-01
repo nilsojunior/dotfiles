@@ -7,6 +7,9 @@ return {
 			exclude = { "node_modules", "target" },
 			sources = {
 				files = { ignored = true, hidden = true },
+				grep = {
+					hidden = true,
+				},
 			},
 		},
 		dashboard = {
@@ -64,6 +67,28 @@ return {
 				require("snacks").picker.git_files()
 			end,
 			desc = "Find Git files",
+		},
+		{
+			"gd",
+			function()
+				require("snacks").picker.lsp_definitions()
+			end,
+			desc = "Goto Definition",
+		},
+		{
+			"gD",
+			function()
+				require("snacks").picker.lsp_declarations()
+			end,
+			desc = "Goto Declaration",
+		},
+		{
+			"gr",
+			function()
+				require("snacks").picker.lsp_references()
+			end,
+			nowait = true,
+			desc = "References",
 		},
 	},
 }

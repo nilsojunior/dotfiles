@@ -59,7 +59,7 @@ github-cli
 imv
 
 # Dev
-npm
+pnpm
 lua
 rust
 python-gobject

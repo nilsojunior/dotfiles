@@ -1,0 +1,16 @@
+(defsrc
+    caps h j k l ralt
+)
+
+(defalias
+    escctrl (tap-hold 100 100 esc lctrl)
+    ah (fork h left (ralt))
+    aj (fork j down (ralt))
+    ak (fork k up (ralt))
+    al (fork l rght (ralt))
+)
+
+(deflayer base
+    @escctrl
+    @ah @aj @ak @al ralt
+)

@@ -30,7 +30,6 @@ URLS=(
     # ["Duckduckgo"]="https://www.duckduckgo.com/?q="
     ["Yandex"]="https://yandex.ru/yandsearch?text="
     ["Github"]="https://github.com/search?q="
-    ["Repos"]="https://github.com/$USER/"
     # ["Goodreads"]="https://www.goodreads.com/search?q="
     # ["Stackoverflow"]="http://stackoverflow.com/search?q="
     # ["Symbolhound"]="http://symbolhound.com/?q="
@@ -45,6 +44,7 @@ URLS=(
     # ["Vimawesome"]="http://vimawesome.com/?q="
     ["Bookmarks"]=""
     ["PDFs"]=""
+    ["Repos"]=""
 )
 
 # List for rofi
@@ -79,6 +79,12 @@ open_query() {
     fi
 }
 
+open_repos() {
+    selected=$(gh repo list --json name -q '.[] | .name' | rofi -dmenu -i)
+    if [[ -n "$selected" ]]; then
+        xdg-open "https://github.com/$USER/$selected"
+    fi
+}
 main() {
     # Pass the list to rofi
     platform=$( (gen_list) | rofi -dmenu -i)
@@ -90,6 +96,9 @@ main() {
             ;;
         "PDFs")
             open_pdf
+            ;;
+        "Repos")
+            open_repos
             ;;
         *)
             open_query

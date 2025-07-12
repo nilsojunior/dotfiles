@@ -90,5 +90,21 @@ return {
 			nowait = true,
 			desc = "References",
 		},
+
+		-- Lazygit
+		{
+			"<leader>lg",
+			function()
+				require("snacks").lazygit()
+			end,
+			desc = "Lazygit",
+		},
+		{
+			"<leader>ll",
+			function()
+				require("snacks").lazygit.log()
+			end,
+			desc = "Lazygit logs",
+		},
 	},
 }

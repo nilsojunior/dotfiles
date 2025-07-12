@@ -1,12 +1,27 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:no-status"
-rev = "ec97f88"
-hash = "f4d72c29cb0ddd9605e78f234216fd4e"
+rev = "b886025"
+hash = "3e023d31f29201efdac2a6ae35fedb78"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"
 rev = "ec97f88"
-hash = ""
+hash = "b25c2acb08d9ca5ff5cf71ea764fed8d"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "b886025"
+hash = "3996fc74044bc44144b323686f887e1"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "b886025"
+hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "b886025"
+hash = "d6f60c24d8c0cf57a855bf46115b2502"
 
 [flavor]
 deps = []

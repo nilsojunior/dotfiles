@@ -4,10 +4,10 @@
 
 [mgr]
 ratio          = [ 1, 4, 3 ]
-sort_by        = "alphabetical"
+sort_by        = "mtime"
 sort_sensitive = false
-sort_reverse 	 = false
-sort_dir_first = true
+sort_reverse 	 = true
+sort_dir_first = false
 sort_translit  = false
 linemode       = "none"
 show_hidden    = true
@@ -19,8 +19,8 @@ title_format   = "Yazi: {cwd}"
 [preview]
 wrap            = "no"
 tab_size        = 2
-max_width       = 600
-max_height      = 900
+max_width       = 10000
+max_height      = 10000
 cache_dir       = ""
 image_delay     = 30
 image_filter    = "triangle"

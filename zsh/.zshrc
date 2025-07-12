@@ -23,7 +23,10 @@ function y() {
 		builtin cd -- "$cwd"
 	fi
 	rm -f -- "$tmp"
+    zle -I
 }
+zle -N y
+bindkey '^P' y
 
 # nvim wrapper for find-projects script
 function nvim() {
@@ -108,7 +111,6 @@ zle -N find_dirs
 bindkey '^F' find_dirs
 
 bindkey -s '^O' '. find-files\n'
-bindkey -s '^P' 'y\n'
 bindkey '^Y' autosuggest-accept
 
 # Navigation

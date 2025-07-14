@@ -13,9 +13,39 @@ return {
 			},
 		},
 		dashboard = {
-			preset = {
+			sections = {
+				{
+					section = "terminal",
+					cmd = "",
+					function()
+						local win_width = vim.api.nvim_win_get_width(0)
+						local win_height = vim.api.nvim_win_get_height(0)
 
-				keys = {
+						local img_width = 20
+						local img_height = 20
+
+						local center_x = math.floor((win_width - img_width) / 2)
+
+						local path = vim.fn.expand("~/Pictures/wallpapers/pfp/ciri.png")
+						local image = require("image").from_file(path, {
+							x = center_x,
+							width = img_width,
+							height = img_height,
+						})
+						vim.fn.timer_start(100, function()
+							image:render()
+						end)
+						vim.api.nvim_create_autocmd({ "BufRead" }, {
+							callback = function()
+								image:clear()
+							end,
+						})
+					end,
+				},
+				{
+					secton = "keys",
+					gap = 1,
+					padding = 1,
 					{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
 					{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
 					{
@@ -51,14 +81,7 @@ return {
 					},
 					{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 				},
-				header = [[
-███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
- ]],
+				{ section = "startup" },
 			},
 		},
 	},

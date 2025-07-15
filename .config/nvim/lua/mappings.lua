@@ -49,19 +49,9 @@ keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 
--- Change window
-keymap("n", "<leader><Tab>", "<C-w>w", { desc = "Go to the next window" })
-
 -- Splits
 keymap("n", "<leader>sh", "<C-w>s", { desc = "Split horizontal" })
 keymap("n", "<leader>sv", "<C-w>v", { desc = "Split vertical" })
-
--- Increment and decrement numbers
-keymap("n", "<leader>+", "<C-a>", { desc = "Increment number" })
-keymap("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
-
--- Yank entire function
-keymap("n", "YY", "va{Vy}", { desc = "Yank entire function" })
 
 local function add_to_portuguese_dict()
 	cmd("set spelllang=pt")
@@ -84,8 +74,8 @@ keymap("n", "<leader>pd", function()
 	vim.fn.jobstart({ "previewpdf", vim.fn.expand("%") })
 end, { desc = "Preview PDF" })
 
--- Go to previous buffer
-keymap("n", "<C-a>", "<C-^>")
+-- Goto previous buffer
+keymap("n", "gp", "<c-^>", { desc = "goto previous buffer" })
 
 -- nvim wrapper for find-projects script
 keymap("n", "<C-f>", function()

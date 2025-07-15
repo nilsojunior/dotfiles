@@ -14,34 +14,7 @@ return {
 		},
 		dashboard = {
 			sections = {
-				{
-					section = "terminal",
-					cmd = "",
-					function()
-						local win_width = vim.api.nvim_win_get_width(0)
-						local win_height = vim.api.nvim_win_get_height(0)
-
-						local img_width = 20
-						local img_height = 20
-
-						local center_x = math.floor((win_width - img_width) / 2)
-
-						local path = vim.fn.expand("~/Pictures/wallpapers/pfp/ciri.png")
-						local image = require("image").from_file(path, {
-							x = center_x,
-							width = img_width,
-							height = img_height,
-						})
-						vim.fn.timer_start(100, function()
-							image:render()
-						end)
-						vim.api.nvim_create_autocmd({ "BufRead" }, {
-							callback = function()
-								image:clear()
-							end,
-						})
-					end,
-				},
+				{ section = "header" },
 				{
 					secton = "keys",
 					gap = 1,
@@ -67,10 +40,10 @@ return {
 						action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
 					},
 					{
-						icon = " ",
+						icon = " ",
 						key = "s",
-						desc = "Lazygit",
-						action = ":lua Snacks.lazygit()",
+						desc = "Fugitive",
+						action = "<leader>gs",
 					},
 					{
 						icon = "󰒲 ",

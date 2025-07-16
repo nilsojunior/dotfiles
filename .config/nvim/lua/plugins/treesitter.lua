@@ -4,6 +4,7 @@ return {
 		build = ":TSUpdate",
 		config = function()
 			local config = require("nvim-treesitter.configs")
+			---@diagnostic disable-next-line: missing-fields
 			config.setup({
 				auto_install = true,
 				ensure_installed = {
@@ -31,6 +32,7 @@ return {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		layz = true,
 		config = function()
+			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
 				textobjects = {
 					select = {
@@ -47,8 +49,59 @@ return {
 							["il"] = "@loop.inner",
 						},
 					},
+					move = {
+						enable = true,
+						set_jumps = true,
+						goto_next_start = {
+							["]f"] = "@function.outer",
+							["]c"] = "@class.outer",
+							["]i"] = "@conditional.outer",
+							["]l"] = "@loop.outer",
+						},
+						goto_next_end = {
+							["]F"] = "@function.outer",
+							["]C"] = "@class.outer",
+							["]I"] = "@conditional.outer",
+							["]L"] = "@loop.outer",
+						},
+						goto_previous_start = {
+							["[f"] = "@function.outer",
+							["[c"] = "@class.outer",
+							["[i"] = "@conditional.outer",
+							["[l"] = "@loop.outer",
+						},
+						goto_previous_end = {
+							["[F"] = "@function.outer",
+							["[C"] = "@class.outer",
+							["[I"] = "@conditional.outer",
+							["[L"] = "@loop.outer",
+						},
+					},
 				},
 			})
+
+			local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+
+			-- Repeat movement with ; and ,
+			-- ensure ; goes forward and , goes backward regardless of the last direction
+			vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+			vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+
+			-- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+			vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
+			vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
+			vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
+			vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		config = function()
+			require("treesitter-context").setup()
+
+			-- Setup colors based on theme
+			vim.api.nvim_set_hl(0, "TreesitterContextBottom", {})
+			vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { link = "LineNr" })
 		end,
 	},
 }

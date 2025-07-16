@@ -3,13 +3,13 @@
 # Running this from the wallpaper DIR will not work
 
 CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
-WALLPAPER_DIR="$HOME/Pictures/wallpapers/backgrounds"
+WALLPAPER_DIR="$HOME/personal/wallpapers/backgrounds"
 
 WALLPAPER=$(fd --type f . "$WALLPAPER_DIR" | sed "s|$WALLPAPER_DIR/||" |
     fzf --preview "kitty icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 $WALLPAPER_DIR/{}")
 
 if [ -n "$WALLPAPER" ]; then
-    WALLPAPER_PATH_DYNAMIC="~/Pictures/wallpapers/backgrounds/$WALLPAPER"
+    WALLPAPER_PATH_DYNAMIC="~/personal/wallpapers/backgrounds/$WALLPAPER"
 
     echo "preload = $WALLPAPER_PATH_DYNAMIC" >"$CONFIG_FILE"
     echo "wallpaper = , $WALLPAPER_PATH_DYNAMIC" >>"$CONFIG_FILE"

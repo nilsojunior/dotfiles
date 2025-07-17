@@ -1,0 +1,57 @@
+#!/bin/bash
+
+LYRICS_DIR="$HOME/Music/lyrics"
+LRCLIB_API="https://lrclib.net/api/get"
+
+INPUT="$1"
+EXT="$2"
+
+get_lyrics() {
+    local AUDIO_FILE="$1"
+
+    echo "Processing: $AUDIO_FILE"
+
+    METADATA="ffprobe -v quiet -print_format json -show_streams"
+
+    ARTIST=$($METADATA "$AUDIO_FILE" | jq -r ".streams[0].tags.artist")
+    TITLE=$($METADATA "$AUDIO_FILE" | jq -r ".streams[0].tags.title")
+    ALBUM=$($METADATA "$AUDIO_FILE" | jq -r ".streams[0].tags.album")
+
+    echo "Fetching lyrics for: $ARTIST - $TITLE"
+
+    LYRICS=$(curl -sG \
+        --data-urlencode "artist_name=$ARTIST" \
+        --data-urlencode "track_name=$TITLE" \
+        --data-urlencode "album_name=$ALBUM" \
+        "$LRCLIB_API" |
+        jq -r '.syncedLyrics')
+
+    if [ -z "$LYRICS" ]; then
+        echo "Failed to download lyrics for $ARTIST - $TITLE"
+        exit
+    fi
+
+    if [ "$LYRICS" = "null" ]; then
+        echo "Lyrics for $ARTIST - $TITLE not found"
+        exit
+    fi
+
+    LRC_FILE="$LYRICS_DIR/$ARTIST - $TITLE.lrc"
+
+    echo "[ar:$ARTIST]" >"$LRC_FILE"
+    {
+        echo "[al:$ALBUM]"
+        echo "[ti:$TITLE]"
+    } >>"$LRC_FILE"
+    echo "$LYRICS" | sed -E '/^\[(ar|al|ti):/d' >>"$LRC_FILE"
+}
+
+if [ -f "$INPUT" ]; then
+    get_lyrics "$INPUT"
+elif [ -d "$INPUT" ]; then
+    for file in "$INPUT"/*."$EXT"; do
+        if [ -f "$file" ]; then
+            get_lyrics "$file"
+        fi
+    done
+fi

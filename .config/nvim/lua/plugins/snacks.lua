@@ -12,6 +12,13 @@ return {
 				},
 			},
 		},
+		image = {
+			doc = {
+				inline = false,
+				float = true,
+				max_height = 25,
+			},
+		},
 		dashboard = {
 			sections = {
 				{ section = "header" },

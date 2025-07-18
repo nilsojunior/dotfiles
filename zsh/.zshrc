@@ -84,6 +84,9 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' popup-min-size 50 12
 # Remove zshell completion menu
 zstyle ':completion:*' menu no
 
+# Include hidden files
+_comp_options+=(globdots)
+
 # Aliases
 alias reload="source ~/.zshrc"
 alias ..="cd .."

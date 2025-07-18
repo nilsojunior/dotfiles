@@ -15,19 +15,6 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Yazi
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-    zle -I
-}
-zle -N y
-bindkey '^P' y
-
 # nvim wrapper for find-projects script
 function nvim() {
   command nvim "$@"
@@ -47,6 +34,11 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
+# Disable the cursor style feature
+ZVM_CURSOR_STYLE_ENABLED=false
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -74,6 +66,19 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always --icons=auto $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always --icons=auto $realpath' 
 zstyle ':fzf-tab*' use-fzf-default-opts yes
+
+if [[ -n "$TMUX" ]]; then
+    zstyle ':fzf-tab*' fzf-flags --info=hidden --prompt=' ' --border=none \
+        --preview-border=none --input-border=none
+else
+    zstyle ':fzf-tab*' fzf-flags --border=rounded --info=hidden --prompt=' ' \
+        --preview-border=none --input-border=none
+fi
+
+# Tmux pop up window
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:complete:cd:*' popup-min-size 50 12
+zstyle ':fzf-tab:complete:__zoxide_z:*' popup-min-size 50 12
 
 # Remove zshell completion menu
 zstyle ':completion:*' menu no
@@ -103,15 +108,33 @@ alias lt='eza --icons=auto --tree' # list folder as tree
 alias zi="__zoxide_zi" # Fix zinit and zoxide conflict
 alias gs="git status"
 
+# Yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+    zle -I
+}
+zle -N y
+
 find_dirs() {
     . find-dirs.sh
     zle -I
 }
 zle -N find_dirs
-bindkey '^F' find_dirs
+
+# Define an init function and append to zvm_after_init_commands
+function my_init() {
+    bindkey '^Y' autosuggest-accept
+    bindkey '^F' find_dirs
+    bindkey '^E' y
+}
+zvm_after_init_commands+=(my_init)
 
 bindkey -s '^O' '. find-files\n'
-bindkey '^Y' autosuggest-accept
 
 # Navigation
 bindkey '^[[1;5D' backward-word  # ctrl+left
@@ -120,7 +143,7 @@ bindkey '^H' backward-kill-word  # ctrol+backspace
 
 # Edit command in vim
 autoload edit-command-line; zle -N edit-command-line
-bindkey '^E' edit-command-line
+bindkey '\ee' edit-command-line
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"

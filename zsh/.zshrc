@@ -68,11 +68,12 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always --ico
 zstyle ':fzf-tab*' use-fzf-default-opts yes
 
 if [[ -n "$TMUX" ]]; then
+    # Inside Tmux
     zstyle ':fzf-tab*' fzf-flags --info=hidden --prompt=' ' --border=none \
         --preview-border=none --input-border=none
 else
     zstyle ':fzf-tab*' fzf-flags --border=rounded --info=hidden --prompt=' ' \
-        --preview-border=none --input-border=none
+        --preview-border=none --input-border=none --margin=0,25%
 fi
 
 # Tmux pop up window

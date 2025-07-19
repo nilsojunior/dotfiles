@@ -76,9 +76,3 @@ end, { desc = "Preview PDF" })
 
 -- Goto previous buffer
 keymap("n", "gp", "<c-^>", { desc = "goto previous buffer" })
-
--- nvim wrapper for find-projects script
-keymap("n", "<C-f>", function()
-	os.execute("touch /tmp/find-projects")
-	cmd("q!")
-end, { desc = "Find projects" })

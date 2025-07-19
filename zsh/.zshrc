@@ -15,21 +15,6 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# nvim wrapper for find-projects script
-function nvim() {
-  command nvim "$@"
-  local projects="/tmp/find-projects"
-  local dir="/tmp/last_nvim_dir"
-  if [ -f "$dir" ]; then
-      rm "$dir"
-      cd "$dir"
-  fi
-  if [ -f "$projects" ]; then
-      rm "$projects"
-      . find-dirs.sh
-  fi
-}
-
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions

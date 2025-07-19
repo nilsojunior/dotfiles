@@ -34,7 +34,7 @@ if [ -n "$TMUX" ]; then
     exit 0
 fi
 
-if [ -z "$tmux_running" ]; then
+if [ -n "$tmux_running" ]; then
     tmux new -d
     tmux run-shell "$HOME/.config/tmux/plugins/tmux-resurrect/scripts/restore.sh"
 fi

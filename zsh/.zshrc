@@ -111,6 +111,7 @@ alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='eza --icons=auto --tree' # list folder as tree
 alias zi="__zoxide_zi" # Fix zinit and zoxide conflict
 alias gs="git status"
+alias grep="grep --color=always"
 
 # Yazi
 function y() {
@@ -124,16 +125,21 @@ function y() {
 }
 zle -N y
 
-find_dirs() {
-    . find-dirs.sh
+tmux_sessionizer() {
+    # . tmux-sessionizer.sh
+    (
+        exec </dev/tty
+        exec <&1
+        tmux-sessionizer.sh
+    )
     zle -I
 }
-zle -N find_dirs
+zle -N tmux_sessionizer
 
 # Define an init function and append to zvm_after_init_commands
 function my_init() {
     bindkey '^Y' autosuggest-accept
-    bindkey '^F' find_dirs
+    bindkey '^F' tmux_sessionizer
     bindkey '^E' y
 }
 zvm_after_init_commands+=(my_init)

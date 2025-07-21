@@ -8,8 +8,8 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 # Source/Load zinit
@@ -19,11 +19,6 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
-
-# Disable the cursor style feature
-ZVM_CURSOR_STYLE_ENABLED=false
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -100,18 +95,18 @@ alias grep="grep --color=always"
 
 # Yazi
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
     zle -I
 }
 zle -N y
+bindkey '^E' y
 
 tmux_sessionizer() {
-    # . tmux-sessionizer.sh
     (
         exec </dev/tty
         exec <&1
@@ -120,21 +115,14 @@ tmux_sessionizer() {
     zle -I
 }
 zle -N tmux_sessionizer
+bindkey '^F' tmux_sessionizer
 
-# Define an init function and append to zvm_after_init_commands
-function my_init() {
-    bindkey '^Y' autosuggest-accept
-    bindkey '^F' tmux_sessionizer
-    bindkey '^E' y
-}
-zvm_after_init_commands+=(my_init)
-
-bindkey -s '^O' '. find-files\n'
+bindkey '^Y' autosuggest-accept
+bindkey '^U' clear-screen
 
 # Navigation
 bindkey '^[[1;5D' backward-word  # ctrl+left
 bindkey '^[[1;5C' forward-word   # ctrl+right
-bindkey '^H' backward-kill-word  # ctrol+backspace
 
 # Edit command in vim
 autoload edit-command-line; zle -N edit-command-line

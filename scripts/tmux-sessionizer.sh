@@ -1,5 +1,10 @@
 #!/bin/sh
 
+DIRECTORY='\x1b[38;5;86m'
+CONFIG='\x1b[38;5;15m'
+MUSIC='\x1b[38;5;13m'
+RESET='\x1b[0m'
+
 session=$(
     (
         fd -d 1 -t directory . "$HOME/faculdade" "$HOME/personal"
@@ -8,13 +13,20 @@ session=$(
         echo "$HOME/Music"
     ) |
         sed "s|^$HOME/||" |
+        sed "s/^faculdade/${DIRECTORY} ${RESET}faculdade/; \
+            s/^personal/${DIRECTORY} ${RESET}personal/; \
+            s/^notes/${DIRECTORY} ${RESET}notes/; \
+            s/^dotfiles/${CONFIG} ${RESET}dotfiles/; \
+            s/^Music/${MUSIC} ${RESET}Music/" |
         fzf \
             --prompt=" " \
             --color=prompt:10 \
             --no-info \
             --margin=10% \
             --input-label="Sessions" \
-            --scheme=path
+            --ansi \
+            --scheme=path |
+        sed 's/^[^ ]* //'
 )
 
 if [ -n "$session" ]; then

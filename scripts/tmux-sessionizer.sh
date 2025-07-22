@@ -3,6 +3,7 @@
 DIRECTORY='\x1b[38;5;86m'
 CONFIG='\x1b[38;5;15m'
 MUSIC='\x1b[38;5;13m'
+NOTES='\x1b[38;5;15m'
 RESET='\x1b[0m'
 
 session=$(
@@ -15,9 +16,9 @@ session=$(
         sed "s|^$HOME/||" |
         sed "s/^faculdade/${DIRECTORY} ${RESET}faculdade/; \
             s/^personal/${DIRECTORY} ${RESET}personal/; \
-            s/^notes/${DIRECTORY} ${RESET}notes/; \
+            s/^notes/${NOTES}󰈚 ${RESET}notes/; \
             s/^dotfiles/${CONFIG} ${RESET}dotfiles/; \
-            s/^Music/${MUSIC} ${RESET}Music/" |
+            s/^Music/${MUSIC} ${RESET}Music/" |
         fzf \
             --prompt=" " \
             --color=prompt:10 \

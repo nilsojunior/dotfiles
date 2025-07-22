@@ -37,7 +37,6 @@ else
 fi
 
 session_name=$(basename "$session" | tr . _)
-tmux_running=$(pgrep tmux)
 
 if [ -n "$TMUX" ]; then
     if ! tmux has-session -t "$session_name" 2>/dev/null; then
@@ -47,9 +46,12 @@ if [ -n "$TMUX" ]; then
     exit 0
 fi
 
-if [ -n "$tmux_running" ]; then
+if ! tmux ls >/dev/null 2>&1; then
     tmux new -d
     tmux run-shell "$HOME/.config/tmux/plugins/tmux-resurrect/scripts/restore.sh"
+    if [ -n "$SSH_AUTH_SOCK" ]; then
+        "$HOME/personal/pass.exp"
+    fi
 fi
 
 if tmux has-session -t "$session_name" 2>/dev/null; then

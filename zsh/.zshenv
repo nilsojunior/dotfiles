@@ -1,3 +1,5 @@
+source "$HOME/personal/env"
+
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="kitty"

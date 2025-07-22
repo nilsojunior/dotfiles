@@ -49,10 +49,6 @@ keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 
--- Splits
-keymap("n", "<leader>sh", "<C-w>s", { desc = "Split horizontal" })
-keymap("n", "<leader>sv", "<C-w>v", { desc = "Split vertical" })
-
 local function add_to_portuguese_dict()
 	cmd("set spelllang=pt")
 	cmd("normal zg")

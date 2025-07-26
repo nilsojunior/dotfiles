@@ -2,5 +2,5 @@
 
 shader=$(hyprshade current)
 hyprshade off
-hyprpicker --autocopy
+hyprpicker --autocopy --format hsl
 hyprshade on "$shader"

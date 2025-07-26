@@ -23,6 +23,9 @@ return {
 				prettier = {
 					append_args = { "--tab-width", "4" },
 				},
+				["clang-format"] = {
+					prepend_args = { "--style={IndentWidth: 4}" },
+				},
 			},
 			format_on_save = {
 				timeout_ms = 500,

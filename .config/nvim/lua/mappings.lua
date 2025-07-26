@@ -27,8 +27,8 @@ keymap("v", "<S-J>", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "<S-K>", ":m '<-2<CR>gv=gv", opts)
 
 -- Yank to clipboard
-keymap("v", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
-keymap("n", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
+keymap({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
+keymap({ "n", "v" }, "<leader>Y", [["+Y]], { desc = "Yank to system clipboard" })
 
 -- Pasting will not yank
 keymap("v", "p", '"_dp', opts)

@@ -123,6 +123,12 @@ autocmd("TextYankPost", {
 	end,
 })
 
+-- Remove whitespaces on save
+autocmd({ "BufWritePre" }, {
+	pattern = "*",
+	command = [[%s/\s\+$//e]],
+})
+
 -- Syntax highlight for jflex
 autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.flex", "*.jflex" },

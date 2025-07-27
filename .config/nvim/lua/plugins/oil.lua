@@ -22,7 +22,7 @@ return {
 
 		local keymap = vim.keymap.set
 		keymap("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil" })
-		keymap("n", "<A-->", oil.toggle_float, { desc = "Open Oil on a floating window" })
+		keymap("n", "<leader>-", oil.toggle_float, { desc = "Open Oil on a floating window" })
 
 		-- Enable cursorline on Oil
 		vim.api.nvim_create_autocmd("FileType", {

@@ -68,7 +68,7 @@ zstyle ':completion:*' menu no
 _comp_options+=(globdots)
 
 # Aliases
-alias reload="source ~/.zshrc"
+alias reload="source ~/.zshrc && source ~/.zshenv"
 alias ..="cd .."
 alias vim="nvim"
 alias v="nvim"

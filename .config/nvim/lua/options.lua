@@ -69,6 +69,9 @@ opt.splitbelow = true
 
 opt.guicursor = ""
 
+-- Hover border
+opt.winborder = "rounded"
+
 opt.swapfile = false
 opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"

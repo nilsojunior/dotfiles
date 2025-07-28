@@ -87,10 +87,14 @@ return {
 					keymap("n", "<leader>vd", vim.diagnostic.open_float, opts)
 
 					opts.desc = "Prev diagnostic"
-					keymap("n", "]d", vim.diagnostic.goto_prev, opts)
+					keymap("n", "]d", function()
+						vim.diagnostic.jump({ count = -1, float = true })
+					end, opts)
 
 					opts.desc = "Next diagnostic"
-					keymap("n", "[d", vim.diagnostic.goto_next, opts)
+					keymap("n", "[d", function()
+						vim.diagnostic.jump({ count = 1, float = true })
+					end, opts)
 
 					opts.desc = "Rename"
 					keymap("n", "<leader>rm", vim.lsp.buf.rename, opts)

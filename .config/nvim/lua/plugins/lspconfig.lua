@@ -20,7 +20,7 @@ return {
 				settings = {
 					Lua = {
 						diagnostics = {
-							globals = { "vim" },
+							globals = { "vim", "pandoc" },
 						},
 					},
 				},
@@ -75,79 +75,76 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
-					-- Buffer local mappings
-					-- Check `:help vim.lsp.*` for documentation on any of the below functions
-					local opts = { buffer = ev.buf, silent = true }
+					local function keymap(mode, map, func, desc, nowait)
+						vim.keymap.set(mode, map, func, {
+							buffer = ev.buf,
+							silent = true,
+							desc = "LSP: " .. desc,
+							nowait = nowait,
+						})
+					end
+					keymap("n", "K", vim.lsp.buf.hover, "Docs")
 
-					local keymap = vim.keymap.set
+					keymap("n", "<leader>vd", vim.diagnostic.open_float, "Diagnostic")
 
-					keymap("n", "K", vim.lsp.buf.hover, opts)
-
-					opts.desc = "Diagnostic"
-					keymap("n", "<leader>vd", vim.diagnostic.open_float, opts)
-
-					opts.desc = "Prev diagnostic"
 					keymap("n", "]d", function()
 						vim.diagnostic.jump({ count = -1, float = true })
-					end, opts)
+					end, "Prev diagnostic")
 
-					opts.desc = "Next diagnostic"
 					keymap("n", "[d", function()
 						vim.diagnostic.jump({ count = 1, float = true })
-					end, opts)
+					end, "Next diagnostic")
 
-					opts.desc = "Rename"
-					keymap("n", "<leader>rm", vim.lsp.buf.rename, opts)
+					keymap("n", "<leader>rm", vim.lsp.buf.rename, "Rename")
 
-					opts.desc = "Code actions"
-					keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+					keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code actions")
 
 					keymap("i", "<C-h>", function()
 						vim.lsp.buf.signature_help()
-					end, opts)
+					end, "Signature docs")
 
 					-- Snacks
 					local snacks = require("snacks")
 
-					opts.desc = "Goto Definition"
-					keymap("n", "gd", snacks.picker.lsp_definitions, opts)
+					keymap("n", "gd", snacks.picker.lsp_definitions, "Goto Definition")
 
-					opts.desc = "Goto Declaration"
-					keymap("n", "gD", snacks.picker.lsp_declarations, opts)
+					keymap("n", "gD", snacks.picker.lsp_declarations, "Goto Declaration")
 
-					opts.desc = "References"
-					opts.nowait = true
-					keymap("n", "gr", snacks.picker.lsp_references, opts)
+					keymap("n", "gr", snacks.picker.lsp_references, "References", true)
 
-					opts.desc = "Diagnostics"
-					keymap("n", "<leader>ds", snacks.picker.diagnostics, opts)
+					keymap("n", "<leader>ds", snacks.picker.diagnostics, "Diagnostics")
 
-					opts.desc = "Buffer diagnostics"
-					keymap("n", "<leader>db", snacks.picker.diagnostics_buffer, opts)
+					keymap("n", "<leader>db", snacks.picker.diagnostics_buffer, "Buffer diagnostics")
 				end,
 			})
 
-			-- Define sign icons for each severity
-			local signs = {
-				[vim.diagnostic.severity.ERROR] = " ",
-				[vim.diagnostic.severity.WARN] = " ",
-				[vim.diagnostic.severity.HINT] = "󰠠 ",
-				[vim.diagnostic.severity.INFO] = " ",
-			}
-			-- Set the diagnostic config with all icons
 			vim.diagnostic.config({
 				signs = {
-					text = signs, -- Enable signs in the gutter
+					text = {
+						[vim.diagnostic.severity.ERROR] = " ",
+						[vim.diagnostic.severity.WARN] = " ",
+						[vim.diagnostic.severity.HINT] = "󰠠 ",
+						[vim.diagnostic.severity.INFO] = " ",
+					},
+
+					-- Highlight line numbers where diagnostic exist
+					numhl = {
+						[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+						[vim.diagnostic.severity.WARN] = "WarningMsg",
+					},
 				},
-				virtual_text = true, -- Specify Enable virtual text for diagnostics
+				virtual_text = true,
+				-- virtual_lines = true,
 				underline = true, -- Specify Underline diagnostics
 				update_in_insert = false, -- Keep diagnostics active in insert mode
+				severity_sort = true,
 				float = {
 					focusable = false,
 					style = "minimal",
 					border = "rounded",
 					header = "",
 					prefix = "",
+					source = true,
 				},
 			})
 		end,

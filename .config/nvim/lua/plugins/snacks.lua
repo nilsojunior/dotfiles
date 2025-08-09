@@ -103,6 +103,13 @@ return {
 			desc = "Find icons",
 		},
 		{
+			"<leader>fh",
+			function()
+				Snacks.picker.help()
+			end,
+			desc = "Help Pages",
+		},
+		{
 			"<C-p>",
 			function()
 				require("snacks").picker.git_files()

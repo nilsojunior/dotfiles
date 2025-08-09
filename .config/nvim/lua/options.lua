@@ -39,11 +39,20 @@ opt.ignorecase = true
 -- Enable case-sensitive search when using uppercase letters
 opt.smartcase = true
 
+-- Statusline relative path
+opt.statusline = "%!expand('%:~:.')"
+
 -- Disable bottom right stuff
 opt.ruler = false
 
 -- Disable keys showing on bottom right
 opt.showcmd = false
+
+-- Global statusline (1 statusline for all windows)
+opt.laststatus = 3
+
+-- Make the statusline and cli overlap
+opt.cmdheight = 0
 
 -- Highlight current line number
 opt.cursorline = true
@@ -51,9 +60,6 @@ opt.cursorlineopt = "number"
 
 -- Disable line wrapping
 wo.wrap = false
-
--- Global statusline
-opt.laststatus = 3
 
 -- Hide mode display on bottom left
 opt.showmode = false

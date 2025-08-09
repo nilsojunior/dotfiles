@@ -4,6 +4,7 @@ return {
 	lazy = false,
 	opts = {
 		picker = {
+			prompt = " ",
 			exclude = { "node_modules", "target" },
 			sources = {
 				files = { ignored = true, hidden = true },

@@ -37,7 +37,7 @@ keymap("v", "p", '"_dp', opts)
 keymap("n", "x", '"_x', opts)
 
 -- Delete without yank
-keymap({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yank" })
+keymap("v", "<leader>d", [["_d]], { desc = "Delete without yank" })
 
 -- Replace the word where cursor is
 keymap("n", "<leader>rn", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Rename word under cursor" })

@@ -20,7 +20,7 @@ return {
 				settings = {
 					Lua = {
 						diagnostics = {
-							globals = { "vim", "pandoc" },
+							globals = { "pandoc" },
 						},
 					},
 				},
@@ -99,7 +99,7 @@ return {
 
 					keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code actions")
 
-					keymap("i", "<C-h>", function()
+					keymap({ "i", "n" }, "<C-h>", function()
 						vim.lsp.buf.signature_help()
 					end, "Signature docs")
 

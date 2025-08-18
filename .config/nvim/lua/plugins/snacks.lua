@@ -105,7 +105,7 @@ return {
 		{
 			"<leader>fh",
 			function()
-				Snacks.picker.help()
+				require("snacks").picker.help()
 			end,
 			desc = "Help Pages",
 		},

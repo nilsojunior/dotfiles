@@ -2,8 +2,6 @@
 
 repos="notes personal faculdade"
 
-eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519
-
 for repo in $repos; do
-    git clone --recurse-submodules "git@github.com:nilsojunior/$repo.git" "$HOME/$repo"
+    git clone --recurse-submodules "https://github.com/nilsojunior/$repo.git" "$HOME/$repo"
 done

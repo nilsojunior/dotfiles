@@ -118,11 +118,13 @@ zle -N tmux_sessionizer
 bindkey '^F' tmux_sessionizer
 
 bindkey '^Y' autosuggest-accept
-bindkey '^U' clear-screen
+bindkey '^G' clear-screen
 
 # Navigation
 bindkey '^[[1;5D' backward-word  # ctrl+left
 bindkey '^[[1;5C' forward-word   # ctrl+right
+bindkey '^P' up-line-or-search
+bindkey '^N' down-line-or-search
 
 # Edit command in vim
 autoload edit-command-line; zle -N edit-command-line

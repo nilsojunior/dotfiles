@@ -22,6 +22,9 @@ export HYPRCAP_DIR="$HOME/Pictures/hyprcap"
 
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 
+# xdg-desktop-portal-termfilechooser command
+export TERMCMD="kitty --start-as=fullscreen"
+
 # Neovim as man page
 export MANPAGER='nvim +Man!'
 

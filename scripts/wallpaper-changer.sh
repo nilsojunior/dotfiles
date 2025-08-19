@@ -11,7 +11,10 @@ else
     echo "Hostname not found."
 fi
 
-WALLPAPER=$(for a in "$WALLPAPER_DIR"/*; do echo -en "${a##*/}\0icon\x1f$a\n"; done | rofi -dmenu -i -config "$ROFI_CONFIG")
+WALLPAPER=$(find "$WALLPAPER_DIR" -type f | while read -r a; do
+    label=${a#"$WALLPAPER_DIR"/} # strip only the base dir, keep subdirs
+    echo -en "$label\0icon\x1f$a\n"
+done | rofi -dmenu -i -config "$ROFI_CONFIG")
 
 if [[ -n "$WALLPAPER" ]]; then
     WALLPAPER_PATH_DYNAMIC="~/personal/wallpapers/backgrounds/$WALLPAPER"

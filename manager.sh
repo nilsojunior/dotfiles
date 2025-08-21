@@ -103,7 +103,13 @@ post_install() {
     setup_repos
 }
 
+setup_pacman() {
+    grep -q '^Color' /etc/pacman.conf || sudo sed -i '/^\[options\]/a Color' /etc/pacman.conf
+    grep -q '^ILoveCandy' /etc/pacman.conf || sudo sed -i '/^\[options\]/a ILoveCandy' /etc/pacman.conf
+}
+
 install() {
+    setup_pacman
     install_paru
     install_pkgs
 

@@ -69,7 +69,7 @@ install_paru() {
     sudo pacman -S --needed --noconfirm git base-devel
     git clone https://aur.archlinux.org/paru.git "$paru"
 
-    cd "$HOME/paru" || exit
+    cd "$paru" || exit
     makepkg -si --noconfirm
     cd "$cwd" || exit
 }

@@ -46,6 +46,8 @@ setup_kanata() {
 setup_spicetify() {
     sudo chmod a+wr /opt/spotify
     sudo chmod a+wr /opt/spotify/Apps -R
+
+    spicetify backup apply
 }
 
 setup_dash() {

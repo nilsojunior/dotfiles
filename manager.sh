@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 setup_symlinks() {
     CONFIG=".config"
@@ -59,37 +59,38 @@ setup_cursor() {
 }
 
 install_pkgs() {
-    paru -S --needed --noconfirm - <pkglist.lst
+    source pkgs.conf
+
+    paru -S --needed --noconfirm "${HYPRLAND[@]}"
+    paru -S --needed --noconfirm "${FONTS[@]}"
+    paru -S --needed --noconfirm "${SYSTEM[@]}"
+    paru -S --needed --noconfirm "${GUIS[@]}"
+    paru -S --needed --noconfirm "${DEV[@]}"
+    paru -S --needed --noconfirm "${CLI[@]}"
+
+    if [ "$HOSTNAME" = "archbtw" ]; then
+        paru -S --needed --noconfirm "${NVIDIA[@]}"
+    elif [ "$HOSTNAME" = "arch" ]; then
+        paru -S --needed --noconfirm "${LAPTOP[@]}"
+    else
+        echo "Hostname: '$HOSTNAME' is not expected."
+    fi
 }
 
 install_paru() {
     paru="$HOME/repos/paru"
-    cwd=$(pwd)
 
     sudo pacman -S --needed --noconfirm git base-devel
     git clone https://aur.archlinux.org/paru.git "$paru"
 
-    cd "$paru" || exit
+    pushd "$paru" || exit
     makepkg -si --noconfirm
-    cd "$cwd" || exit
-}
-
-install_machine_specific_pkgs() {
-    host=$(hostname)
-
-    if [ "$host" = "archbtw" ]; then
-        paru -S --needed --noconfirm nvidia nvidia-utils lib32-nvidia-utils egl-wayland
-    elif [ "$host" = "arch" ]; then
-        echo "Skipping Nvidia drives..."
-    else
-        echo "Hostname: '$host' is not expected."
-    fi
+    popd || exit
 }
 
 install() {
     install_paru
     install_pkgs
-    install_machine_specific_pkgs
 
     git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 
@@ -100,7 +101,7 @@ install() {
     setup_spicetify
     setup_dash
     setup_cursor
-    # setup_kanata
+    setup_kanata
 
     # Catppuccin gtk theme
     ./install.py mocha pink

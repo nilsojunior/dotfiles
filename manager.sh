@@ -88,6 +88,19 @@ install_paru() {
     popd || exit
 }
 
+setup_repos() {
+    git clone --recurse-submodules "https://github.com/nilsojunior/personal.git" "$HOME/personal"
+    git clone --recurse-submodules "https://github.com/nilsojunior/notes.git" "$HOME/notes"
+    git clone --recurse-submodules "https://github.com/nilsojunior/faculdade.git" "$HOME/faculdade"
+}
+
+post_install() {
+    gh auth login
+    gh auth setup-git
+
+    setup_repos
+}
+
 install() {
     install_paru
     install_pkgs
@@ -119,3 +132,12 @@ update() {
     tldr --update
     install_pkgs
 }
+
+case "$1" in
+install)
+    install
+    ;;
+post_install)
+    post_install
+    ;;
+esac

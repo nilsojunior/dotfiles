@@ -93,6 +93,10 @@ alias zi="__zoxide_zi" # Fix zinit and zoxide conflict
 alias gs="git status"
 alias grep="grep --color=always"
 
+# Vim mode
+bindkey -v
+KEYTIMEOUT=1
+
 # Yazi
 function y() {
     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

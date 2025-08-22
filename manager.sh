@@ -56,8 +56,8 @@ setup_dash() {
 }
 
 setup_cursor() {
-    echo "[Icon Theme]" | sudo tee "/usr/share/icons/default/index.theme"
-    echo "Inherits=Bibata-Modern-Ice" | sudo tee "/usr/share/icons/default/index.theme"
+    echo "[Icon Theme]" | sudo tee -a "/usr/share/icons/default/index.theme"
+    echo "Inherits=Bibata-Modern-Ice" | sudo tee -a "/usr/share/icons/default/index.theme"
 }
 
 install_pkgs() {

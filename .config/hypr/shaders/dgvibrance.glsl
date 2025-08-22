@@ -1,42 +1,21 @@
-/*
- * Vibrance
- *
- * Enhance color saturation.
- * Also supports per-channel multipliers.
- *
- * Source: https://github.com/hyprwm/Hyprland/issues/1140#issuecomment-1614863627
- */
+// from https://github.com/hyprwm/Hyprland/issues/1140#issuecomment-1614863627
 
 precision highp float;
 varying vec2 v_texcoord;
 uniform sampler2D tex;
 
-// Vibrance settings
-/**
- * Per-channel multiplier to vibrance strength.
- *
- * @min 0.0
- * @max 10.0
- */
-const vec3 Balance = vec3(1.0, 1.0, 1.0); // Evenly applied to all channels
+// see https://github.com/CeeJayDK/SweetFX/blob/a792aee788c6203385a858ebdea82a77f81c67f0/Shaders/Vibrance.fx#L20-L30
+const vec3 VIB_RGB_BALANCE = vec3(1.0, 1.0, 1.0);
+const float VIB_VIBRANCE = 0.90;
 
-/**
- * Strength of filter.
- * (Negative values will reduce vibrance.)
- *
- * @min -1.0
- * @max 1.0
- */
-const float Strength = 0.90; // Approximation of 90% Digital Vibrance
-
-const vec3 VIB_coeffVibrance = Balance * -Strength;
+const vec3 VIB_coeffVibrance = VIB_RGB_BALANCE * -VIB_VIBRANCE;
 
 void main() {
     vec4 pixColor = texture2D(tex, v_texcoord);
     vec3 color = vec3(pixColor[0], pixColor[1], pixColor[2]);
 
-    // Use human-perception luminance coefficients for natural weighting
-    vec3 VIB_coefLuma = vec3(0.212656, 0.715158, 0.072186);
+    // vec3 VIB_coefLuma = vec3(0.333333, 0.333334, 0.333333); // was for `if VIB_LUMA == 1`
+    vec3 VIB_coefLuma = vec3(0.212656, 0.715158, 0.072186); // try both and see which one looks nicer.
 
     float luma = dot(VIB_coefLuma, color);
 
@@ -45,7 +24,6 @@ void main() {
 
     float color_saturation = max_color - min_color;
 
-    // Compute the adjusted color
     vec3 p_col = vec3(vec3(vec3(vec3(sign(VIB_coeffVibrance) * color_saturation) - 1.0) * VIB_coeffVibrance) + 1.0);
 
     pixColor[0] = mix(luma, color[0], p_col[0]);
@@ -54,5 +32,3 @@ void main() {
 
     gl_FragColor = pixColor;
 }
-
-// vim: ft=glsl

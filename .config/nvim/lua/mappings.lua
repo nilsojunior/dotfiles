@@ -15,6 +15,12 @@ keymap("i", "<C-c>", "<ESC>")
 -- Disable Space in normal and visual mode
 keymap({ "n", "v" }, "<Space>", "<Nop>", opts_silence)
 
+-- Quit and save keymaps
+keymap("n", "<leader>Q", ":quitall<CR>", opts)
+keymap("n", "<leader>q", ":quit<CR>", opts)
+keymap("n", "<leader>w", ":write<CR>", opts)
+keymap("n", "<leader>W", ":wall<CR>", opts)
+
 -- Control S to save
 keymap({ "n", "i" }, "<C-s>", "<CMD>w<CR>", opts)
 
@@ -71,4 +77,11 @@ keymap("n", "<leader>pd", function()
 end, { desc = "Preview PDF" })
 
 -- Goto previous buffer
-keymap("n", "gp", "<c-^>", { desc = "goto previous buffer" })
+keymap("n", "gp", "<c-^>", { desc = "Alternate file" })
+
+-- Open a new tmux window in the current buffer directory
+local function tmux_neww()
+	local current_buf = vim.fn.expand("%:p:h")
+	vim.fn.system({ "tmux", "neww", "-c", current_buf })
+end
+keymap("n", "<leader>tn", tmux_neww, { desc = "Tmux new window in current buffer" })

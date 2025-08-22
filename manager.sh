@@ -96,6 +96,13 @@ setup_repos() {
     git clone --recurse-submodules "https://github.com/nilsojunior/faculdade.git" "$HOME/faculdade"
 }
 
+setup_zen() {
+    profile=$(fd . --maxdepth=1 "$HOME/.zen" | grep "release")
+
+    rm -rf "$profile/chrome"
+    cp -r "$HOME/dotfiles/zen/chrome" "$profile/"
+}
+
 post_install() {
     gh auth login
     gh auth setup-git
@@ -147,5 +154,14 @@ install)
     ;;
 post_install)
     post_install
+    ;;
+update)
+    update
+    ;;
+sync)
+    setup_symlinks
+    ;;
+zen)
+    setup_zen
     ;;
 esac

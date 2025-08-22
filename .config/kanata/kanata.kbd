@@ -3,8 +3,8 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =   bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]   \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft      up        
-  lctl lmet lalt           spc            ralt rmet rctl      left down rght 
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft      up
+  lctl lmet lalt           spc            ralt rmet rctl      left down rght
 )
 
 (defalias
@@ -20,8 +20,8 @@
   grv      1    2    3    4    5    6    7    8    9    0    -    =   bspc
   tab      q    w    e    r    t    y    u    @msi  o    p    [    ]   \
   @escctrl a    s    d    f    g    @ah  @aj  @ak  @al    ;    '    ret
-  lsft     z    x    c    v    b    n    m    ,    .    /    rsft          up        
-  lctl     lmet lalt           spc            ralt rmet rctl          left down rght 
+  lsft     z    x    c    v    b    n    m    ,    .    /    rsft          up
+  lctl     lmet lalt           spc            ralt rmet rctl          left down rght
 )
 
 (defalias
@@ -57,7 +57,7 @@
 (defalias
   relm1 (on-press-fakekey m1 release)
   holdm1 (multi @relm1 (on-press-fakekey m1 press))
-  vsel (macro 
+  vsel (macro
   mltp 50
   mltp 50
   (on-press-fakekey m1 press)
@@ -88,8 +88,8 @@ _    _    _              _              _    _    _         _    _    _
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
 _    _    _    _    _    _    _    @mwr _    _    _    _    _    _
 @escape   _    _    mwl    mmtp    end  @gback    _    _    @gfor    _    _    _
-_    _    _    _    @vsel _   _    _    _    _    _    _         _        
-_    _    _              _              _    _    _         _    _    _ 
+_    _    _    _    @vsel _   _    _    _    _    _    _         _
+_    _    _              _              _    _    _         _    _    _
 )
 
 (deflayer g-layer
@@ -98,5 +98,5 @@ _    _    _              _              _    _    _         _    _    _
 @mousel    @mousel    @mousel    @mousel    @mousel    @mousel     @mousel    @mousel    @mousel    @mousel    @mousel    @mousel    @mousel    @mousel
 @mousel    @mousel    @mousel    @mousel    @mousel    @home @mousel    @mousel    @mousel    @mousel    @mousel    @mousel    @mousel
 @mousel    @mousel    @mousel    @mousel    @mousel    @mousel     @mousel    @mousel    @mousel    @mousel    @mousel    @mousel         @mousel
-@mousel    @mousel    @mousel              @mousel               @mousel    @mousel    @mousel         @mousel    @mousel    @mousel 
+@mousel    @mousel    @mousel              @mousel               @mousel    @mousel    @mousel         @mousel    @mousel    @mousel
 )

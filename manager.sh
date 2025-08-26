@@ -56,7 +56,7 @@ setup_dash() {
 }
 
 setup_cursor() {
-    echo "[Icon Theme]" | sudo tee -a "/usr/share/icons/default/index.theme"
+    echo "[Icon Theme]" | sudo tee "/usr/share/icons/default/index.theme"
     echo "Inherits=Bibata-Modern-Ice" | sudo tee -a "/usr/share/icons/default/index.theme"
 }
 
@@ -101,6 +101,13 @@ setup_zen() {
 
     rm -rf "$profile/chrome"
     cp -r "$HOME/dotfiles/zen/chrome" "$profile/"
+}
+
+setup_firefox() {
+    profile=$(fd release --maxdepth=1 "$HOME/.mozilla/firefox")
+
+    rm -rf "$profile/chrome"
+    cp -r "$HOME/dotfiles/firefox/chrome" "$profile"
 }
 
 post_install() {
@@ -163,5 +170,8 @@ sync)
     ;;
 zen)
     setup_zen
+    ;;
+firefox)
+    setup_firefox
     ;;
 esac

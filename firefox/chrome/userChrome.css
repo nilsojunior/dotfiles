@@ -48,10 +48,6 @@
     display: none;
 }
 
-#firefox-view-button {
-    display: none;
-}
-
 #unified-extensions-button:hover {
     opacity: 1;
 }

@@ -8,7 +8,7 @@
 )
 
 (defalias
-    escctrl (tap-hold 100 100 esc lctrl)
+    escctrl (tap-hold 150 150 esc lctrl)
     ah (fork h left (ralt))
     aj (fork j down (ralt))
     ak (fork k up (ralt))

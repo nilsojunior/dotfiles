@@ -60,6 +60,14 @@
     opacity: 0;
 }
 
+#stop-button {
+    opacity: 0;
+}
+
+#stop-button:hover {
+    opacity: 1;
+}
+
 #tabs-newtab-button {
     display: none;
 }

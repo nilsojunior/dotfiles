@@ -91,6 +91,7 @@ alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='eza --icons=auto --tree' # list folder as tree
 alias zi="__zoxide_zi" # Fix zinit and zoxide conflict
 alias gs="git status"
+alias gl="git log --graph --abbrev-commit --decorate --all --format=format:'%C(bold magenta)%h  %C(bold green)%ar %C(dim white)%an %C(auto)%d %C(reset)%s'"
 alias grep="grep --color=always"
 
 # Vim mode

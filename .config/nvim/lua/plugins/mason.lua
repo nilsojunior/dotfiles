@@ -23,6 +23,7 @@ return {
 					"jdtls",
 					"gopls",
 					"tinymist",
+					"cssls",
 				},
 			})
 		end,

@@ -99,13 +99,13 @@ setup_repos() {
 setup_zen() {
     profile=$(fd release --maxdepth=1 "$HOME/.zen")
 
-    cp -r "$HOME/dotfiles/zen/chrome" "$profile/"
+    cp -r "$PWD/zen/chrome" "$profile/"
 }
 
 setup_firefox() {
     profile=$(fd release --maxdepth=1 "$HOME/.mozilla/firefox")
 
-    cp -r "$HOME/dotfiles/firefox/." "$profile"
+    cp -r "$PWD/firefox/." "$profile"
 }
 
 post_install() {
@@ -157,7 +157,7 @@ case "$1" in
 install)
     install
     ;;
-post_install)
+post)
     post_install
     ;;
 update)

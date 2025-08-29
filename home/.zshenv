@@ -14,7 +14,7 @@ fi
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="kitty"
-export BROWSER="zen-browser"
+export BROWSER="firefox"
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export HYPRSHOT_DIR="$HOME/Pictures/screenshots"

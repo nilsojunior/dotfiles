@@ -97,17 +97,15 @@ setup_repos() {
 }
 
 setup_zen() {
-    profile=$(fd . --maxdepth=1 "$HOME/.zen" | grep "release")
+    profile=$(fd release --maxdepth=1 "$HOME/.zen")
 
-    rm -rf "$profile/chrome"
     cp -r "$HOME/dotfiles/zen/chrome" "$profile/"
 }
 
 setup_firefox() {
     profile=$(fd release --maxdepth=1 "$HOME/.mozilla/firefox")
 
-    rm -rf "$profile/chrome"
-    cp -r "$HOME/dotfiles/firefox/chrome" "$profile"
+    cp -r "$HOME/dotfiles/firefox/." "$profile"
 }
 
 post_install() {

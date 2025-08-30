@@ -96,3 +96,21 @@ keymap("n", "<leader>xs", function()
 	cmd("write")
 	cmd("silent !chmod +x %")
 end, { desc = "Set shell script" })
+
+keymap("n", "<leader>cp", function()
+	vim.notify("Compiling on save", "info")
+
+	local source = vim.fn.expand("%")
+	local file_name = vim.fn.expand("%:t:r")
+	local output = os.getenv("HOME") .. "/Documents/PDFs/" .. file_name .. ".pdf"
+	local command =
+		string.format("pandoc --pdf-engine=weasyprint --standalone --embed-resources %s -o %s", source, output)
+
+	vim.api.nvim_create_autocmd("BufWrite", {
+		callback = function()
+			vim.fn.jobstart(command)
+		end,
+	})
+	cmd("silent write")
+	vim.fn.jobstart("zathura " .. output)
+end, { desc = "Compile PDF on save" })

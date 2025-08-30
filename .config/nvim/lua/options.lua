@@ -181,17 +181,3 @@ usercmd("Compiletypst", function()
 	local pdf_path = os.getenv("HOME") .. "/Documents/PDFs/" .. file_name .. ".pdf"
 	vim.fn.system("typst compile " .. file_path .. " " .. pdf_path)
 end, {})
-
-usercmd("TOpdf", function()
-	local file_path = vim.fn.expand("%")
-	local file_name = vim.fn.expand("%:t:r")
-	local pdf_path = os.getenv("HOME") .. "/Documents/PDFs/" .. file_name .. ".pdf"
-	vim.fn.system("pandoc --pdf-engine weasyprint -s -o" .. pdf_path .. " " .. file_path)
-end, {})
-
-usercmd("Viewpdf", function()
-	local file_name = vim.fn.expand("%:t:r")
-	local full_path = os.getenv("HOME") .. "/Documents/PDFs/" .. file_name .. ".pdf"
-	print(full_path)
-	vim.fn.system("xdg-open " .. full_path)
-end, {})

@@ -143,6 +143,8 @@ post_install() {
     gh auth setup-git
 
     setup_repos
+
+    mkdir -p "$HOME/Documents/PDFs"
 }
 
 setup_pacman() {

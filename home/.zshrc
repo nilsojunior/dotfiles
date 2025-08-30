@@ -84,15 +84,17 @@ alias cat="bat"
 alias cdfzf='cd $(find . -type d | fzf)'
 alias tldrf='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
 alias start-ssh='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519'
-alias l='eza -lh  --icons=auto' # long list
-alias ls='eza -1   --icons=auto' # short list
-alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
-alias ld='eza -lhD --icons=auto' # long list dirs
-alias lt='eza --icons=auto --tree' # list folder as tree
+alias l='eza -lhA --icons=auto --group-directories-first --git-ignore' # long list
+alias ls='eza -1A --icons=auto --group-directories-first --git-ignore' # short list
+alias ll='eza -lhA --icons=auto --sort=name --group-directories-first --git-ignore' # long list all
+alias ld='eza -lhDA --icons=auto --git-ignore' # long list dirs
+alias lt='eza -A --icons=auto --tree --group-directories-first --git-ignore' # list folder as tree
 alias zi="__zoxide_zi" # Fix zinit and zoxide conflict
 alias gs="git status"
 alias gl="git log --graph --abbrev-commit --decorate --all --format=format:'%C(bold magenta)%h  %C(bold green)%ar %C(dim white)%an %C(auto)%d %C(reset)%s'"
 alias grep="grep --color=always"
+alias cp="cp --interactive"
+alias mv="mv --interactive"
 
 # Vim mode
 bindkey -v

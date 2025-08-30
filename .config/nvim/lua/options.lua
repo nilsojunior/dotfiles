@@ -170,8 +170,8 @@ end, {})
 autocmd("Filetype", {
 	pattern = { "markdown", "text", "gitcommit" },
 	callback = function()
-		opt.spell = true
-		opt.spelllang = "en_us,pt"
+		vim.opt_local.spell = true
+		vim.opt_local.spelllang = "en_us,pt"
 	end,
 })
 
@@ -194,16 +194,4 @@ usercmd("Viewpdf", function()
 	local full_path = os.getenv("HOME") .. "/Documents/PDFs/" .. file_name .. ".pdf"
 	print(full_path)
 	vim.fn.system("xdg-open " .. full_path)
-end, {})
-
-usercmd("TOexec", function()
-	cmd("w")
-	local file_name = vim.fn.expand("%")
-	vim.fn.system("chmod +x " .. file_name)
-end, {})
-
-usercmd("TObash", function()
-	cmd("setfiletype sh")
-	cmd("w")
-	cmd("TOexec")
 end, {})

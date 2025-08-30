@@ -85,3 +85,14 @@ local function tmux_neww()
 	vim.fn.system({ "tmux", "neww", "-c", current_buf })
 end
 keymap("n", "<leader>tn", tmux_neww, { desc = "Tmux new window in current buffer" })
+
+keymap("n", "<leader>xe", function()
+	cmd("write")
+	cmd("silent !chmod +x %")
+end, { desc = "Set executable" })
+
+keymap("n", "<leader>xs", function()
+	cmd("setfiletype sh")
+	cmd("write")
+	cmd("silent !chmod +x %")
+end, { desc = "Set shell script" })

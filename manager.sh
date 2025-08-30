@@ -114,7 +114,31 @@ setup_firefox() {
     cp -r "$PWD/firefox/." "$profile"
 }
 
+setup_defaults() {
+    xdg-mime default org.pwmt.zathura.desktop application/pdf
+
+    if [ "$BROWSER" = "firefox" ]; then
+        xdg-settings default-web-browser firefox.desktop
+        xdg-mime default firefox.desktop x-scheme-handler/http
+        xdg-mime default firefox.desktop x-scheme-handler/https
+
+    elif [ "$BROWSER" = "zen-browser" ]; then
+        xdg-settings default-web-browser zen.desktop
+        xdg-mime default zen.desktop x-scheme-handler/http
+        xdg-mime default zen.desktop x-scheme-handler/https
+
+    else
+        echo "Failed to set default browser for $BROWSER."
+    fi
+
+    xdg-mime default imv.desktop image/png
+    xdg-mime default imv.desktop image/jpeg
+    xdg-mime default imv.desktop image/gif
+    xdg-mime default imv.desktop image/webp
+}
+
 post_install() {
+    setup_defaults
     gh auth login
     gh auth setup-git
 

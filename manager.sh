@@ -145,6 +145,10 @@ post_install() {
     setup_repos
 
     mkdir -p "$HOME/Documents/PDFs"
+
+    # Cache for 1 week
+    echo "default-cache-ttl 604800" >"$HOME/.gnupg/gpg-agent.conf"
+    echo "max-cache-ttl 604800" >>"$HOME/.gnupg/gpg-agent.conf"
 }
 
 setup_pacman() {

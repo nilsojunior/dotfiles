@@ -90,7 +90,7 @@ alias ll='eza -lhA --icons=auto --sort=name --group-directories-first --git-igno
 alias ld='eza -lhDA --icons=auto --git-ignore' # long list dirs
 alias lt='eza -A --icons=auto --tree --group-directories-first --git-ignore' # list folder as tree
 alias zi="__zoxide_zi" # Fix zinit and zoxide conflict
-alias gs="git status"
+alias gs="git status --short --branch"
 alias gl="git log --graph --abbrev-commit --decorate --all --format=format:'%C(bold magenta)%h  %C(bold green)%ar %C(dim white)%an %C(auto)%d %C(reset)%s'"
 alias grep="grep --color=always"
 alias cp="cp --interactive"

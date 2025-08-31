@@ -1,9 +1,13 @@
 [user]
-	name = Nilso Junior
+	name = Nilso Júnior
 	email = 162613094+Nilsojunior@users.noreply.github.com
+    signingkey = 62858188C25849CB00FAEE57AAD9F278646016EF
 
 [init]
 	defaultBranch = main
+
+[commit]
+    gpgSign = true
 
 [push]
     autoSetupRemote = true

@@ -63,6 +63,15 @@ return {
 			end
 
 			ls.add_snippets("markdown", snippets)
+
+			ls.add_snippets("all", {
+				s("{", {
+					t("{"),
+					t({ "", "\t" }),
+					i(1),
+					t({ "", "}" }),
+				}),
+			})
 		end,
 	},
 	{

@@ -16,8 +16,9 @@ return {
 				javascriptreact = { "prettier" },
 				go = { "gofumpt", "golines", "goimports-reviser" },
 				typst = { "typstyle" },
-				java = { "google-java-format" },
+				java = { "clang-format" },
 				bash = { "shfmt" },
+				xml = { "xmllint" },
 			},
 			formatters = {
 				prettier = {

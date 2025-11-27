@@ -178,6 +178,8 @@ install() {
     flatpak install -y dev.vencord.Vesktop
     flatpak install -y com.stremio.Stremio
 
+    sudo systemctl enable --now bluetooth.service
+
     chsh -s "$(which zsh)"
 }
 

@@ -16,8 +16,7 @@ keymap("i", "<C-c>", "<ESC>")
 keymap({ "n", "v" }, "<Space>", "<Nop>", opts_silence)
 
 -- Quit and save keymaps
-keymap("n", "<leader>Q", ":quitall<CR>", opts)
-keymap("n", "<leader>q", ":quit<CR>", opts)
+keymap("n", "<leader>q", ":quitall<CR>", opts)
 keymap("n", "<leader>w", ":write<CR>", opts)
 keymap("n", "<leader>W", ":wall<CR>", opts)
 

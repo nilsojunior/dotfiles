@@ -1,9 +1,11 @@
 configuration {
-    modi: "drun";
+    modi: "combi";
+    combi-modi: "drun,launcher:launcher.sh";
     show-icons: true;
     drun-display-format: "{icon} {name}";
     terminal: "kitty";
     icon-theme: "Papirus";
+    combi-hide-mode-prefix: true;
 }
 
 @theme "catppuccin-mocha"

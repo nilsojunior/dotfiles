@@ -1,57 +1,37 @@
 #!/usr/bin/env bash
 
-# -----------------------------------------------------------------------------
-# Info:
-#   author:    Miroslav Vidovic
-#   file:      web-search.sh
-#   created:   24.02.2017.-08:59:54
-#   revision:  ---
-#   version:   1.0
-# -----------------------------------------------------------------------------
-# Requirements:
-#   rofi
-# Description:
-#   Use rofi to search the web.
-# Usage:
-#   web-search.sh
-# -----------------------------------------------------------------------------
-# Script:
+mkdir -p "$HOME/.local/share/icons/launcher-icons"
 
 USER="nilsojunior"
 BOOKMARKS="$HOME/personal/bookmarks/bookmarks"
 PDFS="$HOME/Documents/PDFs"
+SEARCH_ENGINE="https://www.startpage.com/do/dsearch?query="
+
+ICONS="\0icon\x1f"
+CUSTOM_ICONS="\0icon\x1f$HOME/.local/share/icons/launcher-icons/"
 
 declare -A URLS
 
 URLS=(
     ["Google"]="https://www.google.com/search?q="
-    # ["Bing"]="https://www.bing.com/search?q="
-    # ["Yahoo"]="https://search.yahoo.com/search?p="
-    # ["Duckduckgo"]="https://www.duckduckgo.com/?q="
     ["Yandex"]="https://yandex.ru/yandsearch?text="
     ["Github"]="https://github.com/search?q="
-    # ["Goodreads"]="https://www.goodreads.com/search?q="
-    # ["Stackoverflow"]="http://stackoverflow.com/search?q="
-    # ["Symbolhound"]="http://symbolhound.com/?q="
-    # ["Searchcode"]="https://searchcode.com/?q="
-    # ["Openhub"]="https://www.openhub.net/p?ref=homepage&query="
-    # ["Superuser"]="http://superuser.com/search?q="
-    # ["Askubuntu"]="http://askubuntu.com/search?q="
     ["Imdb"]="http://www.imdb.com/find?ref_=nv_sr_fn&q="
-    # ["Rottentomatoes"]="https://www.rottentomatoes.com/search/?search="
-    # ["Piratebay"]="https://thepiratebay.org/search/"
     ["Youtube"]="https://www.youtube.com/results?search_query="
-    # ["Vimawesome"]="http://vimawesome.com/?q="
-    ["Bookmarks"]=""
-    ["PDFs"]=""
-    ["Repos"]=""
+    ["Startpage"]="https://www.startpage.com/do/dsearch?query="
+    ["Web Search"]="$SEARCH_ENGINE"
 )
 
-# List for rofi
-gen_list() {
-    for i in "${!URLS[@]}"; do
-        echo "$i"
-    done
+declare -A FUNCTIONS
+
+FUNCTIONS=(
+    ["Bookmarks"]="open_bookmark"
+    ["PDFs"]="open_pdf"
+    ["Repos"]="open_repos"
+)
+
+focus_browser() {
+    hyprctl dispatch focuswindow class:"$BROWSER"
 }
 
 open_bookmark() {
@@ -60,22 +40,27 @@ open_bookmark() {
         url=$(grep "^$selected|" "$BOOKMARKS" | awk -F'|' '{print $2}')
         if [[ -n "$url" ]]; then
             xdg-open "$url"
+            focus_browser
         fi
     fi
 }
 
 open_pdf() {
-    selected=$(fd . "$PDFS" | sed "s|$PDFS/||g" | rofi -dmenu -i)
+    selected=$(fd . "$PDFS" |
+        sed -e "s|$PDFS/||g" -e 's|\.pdf$||i' |
+        rofi -dmenu -i)
+
     if [[ -n "$selected" ]]; then
-        xdg-open "$PDFS/$selected"
+        xdg-open "$PDFS/${selected}.pdf"
     fi
 }
 
 open_query() {
     query=$( (echo) | rofi -dmenu -i)
     if [[ -n "$query" ]]; then
-        url=${URLS[$platform]}$query
+        url=${URLS[$1]}$query
         xdg-open "$url"
+        focus_browser
     fi
 }
 
@@ -83,32 +68,28 @@ open_repos() {
     selected=$(gh repo list --json name -q '.[] | .name' | rofi -dmenu -i)
     if [[ -n "$selected" ]]; then
         xdg-open "https://github.com/$USER/$selected"
-    fi
-}
-main() {
-    # Pass the list to rofi
-    platform=$( (gen_list) | rofi -dmenu -i)
-
-    if [[ -n "$platform" ]]; then
-        case "$platform" in
-        "Bookmarks")
-            open_bookmark
-            ;;
-        "PDFs")
-            open_pdf
-            ;;
-        "Repos")
-            open_repos
-            ;;
-        *)
-            open_query
-            ;;
-        esac
-    else
-        exit
+        focus_browser
     fi
 }
 
-main
+echo -en "Google${ICONS}google\n"
+echo -en "Yandex${ICONS}yandex-browser-beta\n"
+echo -en "Github${ICONS}github\n"
+echo -en "Imdb${CUSTOM_ICONS}imdb.svg\n"
+echo -en "Youtube${ICONS}youtube\n"
+echo -en "Startpage${CUSTOM_ICONS}startpage.svg\n"
+echo -en "Web Search${ICONS}preferences-desktop-search\n"
 
-exit 0
+echo -en "Bookmarks${ICONS}package_favorite\n"
+echo -en "PDFs${ICONS}mupdf\n"
+echo -en "Repos${ICONS}github-desktop\n"
+
+[[ -z "$1" ]] && exit 0
+
+killall rofi
+
+if [[ -n "${URLS[$1]}" ]]; then
+    open_query "$1"
+elif [[ -n "${FUNCTIONS[$1]}" ]]; then
+    "${FUNCTIONS[$1]}"
+fi

@@ -3,7 +3,9 @@
 selected=$(
     fd -e pdf . "$HOME/Downloads" "$HOME/Documents/PDFs" |
         sed "s|^$HOME/||" |
-        fzf
+        fzf \
+            --margin=10% \
+            --input-label="PDFs"
 )
 
 if [ "$selected" ]; then

@@ -16,4 +16,6 @@ else
 fi
 
 hyprshade on "$shader"
-hyprlock
+
+# Avoid 2 instances of hyprlock
+pidof hyprlock || hyprlock

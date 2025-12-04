@@ -4,7 +4,7 @@ GREEN="\033[0;32m"
 RED="\033[0;31m"
 NC="\033[0m"
 
-tmux split-pane -v "${SHELL}" -ic "
+"${SHELL}" -ic "
 start_time=\$(date +%s.%N)
 $*
 exit_code=$?

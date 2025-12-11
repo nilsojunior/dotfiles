@@ -156,6 +156,11 @@ setup_pacman() {
     grep -q '^ILoveCandy' /etc/pacman.conf || sudo sed -i '/^\[options\]/a ILoveCandy' /etc/pacman.conf
 }
 
+setup_dual_boot() {
+    grep -q '^GRUB_DISABLE_OS_PROBER=false' /etc/default/grub || sudo sed -i 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+}
+
 install() {
     setup_pacman
     install_paru
@@ -171,6 +176,7 @@ install() {
     setup_dash
     setup_cursor
     setup_kanata
+    setup_dual_boot
 
     # Catppuccin gtk theme
     ./install.py mocha pink

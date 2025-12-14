@@ -13,11 +13,13 @@ local function run_cmd()
 		split = "below",
 	})
 
-	local shell_cmd = string.format("tmux.sh '%s'", cmd)
+	local shell_cmd = string.format("run_cmd.sh '%s'", cmd)
 	vim.fn.jobstart(shell_cmd, {
 		term = true,
 		on_stdout = function()
-			vim.cmd("startinsert")
+			if vim.api.nvim_get_current_buf() == buf then
+				vim.cmd("startinsert")
+			end
 		end,
 		-- Avoid the process exited message
 		on_exit = function()

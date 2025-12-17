@@ -1,7 +1,5 @@
 local opts = { noremap = true, silent = true }
 
-local opts_silence = { silent = true }
-
 local keymap = vim.keymap.set
 
 local cmd = vim.cmd
@@ -13,7 +11,7 @@ vim.g.mapleader = " "
 keymap("i", "<C-c>", "<ESC>")
 
 -- Disable Space in normal and visual mode
-keymap({ "n", "v" }, "<Space>", "<Nop>", opts_silence)
+keymap({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Quit and save keymaps
 keymap("n", "<leader>Q", ":quitall<CR>", opts)

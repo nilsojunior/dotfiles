@@ -89,9 +89,8 @@ return {
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
-				-- https://www.reddit.com/r/neovim/comments/16gd5zp/suppress_missing_fields_lsp_warnings_lualsp_and/
-				---@diagnostic disable-next-line: missing-fields
 				formatting = {
+					fields = { "abbr", "kind" },
 					format = lspkind.cmp_format({
 						mode = "symbol_text",
 						maxwidth = {
@@ -100,6 +99,43 @@ return {
 						},
 						ellipsis_char = "...",
 						show_labelDetails = true,
+
+						symbol_map = {
+							Array = "",
+							Boolean = "",
+							Class = "",
+							Color = "",
+							Constant = "",
+							Constructor = "",
+							Enum = "",
+							EnumMember = "",
+							Event = "",
+							Field = "",
+							File = "",
+							-- Folder = "",
+							Function = "",
+							Interface = "",
+							Key = "",
+							Keyword = "",
+							Method = "",
+							Module = "",
+							Namespace = "",
+							-- Null = "ﳠ",
+							Number = "",
+							Object = "",
+							Operator = "",
+							Package = "",
+							Property = "",
+							Reference = "",
+							-- Snippet = "",
+							String = "",
+							Struct = "",
+							Text = "",
+							TypeParameter = "",
+							Unit = "",
+							Value = "",
+							Variable = "",
+						},
 
 						before = function(entry, vim_item)
 							return vim_item

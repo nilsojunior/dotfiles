@@ -13,24 +13,21 @@ return {
 					return name == ".." or name == ".git"
 				end,
 			},
-			-- Disable keybinds that i use for other stuff
+			-- Disable keybinds that I use for other stuff
 			keymaps = {
 				["<C-s>"] = false,
 				["<C-p>"] = false,
+			},
+			columns = {
+				{ "permissions", highlight = "Special" },
+				{ "size", highlight = "@diff.plus" },
+				{ "mtime", highlight = "@text.title" },
+				{ "icon" },
 			},
 		})
 
 		local keymap = vim.keymap.set
 		keymap("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil" })
 		keymap("n", "<leader>-", oil.toggle_float, { desc = "Open Oil on a floating window" })
-
-		-- Enable cursorline on Oil
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = "oil",
-			callback = function()
-				vim.opt_local.cursorline = true
-				vim.opt_local.cursorlineopt = "line"
-			end,
-		})
 	end,
 }

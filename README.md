@@ -11,5 +11,5 @@
 2. Run the install script.
 
     ```console
-    ./install.sh
+    ./manager.sh install
     ```

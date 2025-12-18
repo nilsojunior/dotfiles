@@ -4,6 +4,15 @@ return {
 	lazy = false,
 	config = function()
 		local oil = require("oil")
+
+		-- Colours for permissions
+		local permission_hlgroups = {
+			["-"] = "NonText",
+			["r"] = "DiagnosticSignWarn",
+			["w"] = "DiagnosticSignError",
+			["x"] = "DiagnosticSignOk",
+		}
+
 		oil.setup({
 			default_file_explorer = true,
 			skip_confirm_for_simple_edits = true,
@@ -19,9 +28,20 @@ return {
 				["<C-p>"] = false,
 			},
 			columns = {
-				{ "permissions", highlight = "Special" },
-				{ "size", highlight = "@diff.plus" },
-				{ "mtime", highlight = "@text.title" },
+				{
+					"permissions",
+					highlight = function(permission_str)
+						local hls = {}
+						for i = 1, #permission_str do
+							local char = permission_str:sub(i, i)
+							table.insert(hls, { permission_hlgroups[char], i - 1, i })
+						end
+						return hls
+					end,
+				},
+
+				{ "size", highlight = "DiagnosticSignOk" },
+				{ "mtime", highlight = "@text.title", format = "%d %b %H:%M" },
 				{ "icon" },
 			},
 		})

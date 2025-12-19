@@ -41,11 +41,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		keymap("n", "<leader>vd", vim.diagnostic.open_float, "Diagnostic")
 
-		keymap("n", "]d", function()
+		keymap("n", "[d", function()
 			vim.diagnostic.jump({ count = -1, float = true })
 		end, "Prev diagnostic")
 
-		keymap("n", "[d", function()
+		keymap("n", "]d", function()
 			vim.diagnostic.jump({ count = 1, float = true })
 		end, "Next diagnostic")
 
@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code actions")
 
-		keymap({ "i", "n" }, "<C-h>", function()
+		keymap({ "i", "n" }, "<C-s>", function()
 			vim.lsp.buf.signature_help()
 		end, "Signature docs")
 

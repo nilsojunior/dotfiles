@@ -1,15 +1,35 @@
-local cmd
+local defaults = {
+	rust = function()
+		return "cargo run"
+	end,
+	sh = function()
+		return vim.fn.expand("%")
+	end,
+}
+
+local term = {
+	win = -1,
+	buf = -1,
+	cmd = nil,
+	default = function()
+		return defaults[vim.bo.filetype]()
+	end,
+}
 
 local keymap = vim.keymap.set
 
 local function run_cmd()
-	if not cmd or cmd:match("^%s*$") then
-		vim.notify("There is no command to run", vim.log.levels.WARN)
+	local cmd = term.cmd
+
+	if not cmd then
+		cmd = term.default()
+	elseif not cmd then
+		vim.notify(string.format("No default command for filetype: %s", vim.bo.filetype), vim.log.levels.WARN)
 		return
 	end
 
-	local buf = vim.api.nvim_create_buf(true, true)
-	vim.api.nvim_open_win(buf, true, {
+	term.buf = vim.api.nvim_create_buf(true, true)
+	term.win = vim.api.nvim_open_win(term.buf, true, {
 		split = "below",
 	})
 
@@ -17,18 +37,18 @@ local function run_cmd()
 	vim.fn.jobstart(shell_cmd, {
 		term = true,
 		on_stdout = function()
-			if vim.api.nvim_get_current_buf() == buf then
+			if vim.api.nvim_get_current_buf() == term.buf then
 				vim.cmd("startinsert")
 			end
 		end,
 		-- Avoid the process exited message
 		on_exit = function()
-			vim.api.nvim_buf_delete(buf, {})
+			vim.api.nvim_buf_delete(term.buf, {})
 		end,
 	})
 
 	keymap("t", "<ESC>", "<C-\\><C-n>", {
-		buffer = buf,
+		buffer = term.buf,
 		noremap = true,
 		silent = true,
 	})
@@ -48,7 +68,7 @@ local function create_win()
 	vim.cmd("startinsert")
 
 	keymap({ "i", "n" }, "<CR>", function()
-		cmd = vim.api.nvim_get_current_line()
+		term.cmd = vim.api.nvim_get_current_line()
 		run_cmd()
 		vim.api.nvim_win_close(win, false)
 		vim.cmd("stopinsert")
@@ -59,5 +79,17 @@ local function create_win()
 	})
 end
 
+local function toggle_term()
+	if vim.api.nvim_win_is_valid(term.win) then
+		vim.api.nvim_win_hide(term.win)
+		return
+	end
+
+	term.win = vim.api.nvim_open_win(term.buf, false, {
+		split = "below",
+	})
+end
+
 keymap("n", "<leader>re", create_win)
 keymap("n", "<leader>rw", run_cmd)
+keymap("n", "<leader>ru", toggle_term)

@@ -114,8 +114,10 @@ return {
 			require("treesitter-context").setup()
 
 			-- Setup colors based on theme
-			vim.api.nvim_set_hl(0, "TreesitterContextBottom", {})
-			vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { link = "LineNr" })
+			local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+			vim.api.nvim_set_hl(0, "TreesitterContext", { bg = normal.bg })
+			local linenr = vim.api.nvim_get_hl(0, { name = "LineNr" })
+			vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { fg = linenr.fg, bg = linenr.bg })
 		end,
 	},
 }

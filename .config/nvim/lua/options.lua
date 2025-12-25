@@ -78,6 +78,9 @@ opt.guicursor = ""
 -- Hover border
 opt.winborder = "rounded"
 
+-- Remove the ~ at the end of buffers
+opt.fillchars = { eob = " " }
+
 opt.swapfile = false
 opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"

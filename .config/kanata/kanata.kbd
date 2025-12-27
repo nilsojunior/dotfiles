@@ -1,88 +1,34 @@
 (defsrc
-    esc
-    w e y u i p
-    s d f g h j k l
-    lsft v rsft
-    rmet
-)
-
-(deflayer base
-    _
-    _ _ _ _ @msi _
-    _ _ _ _ _ _ _ _
-    _ _ _
-    _
+    =    1 2 3 4 5       6 7 8 9 0 -
+    tab  q w e r t       y u i o p \
+    esc  a s d f g       h j k l ; '
+    lsft z x c v b [   ] n m , . / rsft
+       lalt spc lctl   ret bspc rmet
 )
 
 (defalias
-    msi (fork i (layer-switch mouse) (rmet))
+    layer (layer-while-held symbols)
 )
 
-(defalias
-    fst (movemouse-speed 350)
-    slw (movemouse-speed 50)
-    vsl (movemouse-speed 1)
-
-    mwu (mwheel-up 50 120)
-    mwd (mwheel-down 50 120)
-    mwl (mwheel-left 50 120)
-    mwr (mwheel-right 50 120)
-
-    ms↑ (movemouse-up 4 4)
-    ms← (movemouse-left 4 4)
-    ms↓ (movemouse-down 4 4)
-    ms→ (movemouse-right 4 4)
-
-    ma↑ (movemouse-accel-up 1 1000 1 5)
-    ma← (movemouse-accel-left 1 1000 1 5)
-    ma↓ (movemouse-accel-down 1 1000 1 5)
-    ma→ (movemouse-accel-right 1 1000 1 5)
+(deflayer qwerty
+    =    1 2 3 4 5       6 7 8 9 0 -
+    tab  q w e r t       y u i o p \
+    esc  a s d f g       h j k l ; '
+    lsft z x c v b [   ] n m , . / rsft
+       lalt spc lctl   ret @layer rmet
 )
 
-(deffakekeys
-    m1 mlft
+(deflayer symbols
+    _ _     _     _   _    _         _   _      _   _   _   _
+    _ S-1   grv   [   ]    8         S-\ S-[  S-]   6   7   _
+    _ S--   -     S-9 S-0  S-5       S-6 ret  bspc  =   S-4 _
+    _ S-grv S-7   up  down S-3 _   _ S-8 left right S-2 \   _
+                           _ _ _   _ _ _
 )
 
-(defalias
-    relm1 (on-press-fakekey m1 release)
-    holdm1 (multi @relm1 (on-press-fakekey m1 press))
-    vsel (macro 
-    mltp 50
-    mltp 50
-    (on-press-fakekey m1 press)
-    )
-
-    home (multi home (layer-switch mouse))
-    gl (layer-switch g-layer)
-    shiftl (layer-while-held mouse-shift)
-    mousel (layer-switch mouse)
-    yank (multi lctl c @relm1)
-    paste (multi lctl v)
-    gback (multi alt left)
-    gfor (multi alt right)
-    escape (multi (layer-switch base) @relm1)
-)
-
-(deflayer mouse
-    @escape
-    @fst @slw @yank @mwu @msi @paste
-    mrgt @mwd mlft @gl @ms← @ms↓ @ms↑ @ms→
-    @shiftl @holdm1 @shiftl
-    _
-)
-
-(deflayer mouse-shift
-    @escape
-    _ _ _ _ _ _
-    _ mwl mmtp end @gback _ _ @gfor
-    _ @vsel _
-    _
-)
-
-(deflayer g-layer
-    @mousel
-    @mousel @mousel @mousel @mousel @mousel @mousel
-    @mousel @mousel @mousel @home @mousel @mousel @mousel @mousel
-    @mousel @mousel @mousel
-    @mousel
-)
+;; Template
+;; _ _ _ _ _ _       _ _ _ _ _ _
+;; _ _ _ _ _ _       _ _ _ _ - _
+;; _ _ _ _ _ _       _ _ _ _ _ _
+;; _ _ _ _ _ _ _   _ _ _ _ _ _ _
+;;         _ _ _   _ _ _

@@ -89,10 +89,12 @@ return {
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
+				-- Do not select any items
+				preselect = cmp.PreselectMode.None,
 				formatting = {
 					fields = { "abbr", "kind" },
 					format = lspkind.cmp_format({
-						mode = "symbol_text",
+						mode = "text",
 						maxwidth = {
 							menu = 50,
 							abbr = 50,

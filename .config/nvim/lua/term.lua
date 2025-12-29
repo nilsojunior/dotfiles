@@ -63,10 +63,54 @@ local function create_win()
 	})
 	vim.api.nvim_set_option_value("number", false, { win = win })
 	vim.api.nvim_set_option_value("relativenumber", false, { win = win })
-	vim.api.nvim_set_option_value("filetype", "sh", { buf = buf })
+	-- vim.api.nvim_set_option_value("filetype", "vim", { buf = buf })
+
+	-- Virtual text
+	local ns = vim.api.nvim_create_namespace("CommandMode")
+	vim.api.nvim_set_hl(0, "CommandMode", {
+		fg = "#9E9FAC",
+	})
+	vim.api.nvim_buf_set_extmark(buf, ns, 0, 0, {
+		virt_text = { { "Command: ", "CommandMode" } },
+		virt_text_pos = "inline",
+		right_gravity = false,
+	})
 
 	vim.cmd("startinsert")
 
+	-- Path completion
+	-- Disable neovim-cmp and use default neovim completion
+	require("cmp").setup.buffer({
+		enabled = false,
+	})
+
+	keymap("i", "<Tab>", function()
+		if vim.fn.pumvisible() == 1 then
+			return "<C-n>"
+		else
+			return "<C-x><C-f>"
+		end
+	end, {
+		buffer = buf,
+		expr = true,
+		noremap = true,
+		silent = true,
+	})
+
+	keymap("i", "<S-Tab>", function()
+		if vim.fn.pumvisible() == 1 then
+			return "<C-p>"
+		else
+			return "<S-Tab>"
+		end
+	end, {
+		buffer = buf,
+		expr = true,
+		noremap = true,
+		silent = true,
+	})
+
+	-- Run command
 	keymap({ "i", "n" }, "<CR>", function()
 		term.cmd = vim.api.nvim_get_current_line()
 		run_cmd()

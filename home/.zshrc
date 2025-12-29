@@ -67,6 +67,34 @@ zstyle ':completion:*' menu no
 # Include hidden files
 _comp_options+=(globdots)
 
+# Prompt
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats '%b '
+zstyle ':vcs_info:git:*' actionformats '%b %a '
+setopt PROMPT_SUBST
+
+current_dir() {
+  if [[ -n ${vcs_info_msg_0_} ]]; then
+    local git_root=${$(git rev-parse --show-toplevel 2>/dev/null):-}
+    if [[ -n "$git_root" ]]; then
+      local current_path=$(pwd)
+      if [[ "$current_path" == "$git_root" ]]; then
+        echo "$(basename "$git_root")"
+      else
+        echo "$(basename "$git_root")${current_path#$git_root}"
+      fi
+    else
+      echo "%~"
+    fi
+  else
+    echo "%~"
+  fi
+}
+
+precmd() { vcs_info }
+PROMPT='%F{black}[%T]%f %F{blue}%M%f%F{black}:%f%F{yellow}$(current_dir)%f %F{#FE8019}${vcs_info_msg_0_}%f%(1j.%F{green}[%j] %f.)%F{red}|%f '
+
 # Aliases
 alias reload="source ~/.zshrc && source ~/.zshenv"
 alias ..="cd .."
@@ -139,6 +167,6 @@ bindkey '\ee' edit-command-line
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 # fastfetch

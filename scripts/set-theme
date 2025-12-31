@@ -1,0 +1,38 @@
+#!/bin/sh
+
+THEME_NAME="$1"
+THEME_OPACITY="$2"
+THEMES_DIR="$HOME/dotfiles/themes"
+CURRENT_THEME_DIR="$HOME/.config/current-theme"
+THEME_PATH="$THEMES_DIR/$THEME_NAME"
+OPACITY_PATH="$CURRENT_THEME_DIR/opacity"
+
+apply_opacity() {
+    sed -i "s/^background_opacity .*/background_opacity $THEME_OPACITY/" "$HOME/.config/kitty/kitty.conf"
+}
+
+# Runs echo 2 times for the 1st time you run the script
+# Should probably fix that
+if [ -n "$THEME_OPACITY" ]; then
+    if [ ! -f "$OPACITY_PATH" ]; then
+        echo "$THEME_OPACITY" >"$OPACITY_PATH"
+    fi
+
+    CURRENT_OPACITY="$(cat "$OPACITY_PATH")"
+
+    if [ "$THEME_OPACITY" != "$CURRENT_OPACITY" ]; then
+        apply_opacity
+        echo "$THEME_OPACITY" >"$OPACITY_PATH"
+    fi
+fi
+
+if [ ! -d "$THEME_PATH" ]; then
+    echo "No theme found for: '$THEME_NAME'"
+    exit 1
+fi
+
+ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
+
+if pgrep -x kitty; then
+    killall -SIGUSR1 kitty
+fi
